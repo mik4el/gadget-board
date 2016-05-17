@@ -1,0 +1,48 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0" is_locked="false">
+    <option name="myName" value="Project Default" />
+    <option name="myLocal" value="true" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="34">
+            <item index="0" class="java.lang.String" itemvalue="django-cms" />
+            <item index="1" class="java.lang.String" itemvalue="model_mommy" />
+            <item index="2" class="java.lang.String" itemvalue="Django" />
+            <item index="3" class="java.lang.String" itemvalue="cmsplugin-filer" />
+            <item index="4" class="java.lang.String" itemvalue="boto" />
+            <item index="5" class="java.lang.String" itemvalue="djangocms-admin-style" />
+            <item index="6" class="java.lang.String" itemvalue="ssh" />
+            <item index="7" class="java.lang.String" itemvalue="six" />
+            <item index="8" class="java.lang.String" itemvalue="html5lib" />
+            <item index="9" class="java.lang.String" itemvalue="moto" />
+            <item index="10" class="java.lang.String" itemvalue="mailchimp" />
+            <item index="11" class="java.lang.String" itemvalue="Pillow" />
+            <item index="12" class="java.lang.String" itemvalue="django-admin-bootstrapped" />
+            <item index="13" class="java.lang.String" itemvalue="django-sekizai" />
+            <item index="14" class="java.lang.String" itemvalue="uwsgi" />
+            <item index="15" class="java.lang.String" itemvalue="django-allauth" />
+            <item index="16" class="java.lang.String" itemvalue="django-crispy-forms" />
+            <item index="17" class="java.lang.String" itemvalue="django-smtp-ssl" />
+            <item index="18" class="java.lang.String" itemvalue="mixpanel-py" />
+            <item index="19" class="java.lang.String" itemvalue="djangocms-text-ckeditor" />
+            <item index="20" class="java.lang.String" itemvalue="django-reversion" />
+            <item index="21" class="java.lang.String" itemvalue="coverage" />
+            <item index="22" class="java.lang.String" itemvalue="supervisor" />
+            <item index="23" class="java.lang.String" itemvalue="django-storages" />
+            <item index="24" class="java.lang.String" itemvalue="djangocms-inherit" />
+            <item index="25" class="java.lang.String" itemvalue="djangorestframework" />
+            <item index="26" class="java.lang.String" itemvalue="django-filer" />
+            <item index="27" class="java.lang.String" itemvalue="poster" />
+            <item index="28" class="java.lang.String" itemvalue="django-celery" />
+            <item index="29" class="java.lang.String" itemvalue="django-sendfile" />
+            <item index="30" class="java.lang.String" itemvalue="django-mptt" />
+            <item index="31" class="java.lang.String" itemvalue="djangocms-link" />
+            <item index="32" class="java.lang.String" itemvalue="psycopg2" />
+            <item index="33" class="java.lang.String" itemvalue="django-classy-tags" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
