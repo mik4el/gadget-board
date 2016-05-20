@@ -5,3 +5,7 @@
 __pycache__/*
 __pycache__
 *.pyc
+web/static/dist/*
+web/static/dist
+node_modules/*
+node_modules

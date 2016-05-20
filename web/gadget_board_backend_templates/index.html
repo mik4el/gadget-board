@@ -1,13 +1,29 @@
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<html>
+  <head>
+    <base href="/">
     <title>Gadget Board</title>
-    <base href="/" />
-    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}" />
-</head>
-<body>
-    <p>Test</p>
-</body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+
+    <!-- 1. Load libraries -->
+     <!-- Polyfill(s) for older browsers -->
+    <script src="{% static 'dist/lib/es6-shim.min.js' %}"></script>
+
+    <script src="{% static 'dist/lib/zone.js' %}"></script>
+    <script src="{% static 'dist/lib/Reflect.js' %}"></script>
+    <script src="{% static 'dist/lib/system.src.js' %}"></script>
+
+    <!-- 2. Configure SystemJS -->
+    <script src="{% static 'dist/gadget_board_frontend/systemjs.config.js' %}"></script>
+    <script>
+      System.import('app').catch(function(err){ console.error(err);  });
+    </script>
+  </head>
+
+  <!-- 3. Display the application -->
+  <body>
+    <my-app>Loading...</my-app>
+  </body>
 </html>

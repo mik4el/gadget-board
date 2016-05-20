@@ -3,6 +3,7 @@ server {
     listen 80;
     server_name example.org;
     charset utf-8;
+    sendfile off;
 
     location /static {
         alias /usr/src/app/static;

@@ -1,17 +1,21 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "outDir": "static/dist/gadget_board_frontend",
+    "target": "ES5",
     "module": "system",
-    "moduleResolution": "node",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "moduleResolution": "node",
     "removeComments": false,
-    "noImplicitAny": false
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true
   },
   "exclude": [
-    "node_modules",
-    "typings/main",
+    "node_modules"
+  ],
+  "files": [
+    "gadget_board_frontend/**/*.ts",
     "typings/main.d.ts"
   ]
 }
