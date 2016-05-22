@@ -3,10 +3,13 @@ import { RouteParams } from '@angular/router-deprecated';
 import { Hero } from './hero';
 import { HeroService } from './hero.service';
 
+declare var __moduleName: string;  // weird way to make relative template urls work, see https://github.com/angular/angular/issues/6053 
+
 @Component({
     selector: 'my-hero-detail',
-    templateUrl: 'app/hero-detail.component.html',
-    styleUrls: ['app/hero-detail.component.css']
+    moduleId: __moduleName,
+    templateUrl: './hero-detail.component.html',
+    styleUrls: ['./hero-detail.component.css']
 })
 
 export class HeroDetailComponent implements OnInit {

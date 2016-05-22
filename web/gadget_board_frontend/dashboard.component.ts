@@ -3,10 +3,13 @@ import { Hero } from './hero';
 import { HeroService } from './hero.service';
 import { Router } from '@angular/router-deprecated';
 
+declare var __moduleName: string;  // weird way to make relative template urls work, see https://github.com/angular/angular/issues/6053 
+
 @Component({
     selector: 'my-dashboard',
-    templateUrl: 'app/dashboard.component.html',
-    styleUrls: ['app/dashboard.component.css']
+    moduleId: __moduleName,
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.css']
 })
 
 export class DashboardComponent implements OnInit {

@@ -5,10 +5,13 @@ import { HeroDetailComponent } from './hero-detail.component';
 import { HeroService } from './hero.service';
 import { OnInit } from '@angular/core';
 
+declare var __moduleName: string;  // weird way to make relative template urls work, see https://github.com/angular/angular/issues/6053
+
 @Component({
     selector: 'my-heroes',
-    templateUrl: 'app/heroes.component.html',
-    styleUrls:  ['app/heroes.component.css'],
+    moduleId: __moduleName,
+    templateUrl: './heroes.component.html',
+    styleUrls:  ['./heroes.component.css'],
     directives: [HeroDetailComponent]
 })
 

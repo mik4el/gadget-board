@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "static/dist/gadget_board_frontend",
     "target": "ES5",
-    "module": "commonjs",
+    "module": "system",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,

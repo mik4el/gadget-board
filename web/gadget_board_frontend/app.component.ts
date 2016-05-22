@@ -5,8 +5,11 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/route
 import { DashboardComponent } from './dashboard.component';
 import { HeroDetailComponent } from './hero-detail.component';
 
+declare var __moduleName: string;  // weird way to make relative template urls work, see https://github.com/angular/angular/issues/6053 
+
 @Component({
     selector: 'my-app',
+    moduleId: __moduleName,
     template: `
         <h1>{{title}}</h1>
         <nav>
@@ -15,7 +18,7 @@ import { HeroDetailComponent } from './hero-detail.component';
         </nav>
         <router-outlet></router-outlet>
     `,
-    styleUrls: ['static/dist/gadget_board_frontend/app.component.css'],
+    styleUrls: ['./app.component.css'],
     directives: [ROUTER_DIRECTIVES],
     providers: [
         ROUTER_PROVIDERS,
