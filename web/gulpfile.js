@@ -18,16 +18,23 @@ gulp.task('copy:assets', ['clean'], function() {
 });
 
 // copy dependencies
-gulp.task('copy:libs', ['clean'], function() {
+gulp.task('copy:lib_dirs', ['clean'], function() {
   return gulp.src([
-      'node_modules/es6-shim/es6-shim.min.js',
-      'node_modules/zone.js/dist/zone.js',
-      'node_modules/reflect-metadata/Reflect.js',
-      'node_modules/systemjs/dist/system.src.js',
-      'node_modules/rxjs/**/*',
-      'node_modules/angular2-in-memory-web-api/**/*',
-      'node_modules/@angular/**/*'
-    ])
+        'node_modules/rxjs/**/*',
+        'node_modules/angular2-in-memory-web-api/**/*',
+        'node_modules/@angular/**/*'
+        ], { base : './node_modules/'})
+    .pipe(gulp.dest('static/dist/lib'))
+});
+
+// copy dependencies
+gulp.task('copy:lib_files', ['clean'], function() {
+  return gulp.src([
+        'node_modules/es6-shim/es6-shim.min.js',
+        'node_modules/zone.js/dist/zone.js',
+        'node_modules/reflect-metadata/Reflect.js',
+        'node_modules/systemjs/dist/system.src.js'
+        ])
     .pipe(gulp.dest('static/dist/lib'))
 });
 
@@ -57,5 +64,5 @@ gulp.task('tsconfig-glob', function () {
   });
 });
 
-gulp.task('build', ['compile', 'copy:libs', 'copy:assets']);
+gulp.task('build', ['compile', 'copy:lib_files',  'copy:lib_dirs', 'copy:assets']);
 gulp.task('default', ['build']);

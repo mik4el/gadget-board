@@ -2,15 +2,17 @@
 
   // map tells the System loader where to look for things
   var map = {
-    'app':                        'gadget_board_frontend',
-    'rxjs':                       'libs/rxjs',
-    'angular2-in-memory-web-api': 'libs/angular2-in-memory-web-api',
-    '@angular':                   'libs/@angular'
+    'gadget_board_frontend':      '',
+    'rxjs':                       'static/dist/lib/rxjs',
+    'angular2-in-memory-web-api': 'static/dist/lib/angular2-in-memory-web-api',
+    '@angular':                   'static/dist/lib/@angular'
   };
 
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
-    'app':                        { main: 'main.js',  defaultExtension: 'js' },
+    'gadget_board_frontend':      { main: 'static/dist/gadget_board_frontend/main.js',
+                                    format: 'register',
+                                    defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
     'angular2-in-memory-web-api': { defaultExtension: 'js' }
   };

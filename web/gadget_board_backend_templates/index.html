@@ -18,7 +18,7 @@
     <!-- 2. Configure SystemJS -->
     <script src="{% static 'dist/gadget_board_frontend/systemjs.config.js' %}"></script>
     <script>
-      System.import('app').catch(function(err){
+      System.import('gadget_board_frontend').catch(function(err){
           console.error(err);
       });
     </script>
