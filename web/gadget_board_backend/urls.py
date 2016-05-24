@@ -13,12 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from gadget_board_backend.views import IndexView
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url('^.*$', IndexView.as_view(), name='index'),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    #url('^.*$', IndexView.as_view(), name='index'),
 ]
