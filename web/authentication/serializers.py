@@ -1,4 +1,3 @@
-from django.contrib.auth import update_session_auth_hash
 from rest_framework import serializers
 from authentication.models import Account
 
@@ -25,7 +24,5 @@ class AccountSerializer(serializers.ModelSerializer):
             if password:
                 instance.set_password(password)
                 instance.save()
-
-            update_session_auth_hash(self.context.get('request'), instance)
 
             return instance

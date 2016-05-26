@@ -18,6 +18,9 @@ from django.contrib import admin
 from gadget_board_backend.views import IndexView
 from rest_framework_nested import routers
 from authentication.views import AccountViewSet
+from rest_framework_jwt.views import obtain_jwt_token
+from rest_framework_jwt.views import refresh_jwt_token
+
 
 router = routers.SimpleRouter()
 router.register(r'accounts', AccountViewSet)
@@ -25,6 +28,8 @@ router.register(r'accounts', AccountViewSet)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api-token-auth/', obtain_jwt_token),
+    url(r'^api-token-refresh/', refresh_jwt_token),
     url(r'^api/v1/', include(router.urls)),
     url('^.*$', IndexView.as_view(), name='index'),
 ]
