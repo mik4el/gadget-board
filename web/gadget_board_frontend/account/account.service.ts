@@ -1,19 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
-import { Observable }     from 'rxjs/Observable';
-import { User }           from './user';
+import { Observable } from 'rxjs/Observable';
+import { Account } from './account';
 
 @Injectable()
-export class AuthenticationService {
+export class AccountService {
     constructor (private http: Http) {}
 
-    private apiUrl = 'api/v1/authentication/';
+    private apiUrl = 'api/v1/accounts/';
 
-    create_user (username: string,
+    getAccounts (): Observable<Account[]> {
+    return this.http.get(this.apiUrl)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+    }
+
+    createAccount (username: string,
                  password: string,
-                 email: string): Observable<User> {
-        let body = JSON.stringify({ name });
+                 email: string): Observable<Account> {
+        let body = JSON.stringify({ username, password, email });
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
@@ -23,8 +29,8 @@ export class AuthenticationService {
     }
 
     private extractData(res: Response) {
-      let body = res.json();
-      return body.data || { };
+        let body = res.json();
+        return body || { };
     }
 
     private handleError (error: any) {

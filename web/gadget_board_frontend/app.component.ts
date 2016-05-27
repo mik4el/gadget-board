@@ -6,6 +6,8 @@ import { HeroesComponent } from './heroes/heroes.component';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroDetailComponent } from './hero/hero-detail.component';
+import { AccountService } from './account/account.service';
+import { AccountCreateComponent } from './account/account-create.component';
 
 declare var __moduleName: string;  // weird way to make relative template urls work, see https://github.com/angular/angular/issues/6053 
 
@@ -17,6 +19,7 @@ declare var __moduleName: string;  // weird way to make relative template urls w
         <nav>
             <a [routerLink]="['Dashboard']">Dashboard</a>
             <a [routerLink]="['Heroes']">Heroes</a>
+            <a [routerLink]="['CreateUser']">Create User</a>
         </nav>
         <router-outlet></router-outlet>
     `,
@@ -24,7 +27,8 @@ declare var __moduleName: string;  // weird way to make relative template urls w
     directives: [ROUTER_DIRECTIVES],
     providers: [
         ROUTER_PROVIDERS,
-        HeroService
+        HeroService,
+        AccountService
     ]
 })
 
@@ -44,6 +48,11 @@ declare var __moduleName: string;  // weird way to make relative template urls w
         path: '/detail/:id',
         name: 'HeroDetail',
         component: HeroDetailComponent
+    },
+    {
+        path: '/authentication/create-user',
+        name: 'CreateUser',
+        component: AccountCreateComponent
     }
 ])
 
