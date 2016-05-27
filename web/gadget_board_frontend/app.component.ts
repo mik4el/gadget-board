@@ -1,9 +1,9 @@
 import { Component }       from '@angular/core';
-import { HeroService }     from './hero.service';
-import { HeroesComponent } from './heroes.component';
+import { HeroService }     from './hero/hero.service';
+import { HeroesComponent } from './heroes/heroes.component';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
-import { DashboardComponent } from './dashboard.component';
-import { HeroDetailComponent } from './hero-detail.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { HeroDetailComponent } from './hero/hero-detail.component';
 
 declare var __moduleName: string;  // weird way to make relative template urls work, see https://github.com/angular/angular/issues/6053 
 
