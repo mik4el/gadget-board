@@ -1,4 +1,6 @@
 import { Component }       from '@angular/core';
+import './rxjs-operators';
+
 import { HeroService }     from './hero/hero.service';
 import { HeroesComponent } from './heroes/heroes.component';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
