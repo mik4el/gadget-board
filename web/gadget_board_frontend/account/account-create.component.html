@@ -6,3 +6,18 @@
     </div>
   </div>
 </div>
+
+<form>
+    <label>Username</label>
+    <input type="text" required [(ngModel)]="newAccount.username">
+    <br>
+    <label>Email</label>
+    <input type="email" [(ngModel)]="newAccount.email">
+    <br>
+    <label>Password</label>
+    <input type="password" [(ngModel)]="newAccount.password">
+    <br>
+    <button type="submit" (click)="createAccount()">Submit</button>
+</form>
+
+<div class="error" *ngIf="errorMessage">{{errorMessage}}</div>

@@ -19,7 +19,7 @@ declare var __moduleName: string;  // weird way to make relative template urls w
         <nav>
             <a [routerLink]="['Dashboard']">Dashboard</a>
             <a [routerLink]="['Heroes']">Heroes</a>
-            <a [routerLink]="['CreateUser']">Create User</a>
+            <a [routerLink]="['CreateAccount']">Create Account</a>
         </nav>
         <router-outlet></router-outlet>
     `,
@@ -50,8 +50,8 @@ declare var __moduleName: string;  // weird way to make relative template urls w
         component: HeroDetailComponent
     },
     {
-        path: '/authentication/create-user',
-        name: 'CreateUser',
+        path: '/accounts/create-account',
+        name: 'CreateAccount',
         component: AccountCreateComponent
     }
 ])

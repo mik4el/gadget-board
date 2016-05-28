@@ -15,11 +15,16 @@ export class AccountCreateComponent implements OnInit {
 
     errorMessage: string;
     accounts: Account[];
+    newAccount: Account;
+
     constructor(
         private accountService: AccountService) {
     }
 
-    ngOnInit() { this.getAccounts(); }
+    ngOnInit() {
+        this.getAccounts();
+        this.clearForm();
+    }
 
     getAccounts() {
         this.accountService.getAccounts()
@@ -28,12 +33,25 @@ export class AccountCreateComponent implements OnInit {
             error =>  this.errorMessage = <any>error);
     }
 
-    createAccount (username: string, password: string, email: string) {
-        if (!username) { return; }
-        if (!password) { return; }
-        this.accountService.createAccount(username, password, email)
+    createAccount () {
+        if (!this.newAccount.username) { return; }
+        if (!this.newAccount.password) { return; }
+        this.accountService.createAccount(
+            this.newAccount.username,
+            this.newAccount.password,
+            this.newAccount.email)
             .subscribe(
-                account  => console.log(account),
+                account  => this.accountCreated(account),
                 error =>  this.errorMessage = <any>error);
+    }
+
+    accountCreated(account: Account) {
+        this.accounts.push(account);
+        this.clearForm();
+    }
+
+    clearForm () {
+        this.newAccount = new Account();
+        this.errorMessage = "";
     }
 }
