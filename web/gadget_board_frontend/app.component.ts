@@ -1,13 +1,15 @@
-import { Component }       from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import './rxjs-operators';
+import { Subscription }   from 'rxjs/Subscription';
 
-import { HeroService }     from './hero/hero.service';
+import { HeroService } from './hero/hero.service';
 import { HeroesComponent } from './heroes/heroes.component';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroDetailComponent } from './hero/hero-detail.component';
 import { AccountService } from './account/account.service';
 import { AccountCreateComponent } from './account/account-create.component';
+import { AccountLoginComponent } from './account/account-login.component';
 
 declare var __moduleName: string;  // weird way to make relative template urls work, see https://github.com/angular/angular/issues/6053 
 
@@ -19,7 +21,9 @@ declare var __moduleName: string;  // weird way to make relative template urls w
         <nav>
             <a [routerLink]="['Dashboard']">Dashboard</a>
             <a [routerLink]="['Heroes']">Heroes</a>
-            <a [routerLink]="['CreateAccount']">Create Account</a>
+            <a [routerLink]="['AccountCreate']">Create Account</a>
+            <a *ngIf="!isLoggedIn" [routerLink]="['AccountLogin']">Login</a>
+            <a *ngIf="isLoggedIn" href="javascript:void(0)" (click)="logout()">Logout</a>
         </nav>
         <router-outlet></router-outlet>
     `,
@@ -51,11 +55,37 @@ declare var __moduleName: string;  // weird way to make relative template urls w
     },
     {
         path: '/accounts/create-account',
-        name: 'CreateAccount',
+        name: 'AccountCreate',
         component: AccountCreateComponent
+    },
+    {
+        path: '/accounts/login',
+        name: 'AccountLogin',
+        component: AccountLoginComponent
     }
 ])
 
-export class AppComponent {
-  title = 'Tour of Heroes';
+export class AppComponent implements OnDestroy {
+    title = 'Tour of Heroes';
+    isLoggedIn: boolean;
+    subscription: Subscription;
+
+    constructor(
+        private accountService: AccountService
+    ) {
+        this.isLoggedIn = accountService.isLoggedIn(); // make sure component is instantiated with status
+        this.subscription = accountService.isLoggedIn$.subscribe(
+            status => {
+                this.isLoggedIn = status;
+        })
+    }
+    
+    logout() {
+        this.accountService.logout();
+    }
+
+    ngOnDestroy(){
+        // prevent memory leak when component destroyed
+        this.subscription.unsubscribe();
+    }
 }

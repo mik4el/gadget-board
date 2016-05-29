@@ -1,0 +1,12 @@
+<h3>Login</h3>
+<form *ngIf="!isLoggedIn">
+    <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+    <label>Username</label>
+    <input #username>
+    <br>
+    <label>Password</label>
+    <input #password>
+    <br>
+    <button (click)="login(username.value, password.value)">Login</button>
+</form>
+<button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
