@@ -10,6 +10,7 @@ import { HeroDetailComponent } from './hero/hero-detail.component';
 import { AccountService } from './account/account.service';
 import { AccountCreateComponent } from './account/account-create.component';
 import { AccountLoginComponent } from './account/account-login.component';
+import { AccountListComponent } from './account/account-list.component';
 
 declare var __moduleName: string;  // weird way to make relative template urls work, see https://github.com/angular/angular/issues/6053 
 
@@ -23,6 +24,7 @@ declare var __moduleName: string;  // weird way to make relative template urls w
             <a [routerLink]="['Heroes']">Heroes</a>
             <a *ngIf="!isLoggedIn" [routerLink]="['AccountCreate']">Create Account</a>
             <a *ngIf="!isLoggedIn" [routerLink]="['AccountLogin']">Login</a>
+            <a *ngIf="isLoggedIn" [routerLink]="['AccountList']">List Accounts</a>
             <a *ngIf="isLoggedIn" href="javascript:void(0)" (click)="logout()">Logout</a>
         </nav>
         <router-outlet></router-outlet>
@@ -54,9 +56,14 @@ declare var __moduleName: string;  // weird way to make relative template urls w
         component: HeroDetailComponent
     },
     {
-        path: '/accounts/create-account',
+        path: '/accounts/create',
         name: 'AccountCreate',
         component: AccountCreateComponent
+    },
+    {
+        path: '/accounts/list',
+        name: 'AccountList',
+        component: AccountListComponent
     },
     {
         path: '/accounts/login',

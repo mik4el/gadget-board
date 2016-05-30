@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Account } from './account';
 import { AccountService } from './account.service';
 
@@ -11,26 +11,14 @@ declare var __moduleName: string;  // weird way to make relative template urls w
     styleUrls: ['./account-create.component.css']
 })
 
-export class AccountCreateComponent implements OnInit {
+export class AccountCreateComponent {
 
     errorMessage: string;
-    accounts: Account[];
     newAccount: Account;
 
     constructor(
         private accountService: AccountService) {
-    }
-
-    ngOnInit() {
-        this.getAccounts();
-        this.clearForm();
-    }
-
-    getAccounts() {
-        this.accountService.getAccounts()
-            .subscribe(
-            accounts => this.accounts = accounts,
-            error =>  this.errorMessage = <any>error);
+        this.newAccount = new Account();
     }
 
     createAccount () {
@@ -41,13 +29,8 @@ export class AccountCreateComponent implements OnInit {
             this.newAccount.password,
             this.newAccount.email)
             .subscribe(
-                account  => this.accountCreated(account),
+                account  => {},
                 error =>  this.errorMessage = <any>error);
-    }
-
-    accountCreated(account: Account) {
-        this.accounts.push(account);
-        this.clearForm();
     }
 
     clearForm () {

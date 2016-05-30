@@ -1,12 +1,4 @@
-<h3>Accounts</h3>
-<div class="grid grid-pad">
-  <div *ngFor="let account of accounts" class="col-1-4">
-    <div class="module account">
-      <h4>{{account.username}}</h4>
-    </div>
-  </div>
-</div>
-
+<h3>Create accounts</h3>
 <form>
     <label>Username</label>
     <input type="text" required [(ngModel)]="newAccount.username">
