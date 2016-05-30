@@ -21,7 +21,7 @@ declare var __moduleName: string;  // weird way to make relative template urls w
         <nav>
             <a [routerLink]="['Dashboard']">Dashboard</a>
             <a [routerLink]="['Heroes']">Heroes</a>
-            <a [routerLink]="['AccountCreate']">Create Account</a>
+            <a *ngIf="!isLoggedIn" [routerLink]="['AccountCreate']">Create Account</a>
             <a *ngIf="!isLoggedIn" [routerLink]="['AccountLogin']">Login</a>
             <a *ngIf="isLoggedIn" href="javascript:void(0)" (click)="logout()">Logout</a>
         </nav>

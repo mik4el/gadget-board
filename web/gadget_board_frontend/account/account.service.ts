@@ -41,8 +41,7 @@ export class AccountService {
     }
 
     getAccounts (): Observable<Account[]> {
-        return this.http
-            .get(this.accountsUrl)
+        return this.http.get(this.accountsUrl)
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -54,9 +53,14 @@ export class AccountService {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
 
-        return this.http
-            .post(this.accountsUrl, body, options)
-            .map(this.extractData)
+        return this.http.post(this.accountsUrl, body, options)
+            .map((res : any) => {
+                let data = res.json();
+                console.log(data);
+                localStorage.setItem('token', data.token)
+                this.updateLoginStatus(true);
+                return data || { };
+            })
             .catch(this.handleError);
     }
 
