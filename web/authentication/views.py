@@ -14,8 +14,8 @@ class AccountViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         if self.request.method in permissions.SAFE_METHODS:
-            # return (permissions.IsAuthenticated(),)  # only logged in users can see accounts
-            return (permissions.AllowAny(),)
+            return (permissions.IsAuthenticated(),)  # only logged in users can see accounts
+            # return (permissions.AllowAny(),)
 
         if self.request.method == 'POST':
             return (permissions.AllowAny(),)

@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import './rxjs-operators';
-import { Subscription }   from 'rxjs/Subscription';
+import { Subscription } from 'rxjs/Subscription';
 
 import { HeroService } from './hero/hero.service';
 import { HeroesComponent } from './heroes/heroes.component';

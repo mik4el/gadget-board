@@ -5,7 +5,8 @@
     'gadget_board_frontend':      'static/dist/gadget_board_frontend',
     'rxjs':                       'static/dist/lib/rxjs',
     'angular2-in-memory-web-api': 'static/dist/lib/angular2-in-memory-web-api',
-    '@angular':                   'static/dist/lib/@angular'
+    '@angular':                   'static/dist/lib/@angular',
+    'angular2-jwt':               'static/dist/lib/angular2-jwt'
   };
 
   // packages tells the System loader how to load when no filename and/or no extension
@@ -14,6 +15,7 @@
                                     format: 'register',
                                     defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
+    'angular2-jwt':               { defaultExtension: 'js' },
     'angular2-in-memory-web-api': { defaultExtension: 'js' }
   };
 

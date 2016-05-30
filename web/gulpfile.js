@@ -22,6 +22,7 @@ gulp.task('copy:lib_dirs', ['clean'], function() {
   return gulp.src([
         'node_modules/rxjs/**/*',
         'node_modules/angular2-in-memory-web-api/**/*',
+        'node_modules/angular2-jwt/**/*',
         'node_modules/@angular/**/*'
         ], { base : './node_modules/'})
     .pipe(gulp.dest('static/dist/lib'))
@@ -53,7 +54,7 @@ gulp.task('compile', ['clean'], function () {
     .pipe(sourcemaps.init())
     .pipe(typescript(tscConfig.compilerOptions))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('static/dist/gadget_board_frontend'));
+    .pipe(gulp.dest('static/dist'));
 });
 
 // update the tsconfig files based on the glob pattern

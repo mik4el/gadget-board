@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject }    from 'rxjs/Subject';
+import {AuthHttp} from 'angular2-jwt/angular2-jwt'
+
 import { Account } from './account';
 
 @Injectable()
@@ -12,11 +14,13 @@ export class AccountService {
 
     isLoggedIn$ = this.isLoggedInSource.asObservable();
 
-    constructor (private http: Http) {
-    }
+    constructor (
+        private http: Http,
+        public authHttp: AuthHttp
+    ) {}
 
     isLoggedIn() {
-        return !!localStorage.getItem('token');
+        return !!localStorage.getItem('id_token');
     }
 
     updateLoginStatus(status: boolean) {
@@ -29,19 +33,19 @@ export class AccountService {
         return this.http.post(this.getTokenUrl, body, options)
             .map((res : any) => {
                 let data = res.json();
-                localStorage.setItem('token', data.token);
+                localStorage.setItem('id_token', data.token);
                 this.updateLoginStatus(true);
             })
             .catch(this.handleError);
     }
 
     logout() {
-        localStorage.removeItem('token');
+        localStorage.removeItem('id_token');
         this.updateLoginStatus(false);
     }
 
     getAccounts (): Observable<Account[]> {
-        return this.http.get(this.accountsUrl)
+        return this.authHttp.get(this.accountsUrl)
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -57,7 +61,7 @@ export class AccountService {
             .map((res : any) => {
                 let data = res.json();
                 console.log(data);
-                localStorage.setItem('token', data.token)
+                localStorage.setItem('id_token', data.token)
                 this.updateLoginStatus(true);
                 return data || { };
             })
