@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Account } from './account';
 import { AccountService } from './account.service';
+import { Router } from '@angular/router-deprecated';
 
 declare var __moduleName: string;  // weird way to make relative template urls work, see https://github.com/angular/angular/issues/6053 
 
@@ -17,7 +18,8 @@ export class AccountCreateComponent {
     newAccount: Account;
 
     constructor(
-        private accountService: AccountService) {
+        private accountService: AccountService,
+        private router: Router) {
         this.newAccount = new Account();
     }
 
@@ -29,12 +31,8 @@ export class AccountCreateComponent {
             this.newAccount.password,
             this.newAccount.email)
             .subscribe(
-                account  => {},
+                account  => {this.router.navigate(['AccountDetail', { username: account.username }]);},
                 error =>  this.errorMessage = <any>error);
     }
 
-    clearForm () {
-        this.newAccount = new Account();
-        this.errorMessage = "";
-    }
 }

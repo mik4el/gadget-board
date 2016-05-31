@@ -17,6 +17,7 @@ export class AccountDetailComponent implements OnInit {
     errorMessage: string;
     account: Account;
     isAccountOwner = false;
+    urlUsername: string;
 
     constructor(
         private accountService: AccountService,
@@ -24,15 +25,31 @@ export class AccountDetailComponent implements OnInit {
     {}
 
     ngOnInit() {
-        let username = this.routeParams.get('username')+"";
-        this.getAccount(username);
+        // Get account
+        this.urlUsername = this.routeParams.get('username')+"";
+        this.getAccount(this.urlUsername);
+    }
+    
+    updateAccount() {
+        this.accountService.updateAccount(this.account)
+            .subscribe(
+            account => this.refreshAccount(account),
+            error =>  this.errorMessage = <any>error);
     }
     
     getAccount(username: string) {
         this.accountService.getAccount(username)
             .subscribe(
-            account => this.account = account,
+            account => this.refreshAccount(account),
             error =>  this.errorMessage = <any>error);
     }
+
+    refreshAccount(account: Account) {
+        this.account = account;
+        if (account.id == this.accountService.loggedInUserAccountId()) {
+            this.isAccountOwner = true;
+        }
+        this.errorMessage = "";
+    }   
 
 }

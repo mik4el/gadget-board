@@ -1,10 +1,11 @@
 import { Component, OnDestroy } from '@angular/core';
 import './rxjs-operators';
 import { Subscription } from 'rxjs/Subscription';
+import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router } from '@angular/router-deprecated';
+import { JwtHelper } from 'angular2-jwt/angular2-jwt'
 
 import { HeroService } from './hero/hero.service';
 import { HeroesComponent } from './heroes/heroes.component';
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroDetailComponent } from './hero/hero-detail.component';
 import { AccountService } from './account/account.service';
@@ -35,7 +36,8 @@ declare var __moduleName: string;  // weird way to make relative template urls w
     providers: [
         ROUTER_PROVIDERS,
         HeroService,
-        AccountService
+        AccountService,
+        JwtHelper
     ]
 })
 
@@ -84,7 +86,8 @@ export class AppComponent implements OnDestroy {
     subscription: Subscription;
 
     constructor(
-        private accountService: AccountService
+        private accountService: AccountService,
+        private router: Router
     ) {
         this.isLoggedIn = accountService.isLoggedIn(); // make sure component is instantiated with status
         this.subscription = accountService.isLoggedIn$.subscribe(
@@ -95,6 +98,7 @@ export class AppComponent implements OnDestroy {
     
     logout() {
         this.accountService.logout();
+        this.router.navigate(['Dashboard']);
     }
 
     ngOnDestroy(){

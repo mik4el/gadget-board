@@ -1,6 +1,7 @@
 from rest_framework import permissions, viewsets, status
 from rest_framework.response import Response
 from rest_framework_jwt.settings import api_settings
+from django.contrib.auth.hashers import make_password
 
 from authentication.models import Account
 from authentication.permissions import IsAccountOwner
@@ -15,7 +16,6 @@ class AccountViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         if self.request.method in permissions.SAFE_METHODS:
             return (permissions.IsAuthenticated(),)  # only logged in users can see accounts
-            # return (permissions.AllowAny(),)
 
         if self.request.method == 'POST':
             return (permissions.AllowAny(),)
@@ -43,3 +43,19 @@ class AccountViewSet(viewsets.ModelViewSet):
             'status': 'Bad request',
             'message': 'Account could not be created with received data.'
         }, status=status.HTTP_400_BAD_REQUEST)
+
+    def perform_create(self, serializer):
+        # Hash password but passwords are not required
+        if ('password' in self.request.data):
+            password = make_password(self.request.data['password'])
+            serializer.save(password=password)
+        else:
+            serializer.save()
+
+    def perform_update(self, serializer):
+        # Hash password but passwords are not required
+        if ('password' in self.request.data):
+            password = make_password(self.request.data['password'])
+            serializer.save(password=password)
+        else:
+            serializer.save()

@@ -1,9 +1,8 @@
-<h3>Account detail</h3>
+<h3>Account detail for {{ urlUsername }}</h3>
 <div *ngIf="account">
     <div *ngIf="isAccountOwner">
         <form>
-            <label>Username</label>
-            <input type="text" required [(ngModel)]="account.username">
+            <p>{{ account.username }}
             <br>
             <label>Email</label>
             <input type="email" [(ngModel)]="account.email">
@@ -11,7 +10,7 @@
             <label>New password</label>
             <input type="password" [(ngModel)]="account.password">
             <br>
-            <button type="submit" (click)="createAccount()">Submit</button>
+            <button type="submit" (click)="updateAccount()">Update</button>
         </form>
 
         <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>

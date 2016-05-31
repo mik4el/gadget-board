@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject }    from 'rxjs/Subject';
-import {AuthHttp} from 'angular2-jwt/angular2-jwt'
+import { AuthHttp, tokenNotExpired, JwtHelper } from 'angular2-jwt/angular2-jwt'
 
 import { Account } from './account';
 
@@ -16,16 +16,18 @@ export class AccountService {
 
     constructor (
         private http: Http,
-        public authHttp: AuthHttp
+        public authHttp: AuthHttp,
+        private jwtHelper: JwtHelper
     ) {}
 
     isLoggedIn() {
-        return !!localStorage.getItem('id_token');
+        return tokenNotExpired();
     }
 
     updateLoginStatus(status: boolean) {
         this.isLoggedInSource.next(status);
     }
+    
     login(username: string, password: string) {
         let headers = new Headers({'Content-Type': 'application/json'});
         let body = JSON.stringify({username, password});
@@ -44,14 +46,38 @@ export class AccountService {
         this.updateLoginStatus(false);
     }
 
+    loggedInUserAccountId() {
+        if (this.isLoggedIn()) {
+            var token = localStorage.getItem('id_token');
+            token = this.jwtHelper.decodeToken(token);
+            if (token.hasOwnProperty('user_id')) {
+                return token['user_id'];
+            }
+        }
+        return false;
+    }
+
     getAccounts (): Observable<Account[]> {
-        return this.authHttp.get(this.accountsUrl)
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+        return this.authHttp.get(this.accountsUrl, options)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
     getAccount (username: string): Observable<Account> {
-        return this.authHttp.get(this.accountsUrl+username+"/")
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+        return this.authHttp.get(this.accountsUrl+username+"/", options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    updateAccount (account: Account): Observable<Account> {
+        let body = JSON.stringify(account);
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+        return this.authHttp.put(this.accountsUrl+account.username+"/", body, options)
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -62,7 +88,6 @@ export class AccountService {
         let body = JSON.stringify({username, password, email});
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
-
         return this.http.post(this.accountsUrl, body, options)
             .map((res : any) => {
                 let data = res.json();

@@ -7,22 +7,5 @@ class AccountSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Account
-        fields = ('id', 'username', 'email', 'created_at', 'updated_at', 'password')
+        fields = ('id', 'username', 'email', 'created_at', 'updated_at', 'password',)
         read_only_fields = ('created_at', 'updated_at',)
-
-        def create(self, validated_data):
-            return Account.objects.create(**validated_data)
-
-        def update(self, instance, validated_data):
-            instance.username = validated_data.get('username', instance.username)
-            # username needs to be unique, should check and return error
-
-            instance.save()
-
-            password = validated_data.get('password', None)
-
-            if password:
-                instance.set_password(password)
-                instance.save()
-
-            return instance

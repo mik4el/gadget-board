@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from './account';
 import { AccountService } from './account.service';
+import { Router } from '@angular/router-deprecated';
 
 declare var __moduleName: string;  // weird way to make relative template urls work, see https://github.com/angular/angular/issues/6053 
 
@@ -15,10 +16,11 @@ export class AccountListComponent implements OnInit {
 
     errorMessage: string;
     accounts: Account[];
-    
+
     constructor(
-        private accountService: AccountService) {
-    }
+        private accountService: AccountService,
+        private router: Router)
+    {}
 
     ngOnInit() {
         this.getAccounts();
@@ -29,6 +31,10 @@ export class AccountListComponent implements OnInit {
             .subscribe(
             accounts => this.accounts = accounts,
             error =>  this.errorMessage = <any>error);
+    }
+
+    gotoAccountDetail(account: Account) {
+        this.router.navigate(['AccountDetail', { username: account.username }]);
     }
 
 }
