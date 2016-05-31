@@ -15,7 +15,7 @@ export class AccountListComponent implements OnInit {
 
     errorMessage: string;
     accounts: Account[];
-
+    
     constructor(
         private accountService: AccountService) {
     }

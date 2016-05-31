@@ -11,6 +11,7 @@ import { AccountService } from './account/account.service';
 import { AccountCreateComponent } from './account/account-create.component';
 import { AccountLoginComponent } from './account/account-login.component';
 import { AccountListComponent } from './account/account-list.component';
+import { AccountDetailComponent } from './account/account-detail.component';
 
 declare var __moduleName: string;  // weird way to make relative template urls work, see https://github.com/angular/angular/issues/6053 
 
@@ -69,6 +70,11 @@ declare var __moduleName: string;  // weird way to make relative template urls w
         path: '/accounts/login',
         name: 'AccountLogin',
         component: AccountLoginComponent
+    },
+    {
+        path: '/accounts/detail/:username',
+        name: 'AccountDetail',
+        component: AccountDetailComponent
     }
 ])
 

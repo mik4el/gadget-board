@@ -1,0 +1,29 @@
+<h3>Account detail</h3>
+<div *ngIf="account">
+    <div *ngIf="isAccountOwner">
+        <form>
+            <label>Username</label>
+            <input type="text" required [(ngModel)]="account.username">
+            <br>
+            <label>Email</label>
+            <input type="email" [(ngModel)]="account.email">
+            <br>
+            <label>New password</label>
+            <input type="password" [(ngModel)]="account.password">
+            <br>
+            <button type="submit" (click)="createAccount()">Submit</button>
+        </form>
+
+        <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+    </div>
+
+    <div *ngIf="!isAccountOwner">
+        <h4>Username</h4>
+        <p>{{ account.username }}
+        <h4>Email</h4>
+        <p>{{ account.email }}
+    </div>
+</div>
+<div *ngIf="!account">
+    <p>No account found
+</div>

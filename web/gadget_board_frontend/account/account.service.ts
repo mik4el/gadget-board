@@ -50,6 +50,12 @@ export class AccountService {
             .catch(this.handleError);
     }
 
+    getAccount (username: string): Observable<Account> {
+        return this.authHttp.get(this.accountsUrl+username+"/")
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
     createAccount (username: string,
                  password: string,
                  email: string): Observable<Account> {
