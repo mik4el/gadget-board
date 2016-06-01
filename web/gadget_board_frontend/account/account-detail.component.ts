@@ -18,6 +18,7 @@ export class AccountDetailComponent implements OnInit {
     isAccountOwner = false;
     urlUsername: string;
     formIsActive = true; // temporary workaround for angular2 to reset form
+    accountUpdated = false;
 
     constructor(
         private accountService: AccountService,
@@ -33,7 +34,10 @@ export class AccountDetailComponent implements OnInit {
     updateAccount() {
         this.accountService.updateAccount(this.account)
             .subscribe(
-            account => this.refreshAccount(account),
+            account => {
+                this.refreshAccount(account);
+                this.accountUpdated = true;
+            },
             errors => this.errorMessages = <any[]>errors);
     }
     
@@ -52,6 +56,6 @@ export class AccountDetailComponent implements OnInit {
         this.formIsActive = false;  // temporary workaround for angular2 to reset form
         setTimeout(()=> this.formIsActive=true, 0);  // temporary workaround for angular2 to reset form
         this.errorMessages = <any>[];
-    }   
+    }
 
 }

@@ -10,6 +10,10 @@
         <div *ngIf="isAccountOwner">
             <form *ngIf="formIsActive" (ngSubmit)="updateAccount()" #updateAccountForm="ngForm">
 
+                <div *ngIf="accountUpdated && updateAccountForm.form.pristine " class="alert alert-success">
+                    Account details updated!
+                </div>
+
                 <div class="form-group">
                     <label>Email</label>
                     <input type="email" class="form-control" required
@@ -31,7 +35,9 @@
                         [disabled]="!updateAccountForm.form.valid">
                     Submit
                 </button>
+
             </form>
+
 
         </div>
 
