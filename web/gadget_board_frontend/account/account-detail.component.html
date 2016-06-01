@@ -1,28 +1,48 @@
-<h3>Account detail for {{ urlUsername }}</h3>
-<div *ngIf="account">
-    <div *ngIf="isAccountOwner">
-        <form>
-            <p>{{ account.username }}
-            <br>
-            <label>Email</label>
-            <input type="email" [(ngModel)]="account.email">
-            <br>
-            <label>New password</label>
-            <input type="password" [(ngModel)]="account.password">
-            <br>
-            <button type="submit" (click)="updateAccount()">Update</button>
-        </form>
-
-        <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+<div class="container">
+    <h3>Account detail for {{ urlUsername }}</h3>
+    <div *ngFor="let errorMessage of errorMessages">
+        <div class="alert alert-danger">
+            {{errorMessage}}
+        </div>
     </div>
 
-    <div *ngIf="!isAccountOwner">
-        <h4>Username</h4>
-        <p>{{ account.username }}
-        <h4>Email</h4>
-        <p>{{ account.email }}
+    <div *ngIf="account">
+        <div *ngIf="isAccountOwner">
+            <form *ngIf="formIsActive" (ngSubmit)="updateAccount()" #updateAccountForm="ngForm">
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control" required
+                           [(ngModel)]="account.email"
+                           ngControl="email" #email="ngForm">
+                    <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                        Email is required
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>New password</label>
+                    <input type="password" class="form-control"
+                           [(ngModel)]="account.password"
+                           ngControl="password"  #password="ngForm">
+                </div>
+
+                <button type="submit" class="btn btn-default"
+                        [disabled]="!updateAccountForm.form.valid">
+                    Submit
+                </button>
+            </form>
+
+        </div>
+
+        <div *ngIf="!isAccountOwner">
+            <form>
+                <label>Email</label>
+                <div class="form-group">
+                <p>{{ account.email }}
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-<div *ngIf="!account">
-    <p>No account found
+
 </div>

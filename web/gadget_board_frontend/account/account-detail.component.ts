@@ -9,15 +9,15 @@ declare var __moduleName: string;  // weird way to make relative template urls w
     selector: 'account-detail',
     moduleId: __moduleName,
     templateUrl: './account-detail.component.html',
-    styleUrls: ['./account-detail.component.css']
 })
 
 export class AccountDetailComponent implements OnInit {
 
-    errorMessage: string;
+    errorMessages: any[];
     account: Account;
     isAccountOwner = false;
     urlUsername: string;
+    formIsActive = true; // temporary workaround for angular2 to reset form
 
     constructor(
         private accountService: AccountService,
@@ -34,14 +34,14 @@ export class AccountDetailComponent implements OnInit {
         this.accountService.updateAccount(this.account)
             .subscribe(
             account => this.refreshAccount(account),
-            error =>  this.errorMessage = <any>error);
+            errors => this.errorMessages = <any[]>errors);
     }
     
     getAccount(username: string) {
         this.accountService.getAccount(username)
             .subscribe(
             account => this.refreshAccount(account),
-            error =>  this.errorMessage = <any>error);
+            errors => this.errorMessages = <any[]>errors);
     }
 
     refreshAccount(account: Account) {
@@ -49,7 +49,9 @@ export class AccountDetailComponent implements OnInit {
         if (account.id == this.accountService.loggedInUserAccountId()) {
             this.isAccountOwner = true;
         }
-        this.errorMessage = "";
+        this.formIsActive = false;  // temporary workaround for angular2 to reset form
+        setTimeout(()=> this.formIsActive=true, 0);  // temporary workaround for angular2 to reset form
+        this.errorMessages = <any>[];
     }   
 
 }

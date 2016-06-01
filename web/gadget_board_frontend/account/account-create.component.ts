@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NgForm }    from '@angular/common';
 import { Router } from '@angular/router-deprecated';
 
 import { Account } from './account';
@@ -11,12 +10,11 @@ declare var __moduleName: string;  // weird way to make relative template urls w
     selector: 'account-create',
     moduleId: __moduleName,
     templateUrl: './account-create.component.html',
-    styleUrls: ['./account-create.component.css']
 })
 
 export class AccountCreateComponent {
 
-    errorMessage: string;
+    errorMessages: any[];
     newAccount: Account;
     formIsActive = true; // temporary workaround for angular2 to reset form
 
@@ -40,7 +38,7 @@ export class AccountCreateComponent {
                     this.formIsActive = false;  // temporary workaround for angular2 to reset form
                     setTimeout(()=> this.formIsActive=true, 0);  // temporary workaround for angular2 to reset form
                 },
-                error =>  this.errorMessage = <any>error);
+                errors => this.errorMessages = <any[]>errors);
     }
 
 }

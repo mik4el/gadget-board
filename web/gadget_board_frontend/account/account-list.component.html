@@ -1,4 +1,10 @@
 <h3>Accounts</h3>
+<div *ngFor="let errorMessage of errorMessages">
+    <div class="alert alert-danger">
+        {{errorMessage}}
+    </div>
+</div>
+
 <div class="grid grid-pad">
   <div *ngFor="let account of accounts" class="col-1-4">
     <div class="module account" (click)="gotoAccountDetail(account)">
@@ -6,5 +12,3 @@
     </div>
   </div>
 </div>
-
-<div class="error" *ngIf="errorMessage">{{errorMessage}}</div>

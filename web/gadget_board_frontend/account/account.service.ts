@@ -91,7 +91,6 @@ export class AccountService {
         return this.http.post(this.accountsUrl, body, options)
             .map((res : any) => {
                 let data = res.json();
-                console.log(data);
                 localStorage.setItem('id_token', data.token)
                 this.updateLoginStatus(true);
                 return data || { };
@@ -103,12 +102,14 @@ export class AccountService {
         let body = res.json();
         return body || { };
     }
-
-    private handleError (error: any) {
-        let errMsg = (error.message) ? error.message :
-            error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        console.error(errMsg); // log to console instead
-        return Observable.throw(errMsg);
-  }
+    
+    private handleError (error: Response) {
+        let errors = error.json();
+        let errorMessagesByType = Object.keys(errors).map(function(key){
+            return errors[key];
+        });
+        let errorMessages = [].concat.apply([], errorMessagesByType); //flatten multidimensional array
+        return Observable.throw(errorMessages);
+    }
 
 }

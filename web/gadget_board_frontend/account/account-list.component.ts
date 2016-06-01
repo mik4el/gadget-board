@@ -14,7 +14,7 @@ declare var __moduleName: string;  // weird way to make relative template urls w
 
 export class AccountListComponent implements OnInit {
 
-    errorMessage: string;
+    errorMessages: any[];
     accounts: Account[];
 
     constructor(
@@ -30,7 +30,7 @@ export class AccountListComponent implements OnInit {
         this.accountService.getAccounts()
             .subscribe(
             accounts => this.accounts = accounts,
-            error =>  this.errorMessage = <any>error);
+            errors => this.errorMessages = <any[]>errors);
     }
 
     gotoAccountDetail(account: Account) {

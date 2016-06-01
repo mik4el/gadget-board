@@ -9,13 +9,13 @@ declare var __moduleName: string;  // weird way to make relative template urls w
     selector: 'account-login',
     moduleId: __moduleName,
     templateUrl: './account-login.component.html',
-    styleUrls: ['./account-login.component.css']
 })
 
 export class AccountLoginComponent implements OnDestroy {
-    errorMessage: string;
+    errorMessages: any[];
     isLoggedIn = false;
     subscription: Subscription;
+    formIsActive = true; // temporary workaround for angular2 to reset form
 
     constructor(
         private accountService: AccountService,
@@ -34,9 +34,10 @@ export class AccountLoginComponent implements OnDestroy {
             .subscribe(
                 result => {
                     this.router.navigate(['../Dashboard']);
+                    this.formIsActive = false;  // temporary workaround for angular2 to reset form
+                    setTimeout(()=> this.formIsActive=true, 0);  // temporary workaround for angular2 to reset form
                 },
-                error =>  this.errorMessage = <any>error
-            );
+                errors => this.errorMessages = <any[]>errors);
     }
 
     logout() {

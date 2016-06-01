@@ -1,6 +1,6 @@
 <div class="container">
     <h3>Create account</h3>
-    <form *ngIf="formIsActive"  (ngSubmit)="createAccount()" #createAccountForm="ngForm">
+    <form *ngIf="formIsActive" (ngSubmit)="createAccount()" #createAccountForm="ngForm">
     <div class="form-group">
         <label>Username</label>
         <input type="text" class="form-control" required
@@ -37,5 +37,5 @@
         </button>
     </form>
 
-    <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+    <div class="error" *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
 </div>
