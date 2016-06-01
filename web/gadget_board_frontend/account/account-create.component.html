@@ -1,15 +1,41 @@
-<h3>Create account</h3>
-<form>
-    <label>Username</label>
-    <input type="text" required [(ngModel)]="newAccount.username">
-    <br>
-    <label>Email</label>
-    <input type="email" [(ngModel)]="newAccount.email">
-    <br>
-    <label>Password</label>
-    <input type="password" [(ngModel)]="newAccount.password">
-    <br>
-    <button type="submit" (click)="createAccount()">Submit</button>
-</form>
+<div class="container">
+    <h3>Create account</h3>
+    <form *ngIf="formIsActive"  (ngSubmit)="createAccount()" #createAccountForm="ngForm">
+    <div class="form-group">
+        <label>Username</label>
+        <input type="text" class="form-control" required
+               [(ngModel)]="newAccount.username"
+               ngControl="username" #username="ngForm">
+        <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+            Username is required
+        </div>
+    </div>
 
-<div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+    <div class="form-group">
+        <label>Email</label>
+        <input type="email" class="form-control" required
+               [(ngModel)]="newAccount.email"
+               ngControl="email" #email="ngForm">
+        <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+            Email is required
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" required
+               [(ngModel)]="newAccount.password"
+               ngControl="password"  #password="ngForm">
+        <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+            Password is required
+        </div>
+    </div>
+
+        <button type="submit" class="btn btn-default"
+                [disabled]="!createAccountForm.form.valid">
+            Submit
+        </button>
+    </form>
+
+    <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+</div>

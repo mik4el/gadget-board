@@ -25,10 +25,16 @@ class AccountViewSet(viewsets.ModelViewSet):
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
 
+        if 'password' not in serializer.validated_data:
+            return Response({
+                'status': 'Bad request',
+                'message': 'Password required for creating account.'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
         if serializer.is_valid():
             account = Account.objects.create_account(**serializer.validated_data)
 
-            # add JWT token
+            # add JWT token to response
             jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
             jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 

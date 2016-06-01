@@ -23,7 +23,8 @@ gulp.task('copy:lib_dirs', ['clean'], function() {
         'node_modules/rxjs/**/*',
         'node_modules/angular2-in-memory-web-api/**/*',
         'node_modules/angular2-jwt/**/*',
-        'node_modules/@angular/**/*'
+        'node_modules/@angular/**/*',
+        'node_modules/bootstrap/**/*'
         ], { base : './node_modules/'})
     .pipe(gulp.dest('static/dist/lib'))
 });
