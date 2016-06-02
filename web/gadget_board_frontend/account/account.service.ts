@@ -98,12 +98,23 @@ export class AccountService {
             .catch(this.handleError);
     }
 
+    deleteAccount (account: Account): Observable<Response> {
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+        return this.authHttp.delete(this.accountsUrl+account.username+"/", options)
+            .map((res: Response) => {
+                return res;
+            })
+            .catch(this.handleError);
+    }
+
     private extractData(res: Response) {
         let body = res.json();
         return body || { };
     }
     
     private handleError (error: Response) {
+        console.log(error);
         let errors = error.json();
         let errorMessagesByType = Object.keys(errors).map(function(key){
             return errors[key];

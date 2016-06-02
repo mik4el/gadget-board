@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouteParams } from '@angular/router-deprecated';
+import { RouteParams, Router } from '@angular/router-deprecated';
 import { Account } from './account';
 import { AccountService } from './account.service';
 
@@ -22,7 +22,8 @@ export class AccountDetailComponent implements OnInit {
 
     constructor(
         private accountService: AccountService,
-        private routeParams: RouteParams) 
+        private routeParams: RouteParams, 
+        private router: Router)
     {}
 
     ngOnInit() {
@@ -34,18 +35,28 @@ export class AccountDetailComponent implements OnInit {
     updateAccount() {
         this.accountService.updateAccount(this.account)
             .subscribe(
-            account => {
-                this.refreshAccount(account);
-                this.accountUpdated = true;
-            },
-            errors => this.errorMessages = <any[]>errors);
+                account => {
+                    this.refreshAccount(account);
+                    this.accountUpdated = true;
+                },
+                errors => this.errorMessages = <any[]>errors);
     }
     
     getAccount(username: string) {
         this.accountService.getAccount(username)
             .subscribe(
-            account => this.refreshAccount(account),
-            errors => this.errorMessages = <any[]>errors);
+                account => this.refreshAccount(account),
+                errors => this.errorMessages = <any[]>errors);
+    }
+
+    deleteAccount() {
+        this.accountService.deleteAccount(this.account)
+            .subscribe(
+                res => {
+                    this.accountService.logout();
+                    this.router.navigate(['Dashboard']);},
+                errors => this.errorMessages = <any[]>errors
+                );
     }
 
     refreshAccount(account: Account) {
