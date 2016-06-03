@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RouteParams, Router } from '@angular/router-deprecated';
+import { RouteParams, Router, CanActivate } from '@angular/router-deprecated';
+import { tokenNotExpired } from 'angular2-jwt/angular2-jwt';
+
 import { Account } from './account';
 import { AccountService } from './account.service';
 
@@ -10,6 +12,8 @@ declare var __moduleName: string;  // weird way to make relative template urls w
     moduleId: __moduleName,
     templateUrl: './account-detail.component.html',
 })
+
+@CanActivate(() => tokenNotExpired())
 
 export class AccountDetailComponent implements OnInit {
 

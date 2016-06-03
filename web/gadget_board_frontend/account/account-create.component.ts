@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router-deprecated';
+import { Router, CanActivate } from '@angular/router-deprecated';
+import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
 
 import { Account } from './account';
 import { AccountService } from './account.service';
@@ -11,6 +12,8 @@ declare var __moduleName: string;  // weird way to make relative template urls w
     moduleId: __moduleName,
     templateUrl: './account-create.component.html',
 })
+
+@CanActivate(() => !tokenNotExpired())
 
 export class AccountCreateComponent {
 
