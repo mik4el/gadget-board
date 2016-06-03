@@ -113,14 +113,19 @@ export class AccountService {
         return body || { };
     }
     
-    private handleError (error: Response) {
-        console.log(error);
-        let errors = error.json();
-        let errorMessagesByType = Object.keys(errors).map(function(key){
-            return errors[key];
-        });
-        let errorMessages = [].concat.apply([], errorMessagesByType); //flatten multidimensional array
-        return Observable.throw(errorMessages);
+    private handleError(error: any) {
+        try {
+            //if error comes from backend it has a json representation and error is type response
+            let errors = error.json();
+            let errorMessagesByType = Object.keys(errors).map(function(key){
+                return errors[key];
+            });
+            let errorMessages = [].concat.apply([], errorMessagesByType); //flatten multidimensional array
+            return Observable.throw(errorMessages);
+        } catch(e) {
+            //if not serve it to the view as array
+            return Observable.throw([error]);
+        }
     }
 
 }
