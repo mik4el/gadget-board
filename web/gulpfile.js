@@ -24,7 +24,8 @@ gulp.task('copy:lib_dirs', ['clean'], function() {
         'node_modules/angular2-in-memory-web-api/**/*',
         'node_modules/angular2-jwt/**/*',
         'node_modules/@angular/**/*',
-        'node_modules/bootstrap/**/*'
+        'node_modules/bootstrap/**/*',
+        'node_modules/jasmine-core/**/*'
         ], { base : './node_modules/'})
     .pipe(gulp.dest('static/dist/lib'))
 });

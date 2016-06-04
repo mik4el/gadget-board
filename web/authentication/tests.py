@@ -42,7 +42,6 @@ class AccountTestCase(TestCase):
         account = Account.objects.get(username=self.username)
         self.assertEqual(account.is_active, True)
 
-
     def test_only_me_can_delete_account(self):
         """
         Accounts can only be deleted by authed owner
@@ -64,7 +63,6 @@ class AccountTestCase(TestCase):
 
         # Make request
         client.credentials(HTTP_AUTHORIZATION='Bearer ' + token)
-        #client.force_authenticate(user=account)
         response = client.delete('/api/v1/accounts/'+self.username+'/')
         # Asserts
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

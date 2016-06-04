@@ -6,3 +6,10 @@ class IndexView(TemplateView):
 
     def dispatch(self, *args, **kwargs):
         return super(IndexView, self).dispatch(*args, **kwargs)
+
+
+class UnitTestView(TemplateView):
+    template_name = 'unit-tests.html'
+
+    def dispatch(self, *args, **kwargs):
+        return super(UnitTestView, self).dispatch(*args, **kwargs)
