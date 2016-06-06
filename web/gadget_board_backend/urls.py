@@ -31,6 +31,6 @@ urlpatterns = [
     url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^api-token-refresh/', refresh_jwt_token),
     url(r'^api/v1/', include(router.urls)),
-    url(r'^unit-tests/', UnitTestView.as_view(), name='unit-tests'),  # TODO: only available in debug mode!
+    url(r'^unit-tests.html', UnitTestView.as_view(), name='unit-tests'),  # TODO: only available in debug mode!
     url('^.*$', IndexView.as_view(), name='index'),
 ]
