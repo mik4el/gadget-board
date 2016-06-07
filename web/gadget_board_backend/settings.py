@@ -169,3 +169,5 @@ JWT_AUTH = {
 
     'JWT_AUTH_HEADER_PREFIX': 'Bearer',
 }
+
+ALLOWED_HOSTS = ["192.168.99.100"]  #insert hostname or docker machines ip
