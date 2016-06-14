@@ -12,10 +12,9 @@ services:
       - postgres
     volumes:
       - ./web:/usr/src/app
-      - django_static_dev:/usr/src/app/static
     env_file: .env
     environment:
-      DJANGOs_DEBUG: "True"
+      DJANGO_DEBUG: "True"
     command: ./start.sh
 
   nginx:
@@ -39,5 +38,4 @@ services:
       - postgres_data_dev:/var/lib/postgresql/data
 
 volumes:
-  django_static_dev:
   postgres_data_dev:

@@ -11,7 +11,7 @@ services:
     depends_on:
       - postgres
     volumes:
-      - django_static:/usr/src/app/static
+      - /usr/src/app/static
     env_file: .env
     command: ./start.sh
 
@@ -35,5 +35,4 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
 volumes:
-  django_static:
   postgres_data:
