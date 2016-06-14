@@ -1,29 +1,39 @@
-web:
-  restart: always
-  build: ./web
-  expose:
-    - "8000"
-  links:
-    - postgres:postgres
-  env_file: .env
-  command: /usr/local/bin/gunicorn gadget_board_backend.wsgi:application -w 2 -b :8000
+version: '2'
 
-nginx:
-  restart: always
-  build: ./nginx/
-  ports:
-    - "80:80"
-  volumes:
-    - /www/static
-  volumes_from:
-    - web
-  links:
-    - web:web
+services:
+  web:
+    restart: always
+    build: ./web
+    expose:
+      - "8000"
+    links:
+      - postgres:postgres
+    depends_on:
+      - postgres
+    volumes:
+      - django_static:/usr/src/app/static
+    env_file: .env
+    command: ./post-production-deploy.sh
 
-postgres:
-  restart: always
-  image: postgres:latest
-  ports:
-    - "5432"
-  volumes:
-    - pgdata:/var/lib/postgresql/data/
+  nginx:
+    restart: always
+    build: ./nginx/
+    ports:
+      - "80:80"
+    volumes_from:
+      - web
+    links:
+      - web:web
+
+  postgres:
+    restart: always
+    image: postgres:latest
+    env_file: .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  django_static:
+  postgres_data:
