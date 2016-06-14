@@ -1,0 +1,7 @@
+# Ignore frontend source files from images to speedup container building
+node_modules
+gadget_board_frontend
+
+# Ignore compiled python files
+**/*.pyc
+**/__pycache__
