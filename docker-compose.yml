@@ -16,7 +16,7 @@ services:
     env_file: .env
     environment:
       DJANGOs_DEBUG: "True"
-    command: ./post-production-deploy.sh
+    command: ./start.sh
 
   nginx:
     restart: always
