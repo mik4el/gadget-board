@@ -19,7 +19,7 @@ services:
 
   nginx:
     restart: always
-    build: ./nginx/
+    build: ./nginx_dev/
     hostname: "nginx"
     ports:
       - "80:80"

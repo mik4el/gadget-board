@@ -9,3 +9,6 @@ web/static/dist/*
 web/static/dist
 node_modules/*
 node_modules
+*.crt
+*.key
+*.pem

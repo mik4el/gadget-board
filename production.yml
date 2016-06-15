@@ -17,9 +17,10 @@ services:
 
   nginx:
     restart: always
-    build: ./nginx/
+    build: ./nginx_prod/
     ports:
       - "80:80"
+      - "443:443"
     volumes_from:
       - web
     links:
