@@ -1,4 +1,5 @@
-This a web app showing latest data from mik4el's gadgets using Django, Angular2 and Docker. The app is currently available at https://m4bd.se.
+## Introduction
+This is a web app showing latest data from mik4el's gadgets using Django, Angular2 and Docker. The app is currently available at https://m4bd.se.
 
 The web app is separated into a backend `web/gadget_board_backend` using Django and a frontend `web/gadget_board_frontend` using Angular2. 
 
