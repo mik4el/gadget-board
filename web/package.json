@@ -1,6 +1,11 @@
 {
   "name": "gadget_board_frontend",
   "version": "0.0.1",
+  "description": "Frontend for gadget_board",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mik4el/gadget_board"
+    },
   "scripts": {
     "tslint": "tslint -c tslint.json gadget_board_frontend/**/*.ts",
     "postinstall": "typings install"
@@ -26,7 +31,6 @@
     "angular2-jwt": "0.1.16"
   },
   "devDependencies": {
-    "browser-sync": "^2.12.8",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-sourcemaps": "^1.6.0",
