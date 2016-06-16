@@ -50,7 +50,7 @@ For normal development work, I suggest this workflow:
 
 Special cases:
 
-* Make sure no old code is running if you are changing e.g. `settings.py` or `urls.py` by re-creating the web container. Do this with `docker-compose up -d web`.
+* Make sure no old code is running if you are changing e.g. `settings.py` or `urls.py` by restarting the web container. Do this with `docker-compose restart web`.
 * Run `manage.py` commands using `docker-compose run`, e.g. `docker-compose run web python manage.py makemigrations`.
 * If you restart your computer etc, you may need to restart the machine running the containers, do so by:
   1. `docker-machine start dev`
@@ -128,8 +128,10 @@ A deployed environment can be backed up by your hosting provider, e.g. DigitalOc
 * App and stack not thourougly tested on lots of devices over long time
 * Development and deploy workflow not thouroughly tested by lots of developers over long time
 
+## Known issues
+* https://github.com/gulpjs/gulp/issues/1571
+
 ## Todos
-1. Upgrade to rc.2, remove angular2-in-memory-web-api
 1. Frontend: Nicer bundling of gadget_board_frontend
 1. Frontend: Cache busting for gadget_board_frontend
 1. Backend: Backend for saving and getting gadget data, 
@@ -142,3 +144,4 @@ A deployed environment can be backed up by your hosting provider, e.g. DigitalOc
 1. Frontend: Redirect to login if unauthed when accessing protectad view
 1. Refresh JWT tokens in background
 1. Suggest backup solution.
+1. Use new ngForm https://docs.google.com/document/u/1/d/1RIezQqE4aEhBRmArIAS1mRIZtWFf6JxN_7B4meyWK0Y/pub

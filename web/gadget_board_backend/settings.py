@@ -175,3 +175,4 @@ JWT_AUTH = {
 }
 
 ALLOWED_HOSTS = ["m4bd.se"]
+#ALLOWED_HOSTS = ["*"]  # development mode only
