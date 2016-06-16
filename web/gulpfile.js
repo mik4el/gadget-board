@@ -4,7 +4,8 @@ const typescript = require('gulp-typescript');
 const tscConfig = require('./tsconfig.json');
 const sourcemaps = require('gulp-sourcemaps');
 const tslint = require('gulp-tslint');
-const tsconfig = require('tsconfig-glob');
+const Builder = require('systemjs-builder');
+const embedTemplates = require('gulp-angular-embed-templates');
 
 // clean the contents of the distribution directory
 gulp.task('clean', function () {
@@ -13,7 +14,7 @@ gulp.task('clean', function () {
 
 // copy static assets - i.e. non TypeScript compiled source
 gulp.task('copy:assets', ['clean'], function() {
-  return gulp.src(['gadget_board_frontend/**/*', '!gadget_board_frontend/**/*.ts'], { base : './' })
+  return gulp.src(['gadget_board_frontend/**/*', '!gadget_board_frontend/**/*.ts', '!gadget_board_frontend/**/*.html'], { base : './' })
     .pipe(gulp.dest('static/dist'))
 });
 
@@ -21,7 +22,6 @@ gulp.task('copy:assets', ['clean'], function() {
 gulp.task('copy:lib_dirs', ['clean'], function() {
   return gulp.src([
         'node_modules/rxjs/**/*',
-        'node_modules/angular2-in-memory-web-api/**/*',
         'node_modules/angular2-jwt/**/*',
         'node_modules/@angular/**/*',
         'node_modules/bootstrap/**/*',
@@ -48,24 +48,36 @@ gulp.task('tslint', function() {
     .pipe(tslint.report('verbose'));
 });
 
-
 // TypeScript compile
 gulp.task('compile', ['clean'], function () {
   return gulp
     .src(tscConfig.files)
+    .pipe(embedTemplates({sourceType:'ts'}))
     .pipe(sourcemaps.init())
     .pipe(typescript(tscConfig.compilerOptions))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('static/dist'));
 });
 
-// update the tsconfig files based on the glob pattern
-gulp.task('tsconfig-glob', function () {
-  return tsconfig({
-    configPath: '.',
-    indent: 2
-  });
+
+gulp.task('build-systemjs', function () {
+    var builder = new Builder('static/dist/gadget_board_frontend', {
+        paths: {
+            '*': '*.js'
+        },
+        meta: {
+            '@angular/*': {
+                build: false
+            },
+            'rxjs/*': {
+                build: false
+            }
+        }
+    });
+
+    return builder.bundle('main', 'static/dist/gadget_board_frontend/bundle.js');
 });
 
 gulp.task('build', ['compile', 'copy:lib_files',  'copy:lib_dirs', 'copy:assets']);
 gulp.task('default', ['build']);
+gulp.task('s', ['build-systemjs']);

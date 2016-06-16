@@ -8,7 +8,8 @@ declare var __moduleName: string;  // weird way to make relative template urls w
 @Component({
     selector: 'my-dashboard',
     moduleId: __moduleName,
-    templateUrl: './dashboard.component.html',
+    template:'<h3>Top Heroes</h3><div class="grid grid-pad"><div *ngFor="let hero of heroes" (click)=gotoDetail(hero) class=col-1-4><div class="module hero"><h4>{{hero.name}}</h4></div></div></div>',
+    styleUrls: ['./dashboard.component.css']
 })
 
 export class DashboardComponent implements OnInit {

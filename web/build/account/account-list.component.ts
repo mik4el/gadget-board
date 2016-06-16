@@ -10,7 +10,8 @@ declare var __moduleName: string;  // weird way to make relative template urls w
 @Component({
     selector: 'account-list',
     moduleId: __moduleName,
-    templateUrl: './account-list.component.html',
+    template:'<div class=container><h3>Accounts</h3><div *ngFor="let errorMessage of errorMessages"><div class="alert alert-danger">{{errorMessage}}</div></div><div class="grid grid-pad"><div *ngFor="let account of accounts" class=col-1-4><div class="module account" (click)=gotoAccountDetail(account)><h4>{{account.username}}</h4></div></div></div></div>',
+    styleUrls: ['./account-list.component.css']
 })
 
 @CanActivate(() => tokenNotExpired())

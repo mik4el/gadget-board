@@ -127,6 +127,7 @@ A deployed environment can be backed up by your hosting provider, e.g. DigitalOc
 * Non optimized frontend build system. No cache busting for frontend files, lots of requests, no template caching etc.
 * App and stack not thourougly tested on lots of devices over long time
 * Development and deploy workflow not thouroughly tested by lots of developers over long time
+* https://cli.angular.io/ is coming but not stable yet, this should be the favored build system for angular2.
 
 ## Known issues
 * https://github.com/gulpjs/gulp/issues/1571

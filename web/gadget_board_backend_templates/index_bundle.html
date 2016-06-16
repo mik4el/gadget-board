@@ -1,0 +1,27 @@
+{% load staticfiles %}
+<html>
+  <head>
+    <base href="/">
+    <title>Gadget Board</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Load css -->
+    <link rel="stylesheet" href="{% static 'dist/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/gadget_board_frontend/forms.css' %}">
+
+    <!-- 1. Load libraries -->
+    <!-- Polyfill(s) for older browsers -->
+    <script src="{% static 'dist/es6-shim.min.js' %}"></script>
+
+    <script src="{% static 'dist/zone.js' %}"></script>
+    <script src="{% static 'dist/Reflect.js' %}"></script>
+    
+    <script src="{% static 'dist/gadget_board_frontend/bundle.js' %}"></script>
+  </head>
+
+  <!-- 3. Display the application -->
+  <body>
+    <my-app>Loading...</my-app>
+  </body>
+</html>

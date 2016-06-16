@@ -7,7 +7,6 @@
     'gadget_board_frontend':      'static/dist/gadget_board_frontend',
     
     '@angular':                   'https://npmcdn.com/@angular', // sufficient if we didn't pin the version
-    'angular2-in-memory-web-api': 'https://npmcdn.com/angular2-in-memory-web-api', // get latest
     'rxjs':                       'https://npmcdn.com/rxjs@5.0.0-beta.6',
     'angular2-jwt':               'static/dist/lib/angular2-jwt'
   };
@@ -19,7 +18,6 @@
                                     defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
     'angular2-jwt':               { defaultExtension: 'js' },
-    'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
   };
 
   var ngPackageNames = [

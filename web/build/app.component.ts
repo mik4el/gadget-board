@@ -31,6 +31,7 @@ declare var __moduleName: string;  // weird way to make relative template urls w
         </nav>
         <router-outlet></router-outlet>
     `,
+    styleUrls: ['./app.component.css'],
     directives: [ROUTER_DIRECTIVES],
     providers: [
         ROUTER_PROVIDERS,

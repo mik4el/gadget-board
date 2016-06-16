@@ -10,7 +10,8 @@ declare var __moduleName: string;  // weird way to make relative template urls w
 @Component({
     selector: 'my-heroes',
     moduleId: __moduleName,
-    templateUrl: './heroes.component.html',
+    template:'<h2>My Heroes</h2><ul class=heroes><li *ngFor="let hero of heroes" [class.selected]="hero === selectedHero" (click)=onSelect(hero)><span class=badge>{{hero.id}}</span> {{hero.name}}</li></ul><div *ngIf=selectedHero><h2>{{selectedHero.name | uppercase}} is my hero</h2><button (click)=gotoDetail()>View Details</button></div>',
+    styleUrls:  ['./heroes.component.css'],
     directives: [HeroDetailComponent]
 })
 

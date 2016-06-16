@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Load css -->
-    {% if production_mode %}
+    {% if not production_mode %}
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     {% else %}
       <link rel="stylesheet" href="{% static 'dist/lib/bootstrap/dist/css/bootstrap.min.css' %}">
@@ -15,7 +15,7 @@
       <link rel="stylesheet" href="{% static 'dist/gadget_board_frontend/forms.css' %}">
     
     <!-- Load js -->
-    {% if production_mode %}
+    {% if not production_mode %}
       <!-- 1. Load libraries -->
        <!-- Polyfill(s) for older browsers -->
       <script src="https://npmcdn.com/core-js/client/shim.min.js"></script>
@@ -33,9 +33,9 @@
 
       <script src="{% static 'dist/lib/zone.js' %}"></script>
       <script src="{% static 'dist/lib/Reflect.js' %}"></script>
-      <script src="{% static 'dist/lib/system.src.js' %}"></script>
-
+      
       <!-- 2. Configure SystemJS -->
+      <script src="{% static 'dist/lib/system.src.js' %}"></script>
       <script src="{% static 'dist/gadget_board_frontend/systemjs.config.dev.js' %}"></script>
     {% endif %}
     
