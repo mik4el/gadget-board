@@ -2,7 +2,6 @@
 
   // map tells the System loader where to look for things
   var map = {
-    'gadget_board_frontend':      'static/dist/gadget_board_frontend',
     'rxjs':                       'static/dist/lib/rxjs',
     '@angular':                   'static/dist/lib/@angular',
     'angular2-jwt':               'static/dist/lib/angular2-jwt'
@@ -10,9 +9,6 @@
 
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
-    'gadget_board_frontend':      { main: 'main.js',
-                                    format: 'register',
-                                    defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
     'angular2-jwt':               { defaultExtension: 'js' },
   };

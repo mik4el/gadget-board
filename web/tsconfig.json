@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "outDir": "static/dist/gadget_board_frontend",
     "target": "ES5",
     "module": "system",
     "sourceMap": true,
@@ -9,7 +8,9 @@
     "moduleResolution": "node",
     "removeComments": false,
     "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true,
+    "outFile": "gadget_board_frontend/bundle.js"
+
   },
   "exclude": [
     "node_modules"

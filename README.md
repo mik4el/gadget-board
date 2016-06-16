@@ -133,7 +133,7 @@ A deployed environment can be backed up by your hosting provider, e.g. DigitalOc
 * https://github.com/gulpjs/gulp/issues/1571
 
 ## Todos
-1. Frontend: Nicer bundling of gadget_board_frontend
+1. Frontend: Continue play with systemsjs builder Fix that tests are broken for current lazy bundling
 1. Frontend: Cache busting for gadget_board_frontend
 1. Backend: Backend for saving and getting gadget data, 
   1. Backend: Save data with admin

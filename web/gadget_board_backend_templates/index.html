@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Load css -->
-    {% if not production_mode %}
+    {% if production_mode %}
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     {% else %}
       <link rel="stylesheet" href="{% static 'dist/lib/bootstrap/dist/css/bootstrap.min.css' %}">
     {% endif %}
-      <link rel="stylesheet" href="{% static 'dist/gadget_board_frontend/forms.css' %}">
+      <link rel="stylesheet" href="{% static 'dist/gadget_board_frontend/app.css' %}">
     
     <!-- Load js -->
-    {% if not production_mode %}
+    {% if production_mode %}
       <!-- 1. Load libraries -->
        <!-- Polyfill(s) for older browsers -->
       <script src="https://npmcdn.com/core-js/client/shim.min.js"></script>
@@ -38,12 +38,13 @@
       <script src="{% static 'dist/lib/system.src.js' %}"></script>
       <script src="{% static 'dist/gadget_board_frontend/systemjs.config.dev.js' %}"></script>
     {% endif %}
+      <script src="{% static 'dist/gadget_board_frontend/bundle.js' %}"></script>
     
-    <script>
-      System.import('gadget_board_frontend').catch(function(err){
-          console.error(err);
-      });
-    </script>
+      <script>
+        System.import('gadget_board_frontend/main').catch(function(err){
+            console.error(err);
+        });
+      </script>
   </head>
 
   <!-- 3. Display the application -->
