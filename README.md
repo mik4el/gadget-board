@@ -24,8 +24,8 @@ https://realpython.com/blog/python/django-development-with-docker-compose-and-ma
 
 ## Requirements
 * Docker-Toolbox with Docker-Compose 1.7.1 (https://www.docker.com/products/docker-toolbox)
-* NPM >=2.14 (tested with 3.9.5)
-* Gulp installed globally (`sudo npm install --global gulp-cli`)
+* At least node v5.x.x and npm 3.x.x 
+* gulp installed globally (`sudo npm install --global gulp-cli`)
 
 ## Setting up a development environment
 This will start a new development environment and serve the web app on your machine. This requires the download of all depedencies which will take some time.
@@ -52,6 +52,9 @@ Special cases:
 
 * Make sure no old code is running if you are changing e.g. `settings.py` or `urls.py` by re-creating the web container. Do this with `docker-compose up -d web`.
 * Run `manage.py` commands using `docker-compose run`, e.g. `docker-compose run web python manage.py makemigrations`.
+* If you restart your computer etc, you may need to restart the machine running the containers, do so by:
+  1. `docker-machine start dev`
+  1. `eval $(docker-machine env dev)
 
 ### Adding a dependency
 When you add a dependency to `web/requirements.txt` you need to build a new container image and restart the container with this new image, this is done by:
@@ -126,6 +129,7 @@ A deployed environment can be backed up by your hosting provider, e.g. DigitalOc
 * Development and deploy workflow not thouroughly tested by lots of developers over long time
 
 ## Todos
+1. Upgrade to rc.2, remove angular2-in-memory-web-api
 1. Frontend: Nicer bundling of gadget_board_frontend
 1. Frontend: Cache busting for gadget_board_frontend
 1. Backend: Backend for saving and getting gadget data, 
