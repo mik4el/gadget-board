@@ -17,7 +17,7 @@ gulp.task('copy:assets', ['clean'], function() {
     .pipe(gulp.dest('static/dist'))
 });
 
-// copy dependencies
+// copy dependencies dirs
 gulp.task('copy:lib_dirs', ['clean'], function() {
   return gulp.src([
         'node_modules/rxjs/**/*',
@@ -30,7 +30,7 @@ gulp.task('copy:lib_dirs', ['clean'], function() {
     .pipe(gulp.dest('static/dist/lib'))
 });
 
-// copy dependencies
+// copy dependencies one file only
 gulp.task('copy:lib_files', ['clean'], function() {
   return gulp.src([
         'node_modules/es6-shim/es6-shim.min.js',
