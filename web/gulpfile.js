@@ -102,5 +102,5 @@ gulp.task('cachebust', ['minify-css', 'compress'], function () {
 
 gulp.task('assets', ['compress', 'minify-css', 'cachebust', 'copy:lib_files',  'copy:lib_dirs', 'copy:assets']);
 gulp.task('build', ['compile', 'assets']);
-gulp.task('build-prod', ['compile-prod', 'assets']);
+gulp.task('build-prod', ['compile:prod', 'assets']);
 gulp.task('default', ['build']);

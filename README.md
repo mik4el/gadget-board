@@ -106,8 +106,13 @@ Since the app handles user data securing traffic using SSL is a requirement for 
 ## Deploying
 When you are deploying the next time we also need to rebuild the container that has changed files since the production environment does not mount your local machines files.
 
+1. `gulp build-prod`
 1. `docker-compose -f production.yml build`
+1. `docker-compose -f production.yml down`
 1. `docker-compose -f production.yml up -d`
+
+NB: If in a new terminal remember `eval $(docker-machine env production)`.
+
 
 ## Testing
 Testing in Django is handled by the default Django test system, so running tests is easy, e.g:
@@ -133,8 +138,6 @@ A deployed environment can be backed up by your hosting provider, e.g. DigitalOc
 * https://github.com/gulpjs/gulp/issues/1571
 
 ## Todos
-1. Frontend: Continue play with systemsjs builder Fix that tests are broken for current lazy bundling
-1. Frontend: Cache busting for gadget_board_frontend
 1. Backend: Backend for saving and getting gadget data, 
   1. Backend: Save data with admin
   1. Backend: Save data with external script authed by JWT
@@ -146,3 +149,4 @@ A deployed environment can be backed up by your hosting provider, e.g. DigitalOc
 1. Refresh JWT tokens in background
 1. Suggest backup solution.
 1. Use new ngForm https://docs.google.com/document/u/1/d/1RIezQqE4aEhBRmArIAS1mRIZtWFf6JxN_7B4meyWK0Y/pub
+1. Neat css builds with less and bootstrap

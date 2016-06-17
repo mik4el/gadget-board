@@ -4,7 +4,7 @@ from django.http import HttpResponseForbidden
 
 
 class IndexView(TemplateView):
-    template_name = 'dist/index.html'
+    template_name = 'index.html'
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
@@ -17,7 +17,7 @@ class IndexView(TemplateView):
 
 
 class UnitTestView(TemplateView):
-    template_name = 'dist/unit-tests.html'
+    template_name = 'unit-tests.html'
 
     def dispatch(self, *args, **kwargs):
         if settings.DEBUG:
