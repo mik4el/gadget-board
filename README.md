@@ -23,7 +23,7 @@ Suggested reading and inspiration for this repo:
 https://realpython.com/blog/python/django-development-with-docker-compose-and-machine/ (Good concept and introduction but some code is out-of-date and following instructions will not give a working setup, see blog comments for more info)
 
 ## Requirements
-* Docker-Toolbox with Docker-Compose 1.7.1 (https://www.docker.com/products/docker-toolbox)
+* Docker-Toolbox with Docker-Compose >1.7.1 (https://www.docker.com/products/docker-toolbox)
 * At least node v5.x.x and npm 3.x.x 
 * gulp installed globally (`sudo npm install --global gulp-cli`)
 
@@ -37,7 +37,7 @@ This will start a new development environment and serve the web app on your mach
 1. `docker-compose up -d`
 1. `docker-compose run web python manage.py migrate`
 1. `docker-compose run web python manage.py createsuperuser`
-1. `cd web``
+1. `cd web`
 1. `npm install`
 1. `gulp build`
 1. Open a browser at the ip from `docker-machine ip dev`
@@ -54,7 +54,7 @@ Special cases:
 * Run `manage.py` commands using `docker-compose run`, e.g. `docker-compose run web python manage.py makemigrations`.
 * If you restart your computer etc, you may need to restart the machine running the containers, do so by:
   1. `docker-machine start dev`
-  1. `eval $(docker-machine env dev)
+  1. `eval $(docker-machine env dev)`(also when you open a new terminal)
 
 ### Adding a dependency
 When you add a dependency to `web/requirements.txt` you need to build a new container image and restart the container with this new image, this is done by:
@@ -77,8 +77,8 @@ Angular2 dependencies are handled by npm, built by gulp and loaded by systemjs, 
 1. If the dependency should be used in the app and served as a static file:
   1. Add path to node_module for dependency in gulpfile.js either as file or dir in tasks `copy:lib_dirs` or `copy:lib_files` 
   1. Add path to dependency in `systemjs.config.dev.js` and if necessary in `systemjs.config.prod.js` 
-1. `npm install``
-1. `gulp build``
+1. `npm install`
+1. `gulp build`
 1. Reload browser
 
 ## First deployment
@@ -117,7 +117,7 @@ NB: If in a new terminal remember `eval $(docker-machine env production)`.
 ## Testing
 Testing in Django is handled by the default Django test system, so running tests is easy, e.g:
 
-* docker-compose run web python manage.py test
+* `docker-compose run web python manage.py test`
 
 Testing in Angular2 is handled by jasmine, run the tests by:
 
@@ -138,15 +138,15 @@ A deployed environment can be backed up by your hosting provider, e.g. DigitalOc
 * https://github.com/gulpjs/gulp/issues/1571
 
 ## Todos
-1. Backend: Backend for saving and getting gadget data, 
+1. Backend: Backend for saving and getting gadget data
   1. Backend: Save data with admin
-  1. Backend: Save data with external script authed by JWT
+  1. Backend: Save data from gadget with external script authed by JWT
 1. Frontend: Show gadget data
 1. Frontend: Clean out Heroes-app
 1. Frontend: Fix design
 1. Frontend: Use latest angular2-router
 1. Frontend: Redirect to login if unauthed when accessing protectad view
 1. Refresh JWT tokens in background
-1. Suggest backup solution.
 1. Use new ngForm https://docs.google.com/document/u/1/d/1RIezQqE4aEhBRmArIAS1mRIZtWFf6JxN_7B4meyWK0Y/pub
 1. Neat css builds with less and bootstrap
+1. Suggest simple script for backup.
