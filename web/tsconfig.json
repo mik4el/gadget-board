@@ -6,11 +6,10 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
-    "removeComments": false,
+    "removeComments": true,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
     "outFile": "gadget_board_frontend/bundle.js"
-
   },
   "exclude": [
     "node_modules"
