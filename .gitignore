@@ -13,3 +13,5 @@ node_modules
 *.key
 *.pem
 *.cer
+web/gadget_board_backend_templates/dist/*
+web/gadget_board_backend_templates
