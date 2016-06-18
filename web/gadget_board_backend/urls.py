@@ -21,7 +21,6 @@ from authentication.views import AccountViewSet
 from rest_framework_jwt.views import obtain_jwt_token
 from rest_framework_jwt.views import refresh_jwt_token
 
-
 router = routers.SimpleRouter()
 router.register(r'accounts', AccountViewSet)
 

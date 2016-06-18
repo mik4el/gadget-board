@@ -28,7 +28,7 @@ class AccountManager(BaseUserManager):
     def create_superuser(self, username, password, **kwargs):
         account = self.create_account(username, password, **kwargs)
 
-        account.is_admin = True
+        account.is_superuser = True
 
         account.save()
 
@@ -40,7 +40,6 @@ class Account(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField()  # users can share email
 
     is_gadget = models.BooleanField(default=False)
-    is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -63,5 +62,4 @@ class Account(AbstractBaseUser, PermissionsMixin):
     @property
     def is_staff(self):
         "Is the user a member of staff?"
-        # Simplest possible answer: All admins are staff
-        return self.is_admin
+        return self.is_superuser
