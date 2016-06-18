@@ -139,7 +139,6 @@ A deployed environment can be backed up by your hosting provider, e.g. DigitalOc
 
 ## Todos
 1. Backend: Backend for saving gadget data
-  1. Backend: Save data with admin
   1. Backend: Save data from gadget with external script authed by JWT
 1. Backend: Backend for getting gadget data
 1. Frontend: Show gadget data
