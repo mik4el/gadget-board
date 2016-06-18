@@ -138,9 +138,10 @@ A deployed environment can be backed up by your hosting provider, e.g. DigitalOc
 * https://github.com/gulpjs/gulp/issues/1571
 
 ## Todos
-1. Backend: Backend for saving gadget data
-  1. Backend: Save data from gadget with external script authed by JWT
-1. Backend: Backend for getting gadget data
+1. Backend: Backend for gadget data
+  1. Backend: Make and test gadget data get endpoint
+  1. Backend: Make and test gadget data post endpoint, only users with permission can post
+  1. Backend: Post data from gadget with external script authed by JWT
 1. Frontend: Show gadget data
 1. Frontend: Clean out Heroes-app
 1. Frontend: Fix design
