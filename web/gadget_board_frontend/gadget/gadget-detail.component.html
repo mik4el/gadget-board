@@ -1,0 +1,13 @@
+<div class="container">
+    <div *ngFor="let errorMessage of errorMessages">
+        <div class="alert alert-danger">
+            {{errorMessage}}
+        </div>
+    </div>
+
+    <div *ngIf="gadget">
+        <h3>{{gadget.name}}</h3>
+        <p>{{gadget.description}}</p>
+        <h4>Latest data:</h4>
+    </div>
+</div>

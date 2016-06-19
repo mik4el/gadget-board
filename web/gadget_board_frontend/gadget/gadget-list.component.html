@@ -1,0 +1,14 @@
+<div class="container">
+  <h3>Gadgets</h3>
+  <div *ngFor="let errorMessage of errorMessages">
+      <div class="alert alert-danger">
+          {{errorMessage}}
+      </div>
+  </div>
+
+  <ul *ngFor="let gadget of gadgets">
+    <li (click)="gotoGadgetDetail(gadget)">
+      <h4>{{gadget.name}}</h4>
+    </li>
+  </ul>
+</div>

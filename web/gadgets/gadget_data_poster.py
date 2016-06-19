@@ -21,7 +21,7 @@ except:
 # Prepare payload
 gadget_id = "1" 
 payload = {
-	'data':'value',
+	'data':{"battery_v": 3.83, "temp_surface": 14.5, "transmission_id": 46765, "temp_deep": 15.5},
 	'timestamp': datetime.now().isoformat()
 }
 post_url = base_url+'/api/v1/gadgets/'+gadget_id+'/data/'

@@ -4,15 +4,15 @@ import { Subscription } from 'rxjs/Subscription';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router } from '@angular/router-deprecated';
 import { JwtHelper } from 'angular2-jwt/angular2-jwt'
 
-import { HeroService } from './hero/hero.service';
-import { HeroesComponent } from './heroes/heroes.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HeroDetailComponent } from './hero/hero-detail.component';
 import { AccountService } from './account/account.service';
 import { AccountCreateComponent } from './account/account-create.component';
 import { AccountLoginComponent } from './account/account-login.component';
 import { AccountListComponent } from './account/account-list.component';
 import { AccountDetailComponent } from './account/account-detail.component';
+
+import { GadgetService } from './gadget/gadget.service';
+import { GadgetListComponent } from './gadget/gadget-list.component';
+import { GadgetDetailComponent } from './gadget/gadget-detail.component';
 
 declare var __moduleName: string;  // weird way to make relative template urls work, see https://github.com/angular/angular/issues/6053 
 
@@ -20,13 +20,12 @@ declare var __moduleName: string;  // weird way to make relative template urls w
     selector: 'my-app',
     moduleId: __moduleName,
     template: `
-        <h1>{{title}}</h1>
+        <h1>Gadget Board</h1>
         <nav>
-            <a [routerLink]="['Dashboard']">Dashboard</a>
-            <a [routerLink]="['Heroes']">Heroes</a>
+            <a [routerLink]="['GadgetList']">Gadgets</a>
             <a *ngIf="!isLoggedIn" [routerLink]="['AccountCreate']">Create Account</a>
             <a *ngIf="!isLoggedIn" [routerLink]="['AccountLogin']">Login</a>
-            <a *ngIf="isLoggedIn" [routerLink]="['AccountList']">List Accounts</a>
+            <a *ngIf="isLoggedIn" [routerLink]="['AccountList']">Accounts</a>
             <a *ngIf="isLoggedIn" href="javascript:void(0)" (click)="logout()">Logout</a>
         </nav>
         <router-outlet></router-outlet>
@@ -34,28 +33,23 @@ declare var __moduleName: string;  // weird way to make relative template urls w
     directives: [ROUTER_DIRECTIVES],
     providers: [
         ROUTER_PROVIDERS,
-        HeroService,
         AccountService,
-        JwtHelper
+        JwtHelper,
+        GadgetService
     ]
 })
 
 @RouteConfig([
     {
-        path: '/heroes',
-        name: 'Heroes',
-        component: HeroesComponent
-    },
-    {
-        path: '/dashboard',
-        name: 'Dashboard',
-        component: DashboardComponent,
+        path: '/gadgets/list',
+        name: 'GadgetList',
+        component: GadgetListComponent,
         useAsDefault: true
     },
     {
-        path: '/detail/:id',
-        name: 'HeroDetail',
-        component: HeroDetailComponent
+        path: '/gadgets/detail/:gadget_id',
+        name: 'GadgetDetail',
+        component: GadgetDetailComponent
     },
     {
         path: '/accounts/create',
@@ -80,7 +74,6 @@ declare var __moduleName: string;  // weird way to make relative template urls w
 ])
 
 export class AppComponent implements OnDestroy {
-    title = 'Tour of Heroes';
     isLoggedIn: boolean;
     subscription: Subscription;
 
@@ -97,7 +90,7 @@ export class AppComponent implements OnDestroy {
     
     logout() {
         this.accountService.logout();
-        this.router.navigate(['Dashboard']);
+        this.router.navigate(['GadgetList']);
     }
 
     ngOnDestroy(){

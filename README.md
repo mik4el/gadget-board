@@ -113,7 +113,6 @@ When you are deploying the next time we also need to rebuild the container that 
 
 NB: If in a new terminal remember `eval $(docker-machine env production)`.
 
-
 ## Testing
 Testing in Django is handled by the default Django test system, so running tests is easy, e.g:
 
@@ -139,10 +138,9 @@ A deployed environment can be backed up by your hosting provider, e.g. DigitalOc
 * https://github.com/gulpjs/gulp/issues/1571
 
 ## Todos
-1. Install script at Gadget
-1. Frontend: Show gadget data
-1. Frontend: Clean out Heroes-app
+1. Frontend: Show latest gadget data for gadget
 1. Frontend: Fix design
+1. Change gadget lookup to slug rather than id
 1. Frontend: Use latest angular2-router
 1. Frontend: Redirect to login if unauthed when accessing protected view
 1. Refresh JWT tokens in background
