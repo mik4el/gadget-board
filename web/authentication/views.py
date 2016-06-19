@@ -3,9 +3,9 @@ from rest_framework.response import Response
 from rest_framework_jwt.settings import api_settings
 from django.contrib.auth.hashers import make_password
 
-from authentication.models import Account
-from authentication.permissions import IsAccountOwner
-from authentication.serializers import AccountSerializer
+from .models import Account
+from .permissions import IsAccountOwner
+from .serializers import AccountSerializer
 
 
 class AccountViewSet(viewsets.ModelViewSet):

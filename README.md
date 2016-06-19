@@ -35,8 +35,8 @@ This will start a new development environment and serve the web app on your mach
 1. Make your own `.env`-file with credentials e.g. `cp .env_template .env`
 1. `docker-compose build`
 1. `docker-compose up -d`
-1. `docker-compose run web python manage.py migrate`
-1. `docker-compose run web python manage.py createsuperuser`
+1. `docker-compose run --rm web python manage.py migrate`
+1. `docker-compose run --rm web python manage.py createsuperuser`
 1. `cd web`
 1. `npm install`
 1. `gulp build`
@@ -51,7 +51,7 @@ For normal development work, I suggest this workflow:
 Special cases:
 
 * Make sure no old code is running if you are changing e.g. `settings.py` or `urls.py` by restarting the web container. Do this with `docker-compose restart web`.
-* Run `manage.py` commands using `docker-compose run`, e.g. `docker-compose run web python manage.py makemigrations`.
+* Run `manage.py` commands using `docker-compose run --rm`, e.g. `docker-compose run --rm web python manage.py makemigrations`.
 * If you restart your computer etc, you may need to restart the machine running the containers, do so by:
   1. `docker-machine start dev`
   1. `eval $(docker-machine env dev)`(also when you open a new terminal)
@@ -61,7 +61,7 @@ When you add a dependency to `web/requirements.txt` you need to build a new cont
 
 1. `docker-compose build web`
 1. `docker-compose up -d`
-1. Possibly run `docker-compose run web python manage.py collectstatic` or other commands your dependency requires. NB: collectstatic needs to be run in the development workflow for static files to be saved in the static-dir, this is not possible to do on deployed containers.
+1. Possibly run `docker-compose run --rm web python manage.py collectstatic` or other commands your dependency requires. NB: collectstatic needs to be run in the development workflow for static files to be saved in the static-dir, this is not possible to do on deployed containers.
 
 ## Development workflow Angular2
 For normal development work, I suggest this workflow:
@@ -90,7 +90,7 @@ Now we need to set up the production environment to which you are deploying. By 
 1. `eval $(docker-machine env production)`
 1. `docker-compose -f production.yml build`
 1. `docker-compose -f production.yml up -d`
-1. `docker-compose -f production.yml run web python manage.py migrate`
+1. `docker-compose -f production.yml run --rm web python manage.py migrate`
 
 ### Setting up SSL
 Since the app handles user data securing traffic using SSL is a requirement for production. To set it up on the production nginx container I followed these steps:
@@ -139,9 +139,8 @@ A deployed environment can be backed up by your hosting provider, e.g. DigitalOc
 * https://github.com/gulpjs/gulp/issues/1571
 
 ## Todos
-1. Backend: Backend for gadget data
-  1. Backend: Make and test gadget data post endpoint, only users with permission can post
-  1. Backend: Post data from gadget with external script authed by JWT
+1. Backend: Post data from gadget with external script authed by JWT
+1. Fix space and tabs inconsistency in code.
 1. Frontend: Show gadget data
 1. Frontend: Clean out Heroes-app
 1. Frontend: Fix design

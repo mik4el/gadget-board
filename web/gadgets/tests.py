@@ -9,7 +9,7 @@ from .models import Gadget, GadgetData
 from .views import GadgetViewSet
 
 
-class AccountTestCase(TestCase):
+class GadgetsTestCase(TestCase):
     def setUp(self):
         self.name = 'name1'
         self.description = 'description1'
@@ -20,6 +20,12 @@ class AccountTestCase(TestCase):
         self.test_user = Account.objects.create(
             username=self.username,
         	password=self.password
+        )
+
+        # Create user 2
+        self.test_user_2 = Account.objects.create(
+            username="test2",
+            password=self.password
         )
 
         # Create gadget
@@ -51,6 +57,11 @@ class AccountTestCase(TestCase):
             added_by=self.test_user,
             timestamp=timezone.now()
         )
+        self.json_account_credentials = {
+            'username': self.username,
+            'password': self.password
+        }
+        
 
     def test_get_gadgets(self):
         # setup
@@ -97,25 +108,34 @@ class AccountTestCase(TestCase):
         gadget_json_data = {}
         gadget_json_data['gadget']=self.gadget.id 
         gadget_json_data['data']=self.data_obj 
-        gadget_json_data['added_by']=self.test_user.username
         gadget_json_data['timestamp']=str(timezone.now())
-        gadget_json_data = json.dumps(gadget_json_data)
 
-        print(gadget_json_data)
-
+        # Make request without authentication
+        response = client.post(
+            '/api/v1/gadgets/'+str(self.gadget.id)+'/data/',
+            gadget_json_data, 
+            format='json')        
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        
+        # Make request with authentication but user not in user_can_upload
+        client.force_authenticate(user=self.test_user_2)
         response = client.post(
             '/api/v1/gadgets/'+str(self.gadget.id)+'/data/',
             gadget_json_data, 
             format='json')
-        print(response.json())
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        
+        # Make request with authentication but user in user_can_upload
+        client.force_authenticate(user=self.test_user)
+        response = client.post(
+            '/api/v1/gadgets/'+str(self.gadget.id)+'/data/',
+            gadget_json_data, 
+            format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         
         # assert data in reply
         self.assertEqual(response.json()['gadget'], self.gadget.id)
         self.assertEqual(response.json()['data'], {'key1': 'value1'})
-    
 
 
 
@@ -127,14 +147,4 @@ class AccountTestCase(TestCase):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+        
