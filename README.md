@@ -128,27 +128,28 @@ Testing in Angular2 is handled by jasmine, run the tests by:
 A deployed environment can be backed up by your hosting provider, e.g. DigitalOcean. Since this is a very stateless deployment you can also make a scripted backup of your database and make it possible to easily restore the database from a backup. This will save some on hosting costs and make for a cleaner more controllable solution.
 
 ## Limitations
-* Stack not optimized for performance, uses sensible defaults atm.
-* Non optimized frontend build system. No cache busting for frontend files, lots of requests, no template caching etc.
-* App and stack not thourougly tested on lots of devices over long time
-* Development and deploy workflow not thouroughly tested by lots of developers over long time
-* https://cli.angular.io/ is coming but not stable yet, this should be the favored build system for angular2.
+* Stack not optimized for performance
+* Non optimized frontend build system
+* App and stack not thourougly tested
+* Development and deploy workflow not thouroughly tested
+* https://cli.angular.io/ is coming but not stable yet, this should be the favored build system for angular2
+* Styling is limited to one app.css atm, should be modular and built along with e.g. `bootstrap` using `less`. 
 
 ## Known issues
 * https://github.com/gulpjs/gulp/issues/1571
 
 ## Todos
 1. Backend: Backend for gadget data
-  1. Backend: Make and test gadget data get endpoint
   1. Backend: Make and test gadget data post endpoint, only users with permission can post
   1. Backend: Post data from gadget with external script authed by JWT
 1. Frontend: Show gadget data
 1. Frontend: Clean out Heroes-app
 1. Frontend: Fix design
 1. Frontend: Use latest angular2-router
-1. Frontend: Redirect to login if unauthed when accessing protectad view
+1. Frontend: Redirect to login if unauthed when accessing protected view
 1. Refresh JWT tokens in background
 1. Use new ngForm https://docs.google.com/document/u/1/d/1RIezQqE4aEhBRmArIAS1mRIZtWFf6JxN_7B4meyWK0Y/pub
 1. Neat css builds with less and bootstrap
 1. Suggest simple script for backup.
 1. Add fields thumbnail, image to `gadget` and persist uploaded files
+1. Add more gadgets!
