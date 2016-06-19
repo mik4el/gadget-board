@@ -138,9 +138,9 @@ A deployed environment can be backed up by your hosting provider, e.g. DigitalOc
 * https://github.com/gulpjs/gulp/issues/1571
 
 ## Todos
-1. Frontend: Show latest gadget data for gadget
-1. Frontend: Fix design
+1. Frontend: Specific component for specific gadget parsing its gadget data
 1. Change gadget lookup to slug rather than id
+1. Frontend: Fix design
 1. Frontend: Use latest angular2-router
 1. Frontend: Redirect to login if unauthed when accessing protected view
 1. Refresh JWT tokens in background
