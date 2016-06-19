@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouteParams } from '@angular/router-deprecated';
 
 import { Gadget } from './gadget';
+import { GadgetData } from './gadget-data';
 import { GadgetService } from './gadget.service';
 
 declare var __moduleName: string;  // weird way to make relative template urls work, see https://github.com/angular/angular/issues/6053 
@@ -16,7 +17,8 @@ export class GadgetDetailComponent implements OnInit {
 
     errorMessages: any[];
     gadget: Gadget;
-    
+    gadgetData: GadgetData[];
+
     constructor(
         private gadgetService: GadgetService,
         private routeParams: RouteParams)
@@ -24,7 +26,12 @@ export class GadgetDetailComponent implements OnInit {
 
     ngOnInit() {
         // Get gadget
-        this.getGadget(+this.routeParams.get('gadget_id'));
+        this.updateDataForGadget(+this.routeParams.get('gadget_id'));
+    }
+
+    updateDataForGadget(id: number) {
+        this.getGadget(id);
+        this.getGadgetData(id);
     }
     
     getGadget(id: number) {
@@ -33,5 +40,13 @@ export class GadgetDetailComponent implements OnInit {
                 gadget => this.gadget = gadget,
                 errors => this.errorMessages = <any[]>errors);
     }
+
+    getGadgetData(id: number) {
+        this.gadgetService.getGadgetDataForGadget(id)
+            .subscribe(
+                gadgetData => this.gadgetData = gadgetData,
+                errors => this.errorMessages = <any[]>errors);
+    }
+
 
 }

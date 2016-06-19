@@ -28,12 +28,12 @@ export class AccountLoginComponent implements OnDestroy {
         })
     }
 
-    login(email: string, password: string) {
+    login(username: string, password: string) {
         this.accountService
-            .login(email, password)
+            .login(username, password)
             .subscribe(
                 result => {
-                    this.router.navigate(['../Dashboard']);
+                    this.router.navigate(['../GadgetList']);
                     this.formIsActive = false;  // temporary workaround for angular2 to reset form
                     setTimeout(()=> this.formIsActive=true, 0);  // temporary workaround for angular2 to reset form
                 },

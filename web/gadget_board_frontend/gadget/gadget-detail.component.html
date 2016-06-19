@@ -9,5 +9,15 @@
         <h3>{{gadget.name}}</h3>
         <p>{{gadget.description}}</p>
         <h4>Latest data:</h4>
+        <div *ngIf="gadgetData">
+            <ul *ngFor="let gadgetDatum of gadgetData">
+                <li>
+                <p>Deep temperature: {{gadgetDatum.data.temp_deep}}</p>
+                <p>Surface temperature: {{gadgetDatum.data.temp_surface}}</p>
+                <p>Battery voltage: {{gadgetDatum.data.temp_deep}}</p>
+                <p><i>{{gadgetDatum.timestamp}}</i></p>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>

@@ -3,6 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { Gadget } from './gadget';
+import { GadgetData } from './gadget-data';
 
 @Injectable()
 export class GadgetService {
@@ -24,6 +25,14 @@ export class GadgetService {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
         return this.http.get(this.gadgetsUrl+id+'/', options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    getGadgetDataForGadget (id: number): Observable<GadgetData[]> {
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+        return this.http.get(this.gadgetsUrl+id+'/data/', options)
             .map(this.extractData)
             .catch(this.handleError);
     }
