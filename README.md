@@ -139,8 +139,7 @@ A deployed environment can be backed up by your hosting provider, e.g. DigitalOc
 * https://github.com/gulpjs/gulp/issues/1571
 
 ## Todos
-1. Backend: Post data from gadget with external script authed by JWT
-1. Fix space and tabs inconsistency in code.
+1. Install script at Gadget
 1. Frontend: Show gadget data
 1. Frontend: Clean out Heroes-app
 1. Frontend: Fix design
@@ -148,6 +147,7 @@ A deployed environment can be backed up by your hosting provider, e.g. DigitalOc
 1. Frontend: Redirect to login if unauthed when accessing protected view
 1. Refresh JWT tokens in background
 1. Use new ngForm https://docs.google.com/document/u/1/d/1RIezQqE4aEhBRmArIAS1mRIZtWFf6JxN_7B4meyWK0Y/pub
+1. Fix space and tabs inconsistency in code.
 1. Neat css builds with less and bootstrap
 1. Suggest simple script for backup.
 1. Add fields thumbnail, image to `gadget` and persist uploaded files

@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 
 from .models import Gadget, GadgetData
 from .serializers import GadgetSerializer, GadgetDataSerializer
-from .permissions import UserCanAddGadgetData
+from .permissions import CanUserAddGadgetData
 
 
 class GadgetViewSet(viewsets.ReadOnlyModelViewSet):
@@ -22,7 +22,7 @@ class GadgetDataViewSet(viewsets.ViewSet):
 	serializer_class = GadgetDataSerializer
 
 	def get_permissions(self):
-		return (UserCanAddGadgetData(),)
+		return (CanUserAddGadgetData(),)
 
 	def list(self, request, gadget_id=None):
 		queryset = GadgetData.objects.filter(gadget=gadget_id)

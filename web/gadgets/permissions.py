@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from .models import Gadget
 
 
-class UserCanAddGadgetData(permissions.BasePermission):
+class CanUserAddGadgetData(permissions.BasePermission):
 	def has_permission(self, request, view):
 		if request.method in permissions.SAFE_METHODS:
 			return True
