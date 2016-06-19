@@ -29,25 +29,25 @@ class AccountTestCase(TestCase):
         )
         self.gadget.users_can_upload.add(self.test_user)
 
-        obj={}
-        obj['key1']='value1'
+        self.data_obj={}
+        self.data_obj['key1']='value1'
 
         # Create data for gadget
         self.gadget_data_1 = GadgetData.objects.create(
             gadget=self.gadget, 
-            data=obj,
+            data=self.data_obj,
             added_by=self.test_user,
             timestamp=timezone.now()
         )
         self.gadget_data_2 = GadgetData.objects.create(
             gadget=self.gadget, 
-            data=obj,
+            data=self.data_obj,
             added_by=self.test_user,
             timestamp=timezone.now()
         )
         self.gadget_data_3 = GadgetData.objects.create(
             gadget=self.gadget, 
-            data=obj,
+            data=self.data_obj,
             added_by=self.test_user,
             timestamp=timezone.now()
         )
@@ -76,7 +76,7 @@ class AccountTestCase(TestCase):
         # assert data in reply
         self.assertEqual(len(response.json()), 3)
         self.assertEqual(response.json()[2]['gadget'], self.gadget.id)
-        self.assertEqual(response.json()[2]['data'], {'key1': 'value1'})
+        self.assertEqual(response.json()[2]['data'], self.data_obj)
         
     def test_get_gadget_data_for_gadget(self):
         view = GadgetViewSet.as_view({'get': 'retrieve'})
@@ -85,13 +85,37 @@ class AccountTestCase(TestCase):
         response = client.get(
             '/api/v1/gadgets/'+str(self.gadget.id)+'/data/'+str(self.gadget_data_1.id)+'/', 
             format='json')
-        print(response.json())
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # assert data in reply
         self.assertEqual(response.json()['gadget'], self.gadget.id)
-        self.assertEqual(response.json()['data'], {'key1': 'value1'})
+        self.assertEqual(response.json()['data'], self.data_obj)
         
+    def test_post_gadget_data_for_gadget(self):
+        view = GadgetViewSet.as_view({'post': 'create'})
+        client = APIClient()
+        # make requrest and assert ok
+        gadget_json_data = {}
+        gadget_json_data['gadget']=self.gadget.id 
+        gadget_json_data['data']=self.data_obj 
+        gadget_json_data['added_by']=self.test_user.username
+        gadget_json_data['timestamp']=str(timezone.now())
+        gadget_json_data = json.dumps(gadget_json_data)
 
+        print(gadget_json_data)
+
+        response = client.post(
+            '/api/v1/gadgets/'+str(self.gadget.id)+'/data/',
+            gadget_json_data, 
+            format='json')
+        print(response.json())
+        
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
+        
+        # assert data in reply
+        self.assertEqual(response.json()['gadget'], self.gadget.id)
+        self.assertEqual(response.json()['data'], {'key1': 'value1'})
+    
 
 
 
