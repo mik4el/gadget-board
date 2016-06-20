@@ -124,7 +124,7 @@ Testing in Angular2 is handled by jasmine, run the tests by:
 * Add a test by following e.g. https://angular.io/docs/ts/latest/guide/testing.html and then import the spec-file in `unit-tests.html`
 
 ## Backing up
-A deployed environment can be backed up by your hosting provider, e.g. DigitalOcean. Since this is a very stateless deployment you can also make a scripted backup of your database and make it possible to easily restore the database from a backup. This will save some on hosting costs and make for a cleaner more controllable solution.
+A deployed environment can be backed up by your hosting provider, e.g. DigitalOcean. Since this is a very stateless deployment you can also make a scripted backup of your database and make it possible to easily restore the database from a backup. This will save some on hosting costs and make for a more self-contained and hosting provider agnostic solution.
 
 ## Limitations
 * Stack not optimized for performance

@@ -58,7 +58,7 @@ export class AccountDetailComponent implements OnInit {
             .subscribe(
                 res => {
                     this.accountService.logout();
-                    this.router.navigate(['Dashboard']);},
+                    this.router.navigate(['GadgetList']);},
                 errors => this.errorMessages = <any[]>errors
                 );
     }

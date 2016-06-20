@@ -1,0 +1,36 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>Gadget board frontend Unit Tests</title>
+    <link rel="stylesheet" href="{% static 'dist/lib/jasmine-core/lib/jasmine-core/jasmine.css' %}">
+    <script src="{% static 'dist/lib/jasmine-core/lib/jasmine-core/jasmine.js' %}"></script>
+    <script src="{% static 'dist/lib/jasmine-core/lib/jasmine-core/jasmine-html.js' %}"></script>
+    <script src="{% static 'dist/lib/jasmine-core/lib/jasmine-core/boot.js' %}"></script>
+
+    <script src="{% static 'dist/lib/zone.js' %}"></script>
+    <script src="{% static 'dist/lib/Reflect.js' %}"></script>
+
+</head>
+<body>
+    <script src="{% static 'dist/lib/system.src.js' %}"></script>
+    <script src="{% static 'dist/gadget_board_frontend/systemjs.config.dev.js' %}"></script>
+    
+    <script src="{% static 'dist/gadget_board_frontend/app.js' %}"></script>
+
+    <script>
+            setTimeout(function(){ //workaround faster loading in bundle.2bba2302.js
+                // Import the spec files explicitly
+                Promise.all([
+                    System.import('gadget_board_frontend/my-uppercase.pipe.spec'),
+                    System.import('gadget_board_frontend/account/account.spec'),
+                    System.import('gadget_board_frontend/account/account.service.spec'),
+                    System.import('gadget_board_frontend/hero/hero.spec')
+                ])
+                .then(window.onload)
+                .catch(console.error.bind(console));
+            }, 1000);
+    </script>
+</body>
+</html>

@@ -59,7 +59,7 @@ ROOT_URLCONF = 'gadget_board_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'gadget_board_backend_templates/dist'),],
+        'DIRS': [os.path.join(BASE_DIR, 'templates/dist'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -41,7 +41,7 @@ declare var __moduleName: string;  // weird way to make relative template urls w
 
 @RouteConfig([
     {
-        path: '/gadgets/list',
+        path: '/gadgets/',
         name: 'GadgetList',
         component: GadgetListComponent,
         useAsDefault: true
@@ -57,7 +57,7 @@ declare var __moduleName: string;  // weird way to make relative template urls w
         component: AccountCreateComponent
     },
     {
-        path: '/accounts/list',
+        path: '/accounts/',
         name: 'AccountList',
         component: AccountListComponent
     },

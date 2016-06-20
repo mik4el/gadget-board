@@ -33,7 +33,7 @@ export class AccountLoginComponent implements OnDestroy {
             .login(username, password)
             .subscribe(
                 result => {
-                    this.router.navigate(['../GadgetList']);
+                    this.router.navigate(['GadgetList']);
                     this.formIsActive = false;  // temporary workaround for angular2 to reset form
                     setTimeout(()=> this.formIsActive=true, 0);  // temporary workaround for angular2 to reset form
                 },

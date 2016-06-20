@@ -81,7 +81,7 @@ gulp.task('compile:prod', ['clean'], function () {
 });
 
 gulp.task('compress', ['compile'], function() {
-  return gulp.src('static/dist/gadget_board_frontend/bundle.js')
+  return gulp.src('static/dist/gadget_board_frontend/app.js')
     .pipe(uglify())
     .pipe(cachebust.resources())
     .pipe(gulp.dest('static/dist/gadget_board_frontend'));
@@ -95,9 +95,9 @@ gulp.task('minify-css', ['copy:assets'], function() {
 });
 
 gulp.task('cachebust', ['minify-css', 'compress'], function () {
-    return gulp.src('gadget_board_backend_templates/*.html')
+    return gulp.src('templates/*.html')
         .pipe(cachebust.references())       
-        .pipe(gulp.dest('gadget_board_backend_templates/dist'));
+        .pipe(gulp.dest('templates/dist'));
 });
 
 gulp.task('assets', ['compress', 'minify-css', 'cachebust', 'copy:lib_files',  'copy:lib_dirs', 'copy:assets']);

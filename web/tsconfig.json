@@ -9,7 +9,7 @@
     "removeComments": true,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
-    "outFile": "gadget_board_frontend/bundle.js"
+    "outFile": "gadget_board_frontend/app.js"
   },
   "exclude": [
     "node_modules"
