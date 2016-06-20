@@ -45,7 +45,7 @@ This will start a new development environment and serve the web app on your mach
 ## Development workflow Django
 For normal development work, I suggest this workflow:
 
-1. Make change in Django related code, run `manage.py` commands using `docker-compose run web python manage.py startapp` etc...
+1. Make change in Django related code, run `manage.py` commands using `docker-compose run --rm web python manage.py startapp` etc...
 2. Reload browser, run tests etc.
 
 Special cases:
@@ -116,7 +116,7 @@ NB: If in a new terminal remember `eval $(docker-machine env production)`.
 ## Testing
 Testing in Django is handled by the default Django test system, so running tests is easy, e.g:
 
-* `docker-compose run web python manage.py test`
+* `docker-compose run --rm web python manage.py test`
 
 Testing in Angular2 is handled by jasmine, run the tests by:
 
