@@ -96,7 +96,7 @@ Now we need to set up the production environment to which you are deploying. By 
 Since the app handles user data securing traffic using SSL is a requirement for production. To set it up on the production nginx container I followed these steps:
 
 1. Have a domain ready that you control. It is nice to point the domain towards a floating ip from e.g. DigitalOcean so you can change the production environment without needing to update your dns.
-1. Find a suitable SSL certificate authority (CA), I use positivessl from namecheap.com. For SSL certs with short expiration dates there are also free options but that is a hassle so I value buying an SSL cert.
+1. Find a suitable SSL certificate authority (CA), I use positivessl from namecheap.com. For SSL certs with short expiration dates there are also free options but that is a hassle so I value buying an SSL cert. A better free option is https://letsencrypt.org/.
 1. Make a csr-file by running `openssl req -newkey rsa:2048 -nodes -keyout example.com.key -out example.com.csr` and go through the process of obtaining the cert. Save the key and csr file safely on your local machine.
 1. When you have got all the cert files back from your CA, prepare the cert for nginx by following e.g. `https://www.namecheap.com/support/knowledgebase/article.aspx/9419/0/nginx`. Store the files safely on your local machine.
 1. Download root certificate from your CA, e.g. `https://www.namecheap.com/support/knowledgebase/article.aspx/9393/69/where-do-i-find-ssl-ca-bundle`, save it as `PositiveSSLBundle.cer`
