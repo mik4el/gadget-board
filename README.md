@@ -138,9 +138,11 @@ A deployed environment can be backed up by your hosting provider, e.g. DigitalOc
 * https://github.com/gulpjs/gulp/issues/1571
 
 ## Todos
+1. Test manytomanyrelation gadget.users_can_upload when deleting account
 1. Frontend: Specific component for specific gadget parsing its gadget data
 1. Change gadget lookup to slug rather than id
 1. Frontend: Fix design
+1. Frontend: Animations
 1. Frontend: Use latest angular2-router
 1. Frontend: Redirect to login if unauthed when accessing protected view
 1. Refresh JWT tokens in background
@@ -150,3 +152,5 @@ A deployed environment can be backed up by your hosting provider, e.g. DigitalOc
 1. Suggest simple script for backup.
 1. Add fields thumbnail, image to `gadget` and persist uploaded files
 1. Add more gadgets!
+1. Cleaner build system for Angular2
+1. Test https://www.docker.com/products/docker#/mac

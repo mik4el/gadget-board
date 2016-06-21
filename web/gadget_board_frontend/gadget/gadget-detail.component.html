@@ -1,24 +1,22 @@
-<div class="container">
-    <div *ngFor="let errorMessage of errorMessages">
-        <div class="alert alert-danger">
-            {{errorMessage}}
-        </div>
+<div *ngFor="let errorMessage of errorMessages">
+    <div class="alert alert-danger">
+        {{errorMessage}}
     </div>
+</div>
 
-    <div *ngIf="gadget">
-        <h3>{{gadget.name}}</h3>
-        <p>{{gadget.description}}</p>
-        <div *ngIf="gadgetData">
-        <h4>Latest data:</h4>
-            
-            <ul *ngFor="let gadgetDatum of gadgetData">
-                <li>
-                <p>Deep temperature: {{gadgetDatum.data.temp_deep}}</p>
-                <p>Surface temperature: {{gadgetDatum.data.temp_surface}}</p>
-                <p>Battery voltage: {{gadgetDatum.data.battery_v}}</p>
-                <p><i>{{gadgetDatum.timestamp}}</i></p>
-                </li>
-            </ul>
-        </div>
+<div *ngIf="gadget">
+    <h3>{{gadget.name}}</h3>
+    <p>{{gadget.description}}</p>
+    <div *ngIf="gadgetData">
+    <h4>Latest data:</h4>
+        
+        <ul *ngFor="let gadgetDatum of gadgetData">
+            <li>
+            <p>Deep temperature: {{gadgetDatum.data.temp_deep}}</p>
+            <p>Surface temperature: {{gadgetDatum.data.temp_surface}}</p>
+            <p>Battery voltage: {{gadgetDatum.data.battery_v}}</p>
+            <p><i>{{gadgetDatum.timestamp}}</i></p>
+            </li>
+        </ul>
     </div>
 </div>

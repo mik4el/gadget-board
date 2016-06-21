@@ -1,14 +1,12 @@
-<div class="container">
-  <h3>Gadgets</h3>
-  <div *ngFor="let errorMessage of errorMessages">
-      <div class="alert alert-danger">
-          {{errorMessage}}
-      </div>
-  </div>
+<h3>Gadgets</h3>
+<div *ngFor="let errorMessage of errorMessages">
+    <div class="alert alert-danger">
+        {{errorMessage}}
+    </div>
+</div>
 
-  <div class="list-group">
-    <button *ngFor="let gadget of gadgets" type="button" class="list-group-item" (click)="gotoGadgetDetail(gadget)">
-      {{gadget.name}}
-    </button>
-  </div>
+<div class="list-group">
+  <button *ngFor="let gadget of gadgets" type="button" class="list-group-item" (click)="gotoGadgetDetail(gadget)">
+    {{gadget.name}}
+  </button>
 </div>

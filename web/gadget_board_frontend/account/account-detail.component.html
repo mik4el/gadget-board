@@ -1,57 +1,54 @@
-<div class="container">
-    <h3>Account detail for {{ urlUsername }}</h3>
-    <div *ngFor="let errorMessage of errorMessages">
-        <div class="alert alert-danger">
-            {{errorMessage}}
-        </div>
+<h3>Account detail for {{ urlUsername }}</h3>
+<div *ngFor="let errorMessage of errorMessages">
+    <div class="alert alert-danger">
+        {{errorMessage}}
     </div>
+</div>
 
-    <div *ngIf="account">
-        <div *ngIf="isAccountOwner">
-            <form *ngIf="formIsActive" (ngSubmit)="updateAccount()" #updateAccountForm="ngForm">
+<div *ngIf="account">
+    <div *ngIf="isAccountOwner">
+        <form *ngIf="formIsActive" (ngSubmit)="updateAccount()" #updateAccountForm="ngForm">
 
-                <div *ngIf="accountUpdated && updateAccountForm.form.pristine " class="alert alert-success">
-                    Account details updated!
+            <div *ngIf="accountUpdated && updateAccountForm.form.pristine " class="alert alert-success">
+                Account details updated!
+            </div>
+
+            <div class="form-group">
+                <label>Change email</label>
+                <input type="email" class="form-control" required
+                       [(ngModel)]="account.email"
+                       ngControl="email" #email="ngForm">
+                <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                    Email is required
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label>Change email</label>
-                    <input type="email" class="form-control" required
-                           [(ngModel)]="account.email"
-                           ngControl="email" #email="ngForm">
-                    <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
-                        Email is required
-                    </div>
-                </div>
+            <div class="form-group">
+                <label>New password</label>
+                <input type="password" class="form-control"
+                       [(ngModel)]="account.password"
+                       ngControl="password"  #password="ngForm">
+            </div>
 
-                <div class="form-group">
-                    <label>New password</label>
-                    <input type="password" class="form-control"
-                           [(ngModel)]="account.password"
-                           ngControl="password"  #password="ngForm">
-                </div>
-
-                <button type="submit" class="btn btn-default"
-                        [disabled]="!updateAccountForm.form.valid">
-                    Submit
-                </button>
-
-            </form>
-
-            <button class="btn btn-danger" (click)="deleteAccount()">
-                Delete account
+            <button type="submit" class="btn btn-default"
+                    [disabled]="!updateAccountForm.form.valid">
+                Submit
             </button>
 
-        </div>
+        </form>
 
-        <div *ngIf="!isAccountOwner">
-            <form>
-                <label>Email</label>
-                <div class="form-group">
-                <p>{{ account.email }}
-                </div>
-            </form>
-        </div>
+        <button class="btn btn-danger" (click)="deleteAccount()">
+            Delete account
+        </button>
+
     </div>
 
+    <div *ngIf="!isAccountOwner">
+        <form>
+            <label>Email</label>
+            <div class="form-group">
+            <p>{{ account.email }}
+            </div>
+        </form>
+    </div>
 </div>

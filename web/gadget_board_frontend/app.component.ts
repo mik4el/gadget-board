@@ -19,17 +19,7 @@ declare var __moduleName: string;  // weird way to make relative template urls w
 @Component({
     selector: 'my-app',
     moduleId: __moduleName,
-    template: `
-        <h1>Gadget Board</h1>
-        <nav>
-            <a [routerLink]="['GadgetList']">Gadgets</a>
-            <a *ngIf="!isLoggedIn" [routerLink]="['AccountCreate']">Create Account</a>
-            <a *ngIf="!isLoggedIn" [routerLink]="['AccountLogin']">Login</a>
-            <a *ngIf="isLoggedIn" [routerLink]="['AccountList']">Accounts</a>
-            <a *ngIf="isLoggedIn" href="javascript:void(0)" (click)="logout()">Logout</a>
-        </nav>
-        <router-outlet></router-outlet>
-    `,
+    templateUrl: './app.component.html',
     directives: [ROUTER_DIRECTIVES],
     providers: [
         ROUTER_PROVIDERS,
