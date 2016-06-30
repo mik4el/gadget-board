@@ -10,13 +10,6 @@
     <div *ngIf="gadgetData">
     <h4>Latest data:</h4>
         
-        <ul *ngFor="let gadgetDatum of gadgetData">
-            <li>
-            <p>Deep temperature: {{gadgetDatum.data.temp_deep}}</p>
-            <p>Surface temperature: {{gadgetDatum.data.temp_surface}}</p>
-            <p>Battery voltage: {{gadgetDatum.data.battery_v}}</p>
-            <p><i>{{gadgetDatum.timestamp}}</i></p>
-            </li>
-        </ul>
+    <gadget-swim-thermo *ngFor="let gadgetDatum of gadgetData" [gadgetDatum]="gadgetDatum"></gadget-swim-thermo>
     </div>
 </div>

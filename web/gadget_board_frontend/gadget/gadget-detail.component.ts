@@ -4,12 +4,14 @@ import { RouteParams } from '@angular/router-deprecated';
 import { Gadget } from './gadget';
 import { GadgetData } from './gadget-data';
 import { GadgetService } from './gadget.service';
+import { GadgetSwimThermoComponent } from './gadget-swim-thermo.component';
 
 declare var __moduleName: string;  // weird way to make relative template urls work, see https://github.com/angular/angular/issues/6053 
 
 @Component({
     selector: 'gadget-detail',
     moduleId: __moduleName,
+    directives: [GadgetSwimThermoComponent],
     templateUrl: './gadget-detail.component.html',
 })
 
