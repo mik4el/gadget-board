@@ -137,6 +137,11 @@ class GadgetsTestCase(TestCase):
         self.assertEqual(response.json()['gadget'], self.gadget.id)
         self.assertEqual(response.json()['data'], {'key1': 'value1'})
 
+    def test_remove_user_in_user_can_upload(self):
+        self.gadget.users_can_upload.add(self.test_user_2)
+        self.test_user_2.delete()
+        self.assertEqual(len(self.gadget.users_can_upload.all()),1)
+        
 
 
 
