@@ -47,8 +47,8 @@ describe('AccountService', () => {
           )));
       });
 
-    // make sure we have a token because this requires login
-    localStorage.setItem('id_token', "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmlnX2lhdCI6MTQ2NTI4Nzc4MSwiZXhwIjoxNDY2NDk3MzgxLCJ1c2VybmFtZSI6Im1pazRlbCIsInVzZXJfaWQiOjEsImVtYWlsIjoibWlrNGVsLjRuZGVyc3NvbkBnbWFpbC5jb20ifQ.EEMh_IqynLoQwckogsTM2wbk4gt_Z0CBUi_43KcSsgg");
+    // make sure we have a jwt because this requires login, NB: requires a non expired jwt
+    localStorage.setItem('id_token', "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6Im1pazRlbC40bmRlcnNzb25AZ21haWwuY29tIiwidXNlcm5hbWUiOiJtaWs0ZWwiLCJvcmlnX2lhdCI6MTQ2NzMxNDAyNiwiZXhwIjoxNDY4NTIzNjI2fQ.1VQZzno1Q8Rax23kZgyPXjXQyEUWgrzb3navPc3njhE");
 
     // with our mock response configured, we now can
     // ask the account service to get our account entries
@@ -57,6 +57,8 @@ describe('AccountService', () => {
       expect(accounts.length).toBe(1);
       expect(accounts[0].id).toBe(2);
     });
+
+    localStorage.removeItem('id_token');
 
   }));
 });

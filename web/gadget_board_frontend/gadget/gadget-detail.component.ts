@@ -44,7 +44,7 @@ export class GadgetDetailComponent implements OnInit {
     }
 
     getGadgetData(id: number) {
-        this.gadgetService.getGadgetDataForGadget(id)
+        this.gadgetService.getGadgetDataForGadget(id, 2)
             .subscribe(
                 gadgetData => { if (gadgetData.length>0) this.gadgetData = gadgetData; },
                 errors => this.errorMessages = <any[]>errors);

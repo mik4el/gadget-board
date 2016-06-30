@@ -29,11 +29,14 @@ export class GadgetService {
             .catch(this.handleError);
     }
 
-    getGadgetDataForGadget (id: number): Observable<GadgetData[]> {
+    getGadgetDataForGadget (id: number, limit: number): Observable<GadgetData[]> {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
-        return this.http.get(this.gadgetsUrl+id+'/data/', options)
-            .map(this.extractData)
+        return this.http.get(this.gadgetsUrl+id+'/data/?limit='+limit, options)
+            .map(res => {
+                let body = res.json();
+                return body.results;
+            })
             .catch(this.handleError);
     }
 
