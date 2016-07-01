@@ -2,6 +2,7 @@ export class Gadget {
     constructor(
         public id?: number,
         public name?: string,
+        public slug?: string,
         public description?: string,
         public users_can_upload?: string[],
         public updated_at?: string,

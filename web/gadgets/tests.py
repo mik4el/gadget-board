@@ -70,10 +70,10 @@ class GadgetsTestCase(TestCase):
         # make requrest and assert ok
         response = client.get('/api/v1/gadgets/', format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        # assert gadget in resposnse
-        self.assertEqual(response.json()[0]['name'], self.name)
-        # assert gadget users_can_upload
+        # assert data in resposnse
+        self.assertEqual(response.json()[0]['name'], self.gadget.name)
         self.assertEqual(response.json()[0]['users_can_upload'][0], self.test_user.id)
+        self.assertEqual(response.json()[0]['slug'], self.gadget.slug)
 
     def test_list_gadget_data_for_gadget(self):
         # setup
@@ -81,12 +81,12 @@ class GadgetsTestCase(TestCase):
         client = APIClient()
         # make requrest and assert ok
         response = client.get(
-            '/api/v1/gadgets/'+str(self.gadget.id)+'/data/', 
+            '/api/v1/gadgets/'+str(self.gadget.slug)+'/data/', 
             format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # assert data in reply
         self.assertEqual(len(response.json()), 3)
-        self.assertEqual(response.json()[2]['gadget'], self.gadget.id)
+        self.assertEqual(response.json()[2]['gadget'], self.gadget.slug)
         self.assertEqual(response.json()[2]['data'], self.data_obj)
         
     def test_get_gadget_data_for_gadget(self):
@@ -94,11 +94,11 @@ class GadgetsTestCase(TestCase):
         client = APIClient()
         # make requrest and assert ok
         response = client.get(
-            '/api/v1/gadgets/'+str(self.gadget.id)+'/data/'+str(self.gadget_data_1.id)+'/', 
+            '/api/v1/gadgets/'+str(self.gadget.slug)+'/data/'+str(self.gadget_data_1.id)+'/', 
             format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # assert data in reply
-        self.assertEqual(response.json()['gadget'], self.gadget.id)
+        self.assertEqual(response.json()['gadget'], self.gadget.slug)
         self.assertEqual(response.json()['data'], self.data_obj)
         
     def test_post_gadget_data_for_gadget(self):
@@ -106,13 +106,13 @@ class GadgetsTestCase(TestCase):
         client = APIClient()
         # make requrest and assert ok
         gadget_json_data = {}
-        gadget_json_data['gadget']=self.gadget.id 
+        gadget_json_data['gadget']=self.gadget.slug 
         gadget_json_data['data']=self.data_obj 
         gadget_json_data['timestamp']=str(timezone.now())
 
         # Make request without authentication
         response = client.post(
-            '/api/v1/gadgets/'+str(self.gadget.id)+'/data/',
+            '/api/v1/gadgets/'+str(self.gadget.slug)+'/data/',
             gadget_json_data, 
             format='json')        
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
@@ -120,7 +120,7 @@ class GadgetsTestCase(TestCase):
         # Make request with authentication but user not in user_can_upload
         client.force_authenticate(user=self.test_user_2)
         response = client.post(
-            '/api/v1/gadgets/'+str(self.gadget.id)+'/data/',
+            '/api/v1/gadgets/'+str(self.gadget.slug)+'/data/',
             gadget_json_data, 
             format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
@@ -128,13 +128,13 @@ class GadgetsTestCase(TestCase):
         # Make request with authentication but user in user_can_upload
         client.force_authenticate(user=self.test_user)
         response = client.post(
-            '/api/v1/gadgets/'+str(self.gadget.id)+'/data/',
+            '/api/v1/gadgets/'+str(self.gadget.slug)+'/data/',
             gadget_json_data, 
             format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         
         # assert data in reply
-        self.assertEqual(response.json()['gadget'], self.gadget.id)
+        self.assertEqual(response.json()['gadget'], self.gadget.slug)
         self.assertEqual(response.json()['data'], {'key1': 'value1'})
 
     def test_remove_user_in_user_can_upload(self):

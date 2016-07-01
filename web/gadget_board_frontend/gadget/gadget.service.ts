@@ -21,18 +21,18 @@ export class GadgetService {
             .catch(this.handleError);
     }
 
-    getGadget (id: number): Observable<Gadget> {
+    getGadget (slug: string): Observable<Gadget> {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
-        return this.http.get(this.gadgetsUrl+id+'/', options)
+        return this.http.get(this.gadgetsUrl+slug+'/', options)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
-    getGadgetDataForGadget (id: number, limit: number): Observable<GadgetData[]> {
+    getGadgetDataForGadget (slug: string, limit: number): Observable<GadgetData[]> {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
-        return this.http.get(this.gadgetsUrl+id+'/data/?limit='+limit, options)
+        return this.http.get(this.gadgetsUrl+slug+'/data/?limit='+limit, options)
             .map(res => {
                 let body = res.json();
                 return body.results;

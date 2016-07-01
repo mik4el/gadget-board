@@ -9,7 +9,7 @@ class CanUserAddGadgetData(permissions.BasePermission):
 			return True
 		if request.method == "POST":
 			if request.user.is_authenticated():
-				gadget = get_object_or_404(Gadget, id=view.kwargs['gadget_id'])
+				gadget = get_object_or_404(Gadget, slug=view.kwargs['gadget_slug'])
 				if request.user in gadget.users_can_upload.all():
 					return True
 		return False

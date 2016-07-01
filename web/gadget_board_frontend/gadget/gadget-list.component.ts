@@ -34,7 +34,7 @@ export class GadgetListComponent implements OnInit {
     }
 
     gotoGadgetDetail(gadget: Gadget) {
-        this.router.navigate(['GadgetDetail', { gadget_id: gadget.id }]);
+        this.router.navigate(['GadgetDetail', { gadget_slug: gadget.slug }]);
     }
 
 }

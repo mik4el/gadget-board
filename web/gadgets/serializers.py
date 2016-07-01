@@ -10,12 +10,14 @@ class GadgetSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Gadget
-        fields = ('id', 'name', 'description', 'users_can_upload')
-        read_only_fields = ('created_at', 'updated_at')
+        fields = ('id', 'name', 'description', 'users_can_upload', 'slug')
+        read_only_fields = ('slug', 'created_at', 'updated_at')
 
 
 class GadgetDataSerializer(serializers.ModelSerializer):
-    gadget = serializers.PrimaryKeyRelatedField(read_only=True)
+    gadget = serializers.SlugRelatedField(
+        slug_field='slug',
+        read_only=True)
     added_by = serializers.SlugRelatedField(
         slug_field='username',
     	read_only=True)

@@ -1,9 +1,11 @@
 from django.db import models
 from django.contrib.postgres.fields import JSONField
+from django.template.defaultfilters import slugify
 from authentication.models import Account
 
 class Gadget(models.Model):
 	name = models.CharField(max_length=40, unique=True)
+	slug = models.SlugField(null=True, blank=True)
 	description = models.TextField()
 	users_can_upload = models.ManyToManyField(Account)
 	created_at = models.DateTimeField(auto_now_add=True)
@@ -11,6 +13,12 @@ class Gadget(models.Model):
 
 	def __str__(self):
 		return self.name
+
+	def save(self, *args, **kwargs):
+		if not self.id:
+			self.slug = slugify(self.name)
+
+		super(Gadget, self).save(*args, **kwargs)
 
 
 class GadgetData(models.Model):

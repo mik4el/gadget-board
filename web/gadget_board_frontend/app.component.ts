@@ -37,7 +37,7 @@ declare var __moduleName: string;  // weird way to make relative template urls w
         useAsDefault: true
     },
     {
-        path: '/gadgets/detail/:gadget_id',
+        path: '/gadgets/detail/:gadget_slug',
         name: 'GadgetDetail',
         component: GadgetDetailComponent
     },

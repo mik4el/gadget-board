@@ -28,23 +28,23 @@ export class GadgetDetailComponent implements OnInit {
 
     ngOnInit() {
         // Get gadget
-        this.updateDataForGadget(+this.routeParams.get('gadget_id'));
+        this.updateDataForGadget(this.routeParams.get('gadget_slug'));
     }
 
-    updateDataForGadget(id: number) {
-        this.getGadget(id);
-        this.getGadgetData(id);
+    updateDataForGadget(slug: string) {
+        this.getGadget(slug);
+        this.getGadgetData(slug);
     }
     
-    getGadget(id: number) {
-        this.gadgetService.getGadget(id)
+    getGadget(slug: string) {
+        this.gadgetService.getGadget(slug)
             .subscribe(
                 gadget => this.gadget = gadget,
                 errors => this.errorMessages = <any[]>errors);
     }
 
-    getGadgetData(id: number) {
-        this.gadgetService.getGadgetDataForGadget(id, 2)
+    getGadgetData(slug: string) {
+        this.gadgetService.getGadgetDataForGadget(slug, 2)
             .subscribe(
                 gadgetData => { if (gadgetData.length>0) this.gadgetData = gadgetData; },
                 errors => this.errorMessages = <any[]>errors);

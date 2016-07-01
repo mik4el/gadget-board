@@ -9,7 +9,7 @@ from .permissions import CanUserAddGadgetData
 
 
 class GadgetViewSet(viewsets.ReadOnlyModelViewSet):
-	lookup_field = 'id'
+	lookup_field = 'slug'
 	queryset = Gadget.objects.all()
 	serializer_class = GadgetSerializer
 
@@ -26,8 +26,8 @@ class GadgetDataViewSet(viewsets.ViewSet):
 	def get_permissions(self):
 		return (CanUserAddGadgetData(),)
 
-	def list(self, request, gadget_id=None):
-		queryset = GadgetData.objects.filter(gadget=gadget_id).order_by('-timestamp')
+	def list(self, request, gadget_slug=None):
+		queryset = GadgetData.objects.filter(gadget__slug=gadget_slug).order_by('-timestamp')
 		
 		page = self.paginate_queryset(queryset)
 		if page is not None:
@@ -37,18 +37,18 @@ class GadgetDataViewSet(viewsets.ViewSet):
 		serializer = GadgetDataSerializer(queryset, many=True)
 		return Response(serializer.data)
 
-	def retrieve(self, request, id=None, gadget_id=None):
+	def retrieve(self, request, id=None, gadget_slug=None):
 		queryset = GadgetData.objects.filter(id=id, 
-			gadget=gadget_id)
+			gadget__slug=gadget_slug)
 		gadget_data = get_object_or_404(queryset, id=id)
 		serializer = GadgetDataSerializer(gadget_data)
 		return Response(serializer.data)
 
-	def create(self, request, gadget_id=None):
+	def create(self, request, gadget_slug=None):
 		serializer = self.serializer_class(data=request.data)
 		if serializer.is_valid():
 			# Check Gadget for GadgetData exists
-			gadget = get_object_or_404(Gadget, id=gadget_id)
+			gadget = get_object_or_404(Gadget, slug=gadget_slug)
 			# Create GadgetData
 			gadget_data = GadgetData.objects.create(
 				gadget=gadget, 
