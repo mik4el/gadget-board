@@ -1,8 +1,8 @@
 <div class="well">
-    <h3>{{gadgetDatum.data.temp_surface}} &#8451;</h3>
+    <h3>{{gadgetDatum.data.temp_surface}}&#8451;</h3>
     <p>
-	    Air temperature: {{gadgetDatum.data.temp_air}} &#8451;<br>
+	    Air temperature: {{gadgetDatum.data.temp_air}}&#8451;<br>
 	    Battery voltage: {{gadgetDatum.data.battery_v}} V<br>
-	    <i>{{gadgetDatum.timestamp | date:'HH:mm:ss yyyy-MM-dd'}}</i>
+	    <i>{{gadgetDatum.timestamp | date:'medium'}}</i>
     </p>
 </div>
