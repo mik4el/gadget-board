@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouteParams } from '@angular/router-deprecated';
+import { Subscription }   from 'rxjs/Subscription';
 
 import { Gadget } from './gadget';
 import { GadgetData } from './gadget-data';
@@ -15,11 +16,12 @@ declare var __moduleName: string;  // weird way to make relative template urls w
     templateUrl: './gadget-detail.component.html',
 })
 
-export class GadgetDetailComponent implements OnInit {
+export class GadgetDetailComponent implements OnInit, OnDestroy {
 
     errorMessages: any[];
     gadget: Gadget;
     gadgetData: GadgetData[];
+    gadgetDataSubscription: Subscription;
 
     constructor(
         private gadgetService: GadgetService,
@@ -48,7 +50,15 @@ export class GadgetDetailComponent implements OnInit {
             .subscribe(
                 gadgetData => { if (gadgetData.length>0) this.gadgetData = gadgetData; },
                 errors => this.errorMessages = <any[]>errors);
+        this.gadgetDataSubscription = this.gadgetService.pollGadgetDataForGadget(slug, 2)
+            .subscribe(
+                gadgetData => { if (gadgetData.length>0) this.gadgetData = gadgetData; });
     }
+
+    ngOnDestroy() {
+        this.gadgetDataSubscription.unsubscribe();
+    }
+
 
 
 }

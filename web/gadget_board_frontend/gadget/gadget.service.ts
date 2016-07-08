@@ -40,6 +40,16 @@ export class GadgetService {
             .catch(this.handleError);
     }
 
+    pollGadgetDataForGadget (
+            slug: string, 
+            limit: number): Observable<GadgetData[]> {
+        return Observable
+            .interval(10000)
+            .mergeMap(() => {
+                return this.getGadgetDataForGadget(slug, limit);
+            })
+    }
+
     private extractData(res: Response) {
         let body = res.json();
         return body || { };
