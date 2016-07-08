@@ -46,11 +46,11 @@ export class GadgetDetailComponent implements OnInit, OnDestroy {
     }
 
     getGadgetData(slug: string) {
-        this.gadgetService.getGadgetDataForGadget(slug, 2)
+        this.gadgetService.getGadgetDataForGadget(slug, 1)
             .subscribe(
                 gadgetData => { if (gadgetData.length>0) this.gadgetData = gadgetData; },
                 errors => this.errorMessages = <any[]>errors);
-        this.gadgetDataSubscription = this.gadgetService.pollGadgetDataForGadget(slug, 2)
+        this.gadgetDataSubscription = this.gadgetService.pollGadgetDataForGadget(slug, 1)
             .subscribe(
                 gadgetData => { if (gadgetData.length>0) this.gadgetData = gadgetData; });
     }

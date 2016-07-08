@@ -1,6 +1,8 @@
 <div class="well">
-    <p>Deep temperature: {{gadgetDatum.data.temp_deep}}</p>
-    <p>Surface temperature: {{gadgetDatum.data.temp_surface}}</p>
-    <p>Battery voltage: {{gadgetDatum.data.battery_v}}</p>
-    <p><i>{{gadgetDatum.timestamp}}</i></p>
+    <h3>{{gadgetDatum.data.temp_surface}} &#8451;</h3>
+    <p>
+	    Air temperature: {{gadgetDatum.data.temp_air}} &#8451;<br>
+	    Battery voltage: {{gadgetDatum.data.battery_v}} V<br>
+	    <i>{{gadgetDatum.timestamp | date:'HH:mm:ss yyyy-MM-dd'}}</i>
+    </p>
 </div>

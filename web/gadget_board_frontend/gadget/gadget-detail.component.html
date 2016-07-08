@@ -8,7 +8,6 @@
     <h3>{{gadget.name}}</h3>
     <p>{{gadget.description}}</p>
     <div *ngIf="gadgetData && gadget.name === 'Ekensberg Swim Thermo'">
-        <h4>Latest data:</h4>
         <gadget-swim-thermo *ngFor="let gadgetDatum of gadgetData" [gadgetDatum]="gadgetDatum"></gadget-swim-thermo>
     </div>
 </div>
