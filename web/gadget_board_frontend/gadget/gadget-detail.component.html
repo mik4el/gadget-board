@@ -7,7 +7,8 @@
 <div *ngIf="gadget">
     <h3>{{gadget.name}}</h3>
     <p>{{gadget.description}}</p>
-    <div *ngIf="gadgetData && gadget.name === 'Ekensberg Swim Thermo'">
-        <gadget-swim-thermo *ngFor="let gadgetDatum of gadgetData" [gadgetDatum]="gadgetDatum"></gadget-swim-thermo>
+    <div *ngIf="gadgetDatum && gadget.name === 'Ekensberg Swim Thermo'">
+        <gadget-swim-thermo [gadgetDatum]="gadgetDatum">
+        </gadget-swim-thermo>
     </div>
 </div>

@@ -20,7 +20,7 @@ export class GadgetDetailComponent implements OnInit, OnDestroy {
 
     errorMessages: any[];
     gadget: Gadget;
-    gadgetData: GadgetData[];
+    gadgetDatum: GadgetData;
     gadgetDataSubscription: Subscription;
 
     constructor(
@@ -48,11 +48,11 @@ export class GadgetDetailComponent implements OnInit, OnDestroy {
     getGadgetData(slug: string) {
         this.gadgetService.getGadgetDataForGadget(slug, 1)
             .subscribe(
-                gadgetData => { if (gadgetData.length>0) this.gadgetData = gadgetData; },
+                gadgetData => { if (gadgetData.length>0) this.gadgetDatum = gadgetData[0]; },
                 errors => this.errorMessages = <any[]>errors);
         this.gadgetDataSubscription = this.gadgetService.pollGadgetDataForGadget(slug, 1)
             .subscribe(
-                gadgetData => { if (gadgetData.length>0) this.gadgetData = gadgetData; });
+                gadgetData => { if (gadgetData.length>0) this.gadgetDatum = gadgetData[0]; });
     }
 
     ngOnDestroy() {
