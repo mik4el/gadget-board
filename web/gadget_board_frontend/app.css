@@ -7,5 +7,21 @@
 }
 
 #gadget-swim-thermo {
-	background-color: #e6f7ff;	
+	position: relative;
+	background-color: #e6f7ff;
+	color: #737b7f;	
+}
+
+#gadget-swim-thermo-label-main {
+	position: relative;
+	text-align: center;
+	font-size: 60px;
+}
+
+#gadget-swim-thermo-label-sub {
+	position: absolute;
+	text-align: right;
+	font-size: 20px;
+	bottom: 0px;
+	right: 15px;
 }

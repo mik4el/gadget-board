@@ -1,8 +1,9 @@
 <div id="gadget-swim-thermo">
-    <h3>{{gadgetDatum.data.temp_surface}}&#8451;</h3>
-    <p>
-	    Air temperature: {{gadgetDatum.data.temp_air}}&#8451;<br>
-	    Battery voltage: {{gadgetDatum.data.battery_v}} V<br>
+    <p id="gadget-swim-thermo-label-main">
+    	{{gadgetDatum.data.temp_surface}}&#8451;
+    </p>
+    <p id="gadget-swim-thermo-label-sub">
+	    Air: {{gadgetDatum.data.temp_air}}&#8451;, Battery: {{gadgetDatum.data.battery_v}} V<br>
 	    <i>{{gadgetDatum.timestamp | date:'medium'}}</i>
     </p>
 </div>

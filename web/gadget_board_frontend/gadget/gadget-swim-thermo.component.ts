@@ -24,20 +24,47 @@ declare var __moduleName: string;  // weird way to make relative template urls w
 export class GadgetSwimThermoComponent implements OnInit {
 	@Input() gadgetDatum: GadgetData;
     
-    resizeComponent(windowSize: any) {	
-    	var element = document.getElementById("gadget-swim-thermo")
-    	var rect = element.getBoundingClientRect();
-  		element.style.height = windowSize.height - rect.top - 15 + "px";
+    resizeComponents(windowSize: any) {	
+    	const magic_margin = 15;
+
+    	// resize outer
+    	var element_outer = document.getElementById("gadget-swim-thermo")
+    	var rect_outer = element_outer.getBoundingClientRect();
+  		element_outer.style.height = windowSize.height - rect_outer.top - magic_margin + "px";
+  		
+  		// resize fonts
+  		rect_outer = element_outer.getBoundingClientRect();
+    	
+  		var element_label_main = document.getElementById("gadget-swim-thermo-label-main");
+  		var element_label_sub = document.getElementById("gadget-swim-thermo-label-sub");
+  		/*
+  		font_w=3/5*font_h
+  		w=font_w*7
+  		3/5*font_h=w/7
+  		font_h=5w/21
+  		*/
+  		var font_h = rect_outer.width*5/21;
+  		// make sure font has a minima
+  		if ((rect_outer.height/2-font_h)<0) {
+  			font_h = rect_outer.height/2;
+  		}
+  		element_label_main.style.fontSize = Math.round(font_h)+"px";	
+  	  	element_label_sub.style.fontSize = Math.round(font_h/5)+"px";
+
+  	  	// reposition main label
+  	  	var rect_label_sub = element_label_sub.getBoundingClientRect();
+  	  	element_label_main.style.top = Math.round((rect_outer.height)/2-font_h)+"px";
+  		
     }
 
 	ngOnInit() {
 	    Observable.fromEvent(window, 'resize')
 	    	.map(getWindowSize)
-	     	.subscribe(windowSize => this.resizeComponent(windowSize));
+	     	.subscribe(windowSize => this.resizeComponents(windowSize));
 
      	// Hack to make sure resizeComponent is run once.
      	setTimeout(() => {
-            this.resizeComponent(getWindowSize());
+            this.resizeComponents(getWindowSize());
         }, 0);
 	}
 
