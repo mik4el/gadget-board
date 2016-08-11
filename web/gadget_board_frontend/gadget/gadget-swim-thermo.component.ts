@@ -47,12 +47,13 @@ export class GadgetSwimThermoComponent implements OnInit {
     		element_outer.style.position = "fixed";
     		element_outer.style.top = "0px";
     		element_outer.style.left = "0px";
-    		element_outer.style.margin = "0";
-    		element_outer.style.padding = "0";
     		element_button_close.innerHTML = "&#8690;";
     	} else {
     		// resize and position for normal mode
+    		element_outer.style.position = "relative";
+    		rect_outer = element_outer.getBoundingClientRect();
     		element_outer.style.height = windowSize.height - rect_outer.top - magic_margin + "px";
+    		element_outer.style.width = windowSize.width - 2*magic_margin + "px";
     		element_button_close.innerHTML = "&#8689;";
     	}
     	

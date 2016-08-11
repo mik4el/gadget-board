@@ -6,14 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     
-    <!-- Load css -->
-    {% if production_mode %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    {% else %}
-    <link rel="stylesheet" href="{% static 'dist/lib/bootstrap/dist/css/bootstrap.min.css' %}">
-    {% endif %}
-    <link rel="stylesheet" href="{% static 'dist/gadget_board_frontend/app.e3a0f2c4.css' %}">
-    
     <!-- Load js -->
     <!-- 1. Load libraries -->
     {% if production_mode %}
@@ -31,7 +23,7 @@
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.en"></script>
     <script src="{% static 'dist/gadget_board_frontend/systemjs.config.dev.js' %}"></script>
     {% endif %}
-      <script src="{% static 'dist/gadget_board_frontend/app.d14012b0.js' %}"></script>
+      <script src="{% static 'dist/gadget_board_frontend/app.1326aef7.js' %}"></script>
     
       <script>
         System.import('gadget_board_frontend/main').catch(function(err){
@@ -41,8 +33,18 @@
   </head>
 
   <body>
-    <div class="container">
-      <my-app>Loading...</my-app>
-    </div>
+    <my-app>Loading...</my-app>
+
+    <!-- Load styling -->
+    {% if production_mode %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    {% else %}
+    <link rel="stylesheet" href="{% static 'dist/lib/bootstrap/dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'dist/lib/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'dist/lib/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    {% endif %}
+    <link rel="stylesheet" href="{% static 'dist/gadget_board_frontend/app.ff9e886d.css' %}">
   </body>
 </html>
