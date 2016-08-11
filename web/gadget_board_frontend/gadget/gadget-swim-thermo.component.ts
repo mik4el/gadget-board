@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router-deprecated';
 
 import { GadgetData } from './gadget-data';
 import {BehaviorSubject} from "rxjs/Rx";
@@ -23,20 +24,41 @@ declare var __moduleName: string;  // weird way to make relative template urls w
 
 export class GadgetSwimThermoComponent implements OnInit {
 	@Input() gadgetDatum: GadgetData;
+    @Input() gadgetSlug: string;
+    @Input() fullscreenMode: boolean;
     
-    resizeComponents(windowSize: any) {	
-    	const magic_margin = 15;
+    constructor(
+        private router: Router)
+    {}
 
-    	// resize outer
-    	var element_outer = document.getElementById("gadget-swim-thermo")
+    resizeComponents(windowSize: any) {
+    	const magic_margin = 15;
+		var element_outer = document.getElementById("gadget-swim-thermo")
     	var rect_outer = element_outer.getBoundingClientRect();
-  		element_outer.style.height = windowSize.height - rect_outer.top - magic_margin + "px";
   		
+  		var element_label_main = document.getElementById("gadget-swim-thermo-label-main");
+  		var element_label_sub = document.getElementById("gadget-swim-thermo-label-sub");
+    	var element_button_close = document.getElementById("gadget-swim-thermo-button-close");
+
+    	if (this.fullscreenMode) {
+    		// resize and position outer for fullscreen mode
+    		element_outer.style.height = windowSize.height + "px";
+    		element_outer.style.width = windowSize.width + "px";
+    		element_outer.style.position = "fixed";
+    		element_outer.style.top = "0px";
+    		element_outer.style.left = "0px";
+    		element_outer.style.margin = "0";
+    		element_outer.style.padding = "0";
+    		element_button_close.innerHTML = "&#8690;";
+    	} else {
+    		// resize and position for normal mode
+    		element_outer.style.height = windowSize.height - rect_outer.top - magic_margin + "px";
+    		element_button_close.innerHTML = "&#8689;";
+    	}
+    	
   		// resize fonts
   		rect_outer = element_outer.getBoundingClientRect();
     	
-  		var element_label_main = document.getElementById("gadget-swim-thermo-label-main");
-  		var element_label_sub = document.getElementById("gadget-swim-thermo-label-sub");
   		/*
   		font_w=3/5*font_h
   		w=font_w*7
@@ -52,9 +74,16 @@ export class GadgetSwimThermoComponent implements OnInit {
   	  	element_label_sub.style.fontSize = Math.round(font_h/5)+"px";
 
   	  	// reposition main label
-  	  	var rect_label_sub = element_label_sub.getBoundingClientRect();
   	  	element_label_main.style.top = Math.round((rect_outer.height)/2-font_h)+"px";
   		
+    }
+
+    toggleFullscreen() {
+    	if (this.fullscreenMode) {
+	        this.router.navigate(['GadgetDetail', { gadget_slug: this.gadgetSlug }]);    		
+    	} else {
+	        this.router.navigate(['GadgetDetailMode', { gadget_slug: this.gadgetSlug, mode: "fullscreen"}]);    		
+    	}
     }
 
 	ngOnInit() {

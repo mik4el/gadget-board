@@ -11,7 +11,6 @@ body {
   overflow: auto;
   margin: 0;
   -webkit-overflow-scrolling: touch;
-  position: fixed;
 }
 
 * {
@@ -53,4 +52,19 @@ input,textarea {
 	font-size: 20px;
 	bottom: 0px;
 	right: 15px;
+}
+
+#gadget-swim-thermo-button-close {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  margin: 0;
+  padding: 0;
+  font-size: 30px;
+  font-weight: normal;
+  line-height: 15px;
+  color: #000000;
+  text-shadow: 0 1px 0 #ffffff;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
 }

@@ -22,6 +22,7 @@ export class GadgetDetailComponent implements OnInit, OnDestroy {
     gadget: Gadget;
     gadgetDatum: GadgetData;
     gadgetDataSubscription: Subscription;
+    fullscreenMode: boolean;
 
     constructor(
         private gadgetService: GadgetService,
@@ -31,6 +32,11 @@ export class GadgetDetailComponent implements OnInit, OnDestroy {
     ngOnInit() {
         // Get gadget
         this.updateDataForGadget(this.routeParams.get('gadget_slug'));
+        if (this.routeParams.get('mode')=='fullscreen') {
+            this.fullscreenMode = true;
+        } else {
+            this.fullscreenMode = false;            
+        }
     }
 
     updateDataForGadget(slug: string) {

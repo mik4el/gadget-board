@@ -1,9 +1,9 @@
 <h1>Gadget Board</h1>
-<nav>
-    <a [routerLink]="['GadgetList']">Gadgets</a>
-    <a *ngIf="!isLoggedIn" [routerLink]="['AccountCreate']">Create Account</a>
-    <a *ngIf="!isLoggedIn" [routerLink]="['AccountLogin']">Login</a>
-    <a *ngIf="isLoggedIn" [routerLink]="['AccountList']">Accounts</a>
-    <a *ngIf="isLoggedIn" href="javascript:void(0)" (click)="logout()">Logout</a>
+<nav class="btn-group btn-group-justified">
+	<a class="btn btn-default" [routerLink]="['GadgetList']">Gadgets</a>
+    <a  class="btn btn-default" *ngIf="!isLoggedIn" [routerLink]="['AccountCreate']">Create Account</a>
+    <a  class="btn btn-default" *ngIf="!isLoggedIn" [routerLink]="['AccountLogin']">Login</a>
+    <a  class="btn btn-default" *ngIf="isLoggedIn" [routerLink]="['AccountList']">Accounts</a>
+    <a  class="btn btn-default" *ngIf="isLoggedIn" href="javascript:void(0)" (click)="logout()">Logout</a>
 </nav>
 <router-outlet></router-outlet>

@@ -8,7 +8,10 @@
     <h3>{{gadget.name}}</h3>
     <p>{{gadget.description}}</p>
     <div *ngIf="gadgetDatum && gadget.name === 'Ekensberg Swim Thermo'">
-        <gadget-swim-thermo [gadgetDatum]="gadgetDatum">
+        <gadget-swim-thermo 
+        [gadgetDatum]="gadgetDatum"
+        [fullscreenMode]="fullscreenMode"
+        [gadgetSlug]="gadget.slug">
         </gadget-swim-thermo>
     </div>
 </div>

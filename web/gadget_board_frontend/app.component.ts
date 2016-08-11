@@ -42,6 +42,11 @@ declare var __moduleName: string;  // weird way to make relative template urls w
         component: GadgetDetailComponent
     },
     {
+        path: '/gadgets/:gadget_slug/:mode',
+        name: 'GadgetDetailMode',
+        component: GadgetDetailComponent
+    },
+    {
         path: '/accounts/create',
         name: 'AccountCreate',
         component: AccountCreateComponent

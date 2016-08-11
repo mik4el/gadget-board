@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, CanActivate } from '@angular/router-deprecated';
+import { Router } from '@angular/router-deprecated';
 
 import { Gadget } from './gadget';
 import { GadgetService } from './gadget.service';
