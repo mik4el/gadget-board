@@ -7,6 +7,13 @@
 
 <div class="list-group">
   <button *ngFor="let gadget of gadgets" type="button" class="list-group-item" (click)="gotoGadgetDetail(gadget)">
-    {{gadget.name}}
+  	<div class="media">
+		<div class="media-left">
+			<img class="media-object" src="{{gadget.image_url}}" style="width: 23px;">
+		</div>
+		<div class="media-body">
+			{{gadget.name}}    
+		</div>
+	</div>
   </button>
 </div>

@@ -10,7 +10,7 @@ class GadgetSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Gadget
-        fields = ('id', 'name', 'description', 'users_can_upload', 'slug')
+        fields = ('id', 'name', 'description', 'users_can_upload', 'slug', 'image_url')
         read_only_fields = ('slug', 'created_at', 'updated_at')
 
 

@@ -8,9 +8,14 @@ class Gadget(models.Model):
 	slug = models.SlugField(null=True, blank=True)
 	description = models.TextField()
 	users_can_upload = models.ManyToManyField(Account)
+	image_name = models.CharField(max_length=140, blank=True)
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 
+	@property
+	def image_url(self):
+		return "/static/media/{}".format(self.image_name)
+	
 	def __str__(self):
 		return self.name
 

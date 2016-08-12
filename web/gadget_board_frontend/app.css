@@ -69,3 +69,7 @@ input,textarea {
   opacity: 0.2;
   filter: alpha(opacity=20);
 }
+
+.gadget-info {
+	margin-bottom: 15px;
+}

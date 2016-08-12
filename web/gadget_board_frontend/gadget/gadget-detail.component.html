@@ -5,8 +5,15 @@
 </div>
 
 <div *ngIf="gadget">
-    <h3>{{gadget.name}}</h3>
-    <p>{{gadget.description}}</p>
+	<div class="gadget-info media">
+		<div class="media-left">
+			<img class="media-object" src="{{gadget.image_url}}" style="width: 115px;">
+		</div>
+		<div class="media-body">
+			<h4 class="media-heading">{{gadget.name}}</h4>    
+			<p>{{gadget.description}}</p>
+		</div>
+	</div>
     <div *ngIf="gadgetDatum && gadget.name === 'Ekensberg Swim Thermo'">
         <gadget-swim-thermo 
         [gadgetDatum]="gadgetDatum"

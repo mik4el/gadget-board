@@ -1,9 +1,9 @@
 <div id="gadget-swim-thermo">
     <p id="gadget-swim-thermo-label-main">
-    	{{gadgetDatum.data.temp_surface}}&#8451;
+    	{{gadgetDatum.data.temp_surface}}&deg;C
     </p>
     <p id="gadget-swim-thermo-label-sub">
-	    Air: {{gadgetDatum.data.temp_air}}&#8451;, Battery: {{gadgetDatum.data.battery_v}} V<br>
+	    Air: {{gadgetDatum.data.temp_air}}&deg;C, Battery: {{gadgetDatum.data.battery_v}}V<br>
 	    <i>{{gadgetDatum.timestamp | date:'medium'}}</i>
     </p>
     <div id="gadget-swim-thermo-button-close" (click)="toggleFullscreen()">

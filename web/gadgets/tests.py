@@ -31,7 +31,8 @@ class GadgetsTestCase(TestCase):
         # Create gadget
         self.gadget = Gadget.objects.create(
             name=self.name, 
-        	description=self.description
+            description=self.description,
+            image_name=self.name
         )
         self.gadget.users_can_upload.add(self.test_user)
 
@@ -72,6 +73,7 @@ class GadgetsTestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # assert data in resposnse
         self.assertEqual(response.json()[0]['name'], self.gadget.name)
+        self.assertEqual(response.json()[0]['image_url'], "/static/media/"+self.gadget.name)
         self.assertEqual(response.json()[0]['users_can_upload'][0], self.test_user.id)
         self.assertEqual(response.json()[0]['slug'], self.gadget.slug)
 
