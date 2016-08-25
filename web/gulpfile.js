@@ -41,7 +41,7 @@ gulp.task('copy:lib_dirs', ['clean'], function() {
 // copy dependencies one file only
 gulp.task('copy:lib_files', ['clean'], function() {
   return gulp.src([
-        'node_modules/es6-shim/es6-shim.min.js',
+        'node_modules/core-js/client/shim.min.js',
         'node_modules/zone.js/dist/zone.js',
         'node_modules/reflect-metadata/Reflect.js',
         'node_modules/systemjs/dist/system.src.js'

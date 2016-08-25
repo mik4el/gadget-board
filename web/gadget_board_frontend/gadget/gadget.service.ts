@@ -15,7 +15,7 @@ export class GadgetService {
 
     getGadgets (): Observable<Gadget[]> {
         let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
+        let options = new RequestOptions({headers: headers, body: ""});
         return this.http.get(this.gadgetsUrl, options)
             .map(this.extractData)
             .catch(this.handleError);
@@ -23,7 +23,7 @@ export class GadgetService {
 
     getGadget (slug: string): Observable<Gadget> {
         let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
+        let options = new RequestOptions({headers: headers, body: ""});
         return this.http.get(this.gadgetsUrl+slug+'/', options)
             .map(this.extractData)
             .catch(this.handleError);
@@ -31,7 +31,7 @@ export class GadgetService {
 
     getGadgetDataForGadget (slug: string, limit: number): Observable<GadgetData[]> {
         let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
+        let options = new RequestOptions({headers: headers, body: ""});
         return this.http.get(this.gadgetsUrl+slug+'/data/?limit='+limit, options)
             .map(res => {
                 let body = res.json();

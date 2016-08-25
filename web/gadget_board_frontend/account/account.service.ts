@@ -59,7 +59,7 @@ export class AccountService {
 
     getAccounts (): Observable<Account[]> {
         let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
+        let options = new RequestOptions({headers: headers, body: ""});
         return this.authHttp.get(this.accountsUrl, options)
             .map(this.extractData)
             .catch(this.handleError);
@@ -67,7 +67,7 @@ export class AccountService {
 
     getAccount (username: string): Observable<Account> {
         let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
+        let options = new RequestOptions({headers: headers, body: ""});
         return this.authHttp.get(this.accountsUrl+username+"/", options)
             .map(this.extractData)
             .catch(this.handleError);
@@ -100,7 +100,7 @@ export class AccountService {
 
     deleteAccount (account: Account): Observable<Response> {
         let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
+        let options = new RequestOptions({headers: headers, body: ""});
         return this.authHttp.delete(this.accountsUrl+account.username+"/", options)
             .map((res: Response) => {
                 return res;

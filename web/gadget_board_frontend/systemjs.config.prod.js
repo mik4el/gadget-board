@@ -1,6 +1,6 @@
 (function(global) {
 
-  var ngVer = '@2.0.0-rc.2'; // lock in the angular package version; do not let it float to current!
+  var ngVer = '@2.0.0-rc.5'; // lock in the angular package version; do not let it float to current!
 
   // map tells the System loader where to look for things
   var map = {
@@ -20,6 +20,7 @@
     'compiler',
     'core',
     'http',
+    'forms',
     'platform-browser',
     'platform-browser-dynamic',
     'router-deprecated',
