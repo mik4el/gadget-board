@@ -88,6 +88,12 @@ gulp.task('compress', ['compile'], function() {
     .pipe(gulp.dest('static/dist/gadget_board_frontend'));
 });
 
+gulp.task('cachebust-systemjs', ['compile'], function() {
+  return gulp.src('static/dist/gadget_board_frontend/systemjs.*')
+    .pipe(cachebust.resources()) 
+    .pipe(gulp.dest('static/dist/gadget_board_frontend'));
+});
+
 gulp.task('minify-css', ['copy:assets'], function() {
   return gulp.src('static/dist/gadget_board_frontend/*.css')
     .pipe(cleanCSS({compatibility: 'ie8'}))
@@ -101,7 +107,7 @@ gulp.task('cachebust', ['minify-css', 'compress'], function () {
         .pipe(gulp.dest('templates/dist'));
 });
 
-gulp.task('assets', ['compress', 'minify-css', 'cachebust', 'copy:lib_files',  'copy:lib_dirs', 'copy:assets']);
+gulp.task('assets', ['compress', 'minify-css', 'cachebust', 'copy:lib_files',  'copy:lib_dirs', 'copy:assets', 'cachebust-systemjs']);
 gulp.task('build', ['compile', 'assets']);
 gulp.task('build-prod', ['compile:prod', 'assets']);
 gulp.task('default', ['build']);

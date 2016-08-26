@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, CanActivate } from '@angular/router-deprecated';
-import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
+import { tokenNotExpired } from 'angular2-jwt/angular2-jwt';
 
 import { Account } from './account';
 import { AccountService } from './account.service';
