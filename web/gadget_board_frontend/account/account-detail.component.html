@@ -15,9 +15,11 @@
 
             <div class="form-group">
                 <label>Change email</label>
-                <input type="email" class="form-control" required
-                       [(ngModel)]="account.email"
-                       ngControl="email" #email="ngForm">
+                <input type="email" 
+                    class="form-control" required
+                    id="email"
+                    [(ngModel)]="account.email"
+                    name="email" #email="ngModel">
                 <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
                     Email is required
                 </div>
@@ -25,9 +27,11 @@
 
             <div class="form-group">
                 <label>New password</label>
-                <input type="password" class="form-control"
-                       [(ngModel)]="account.password"
-                       ngControl="password"  #password="ngForm">
+                <input type="password" 
+                    class="form-control"
+                    id="password"
+                    [(ngModel)]="account.password"
+                    name="password" #password="ngModel">
             </div>
 
             <button type="submit" class="btn btn-default"

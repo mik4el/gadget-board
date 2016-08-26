@@ -8,9 +8,11 @@
 <form *ngIf="formIsActive" (ngSubmit)="createAccount()" #createAccountForm="ngForm">
     <div class="form-group">
         <label>Username</label>
-        <input type="text" class="form-control" required
-               [(ngModel)]="newAccount.username"
-               ngControl="username" #username="ngForm">
+        <input type="text" 
+            class="form-control" required
+            id="username"
+            [(ngModel)]="newAccount.username"
+            name="username" #username="ngModel">
         <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
             Username is required
         </div>
@@ -18,9 +20,11 @@
 
     <div class="form-group">
         <label>Email</label>
-        <input type="text" class="form-control" required
-               [(ngModel)]="newAccount.email"
-               ngControl="email" #email="ngForm">
+        <input type="text" 
+            class="form-control" required
+            id="email"
+            [(ngModel)]="newAccount.email"
+            name="email" #email="ngModel">
         <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
             Email is required
         </div>
@@ -28,9 +32,11 @@
 
     <div class="form-group">
         <label>Password</label>
-        <input type="password" class="form-control" required
-               [(ngModel)]="newAccount.password"
-               ngControl="password"  #password="ngForm">
+        <input type="password" 
+            class="form-control" required
+            id="password"
+            [(ngModel)]="newAccount.password"
+            name="password" #password="ngModel">
         <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
             Password is required
         </div>
