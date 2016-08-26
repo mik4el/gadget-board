@@ -1,6 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
 import { AccountService } from './account.service';
+import { Account } from './account';
 import { Subscription }   from 'rxjs/Subscription';
 
 declare var __moduleName: string;  // weird way to make relative template urls work, see https://github.com/angular/angular/issues/6053 
@@ -16,6 +17,7 @@ export class AccountLoginComponent implements OnDestroy {
     isLoggedIn = false;
     subscription: Subscription;
     formIsActive = true; // temporary workaround for angular2 to reset form
+    account = new Account();
 
     constructor(
         private accountService: AccountService,
@@ -28,9 +30,9 @@ export class AccountLoginComponent implements OnDestroy {
         })
     }
 
-    login(username: string, password: string) {
+    login() {
         this.accountService
-            .login(username, password)
+            .login(this.account.username, this.account.password)
             .subscribe(
                 result => {
                     this.router.navigate(['GadgetList']);
