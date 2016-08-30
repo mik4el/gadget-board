@@ -14,7 +14,10 @@ class Gadget(models.Model):
 
 	@property
 	def image_url(self):
-		return "/static/media/{}".format(self.image_name)
+		if self.image_name != "":
+			return "/static/media/{}".format(self.image_name)
+		else:
+			return "/static/dashboard_icon_big.png"
 	
 	def __str__(self):
 		return self.name
@@ -34,4 +37,4 @@ class GadgetData(models.Model):
 	created_at = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
-		return '{} {}'.format(self.added_by, self.timestamp)
+		return '{} {} {}'.format(self.gadget, self.timestamp, self.added_by)

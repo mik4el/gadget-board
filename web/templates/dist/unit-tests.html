@@ -17,14 +17,15 @@
     <script src="{% static 'dist/lib/system.src.js' %}"></script>
     <script src="{% static 'dist/gadget_board_frontend/systemjs.config.dev.b6e2d769.js' %}"></script>
     
-    <script src="{% static 'dist/gadget_board_frontend/app.bcb3e02a.js' %}"></script>
+    <script src="{% static 'dist/gadget_board_frontend/app.1d7b4b3a.js' %}"></script>
 
     <script>
             setTimeout(function(){ //workaround faster loading in bundle.2bba2302.js
                 // Import the spec files explicitly
                 Promise.all([
                     System.import('gadget_board_frontend/my-uppercase.pipe.spec'),
-                    System.import('gadget_board_frontend/account/account.spec')
+                    System.import('gadget_board_frontend/account/account.spec'),
+                    System.import('gadget_board_frontend/account/account.service.spec')
                 ])
                 .then(window.onload)
                 .catch(console.error.bind(console));

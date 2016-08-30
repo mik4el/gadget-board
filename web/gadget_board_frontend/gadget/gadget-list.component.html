@@ -9,7 +9,9 @@
   <button *ngFor="let gadget of gadgets" type="button" class="list-group-item" (click)="gotoGadgetDetail(gadget)">
   	<div class="media">
 		<div class="media-left">
-			<img class="media-object" src="{{gadget.image_url}}" style="width: 23px;">
+			<img class="media-object"
+				src="{{gadget.image_url}}" 
+				style="width: 23px; height: 23px;">
 		</div>
 		<div class="media-body">
 			{{gadget.name}}    

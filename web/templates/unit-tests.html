@@ -24,7 +24,8 @@
                 // Import the spec files explicitly
                 Promise.all([
                     System.import('gadget_board_frontend/my-uppercase.pipe.spec'),
-                    System.import('gadget_board_frontend/account/account.spec')
+                    System.import('gadget_board_frontend/account/account.spec'),
+                    System.import('gadget_board_frontend/account/account.service.spec')
                 ])
                 .then(window.onload)
                 .catch(console.error.bind(console));
