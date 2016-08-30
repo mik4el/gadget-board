@@ -136,20 +136,18 @@ A deployed environment can be backed up by your hosting provider, e.g. DigitalOc
 
 ## Known issues
 * https://github.com/gulpjs/gulp/issues/1571
+* Test for services broken after rc5, fix when Angular2 updates documentation
 
 ## Todos
-1. Frontend: Fix design
 1. Frontend: Animation when going to new view
 1. Frontend: Animation when data updated
 1. Frontend: Other component for other gadget parsing its gadget data
 1. Frontend: Use latest angular2-router
 1. Frontend: Redirect to login if unauthed when accessing protected view
 1. Refresh JWT tokens in background
-1. Use new ngForm https://docs.google.com/document/u/1/d/1RIezQqE4aEhBRmArIAS1mRIZtWFf6JxN_7B4meyWK0Y/pub
 1. Fix space and tabs inconsistency in code.
 1. Neat css builds with less and bootstrap
 1. Suggest simple script for backup.
-1. Add fields thumbnail, image to `gadget` and persist uploaded files
 1. Add more gadgets!
 1. Cleaner build system for Angular2
 1. Test https://www.docker.com/products/docker#/mac
