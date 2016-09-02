@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from "rxjs/Rx";
+import { Observable } from "rxjs/Observable";
 
 import { GadgetData } from './gadget-data';
-import {BehaviorSubject} from "rxjs/Rx";
-import {Observable} from "rxjs/Observable";
 
 const windowSize$ = new BehaviorSubject(getWindowSize());
 

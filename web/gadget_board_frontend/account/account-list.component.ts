@@ -35,7 +35,7 @@ export class AccountListComponent implements OnInit {
     }
 
     gotoAccountDetail(account: Account) {
-        this.router.navigate(['/accounts', account.username]);
+        this.router.navigate(['/accounts/detail', account.username]);
     }
 
 }

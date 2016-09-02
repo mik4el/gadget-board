@@ -5,7 +5,6 @@ import { JwtHelper } from 'angular2-jwt/angular2-jwt'
 import { Router } from '@angular/router';
 
 import { AccountService } from './account/account.service';
-import { GadgetService } from './gadget/gadget.service';
 
 declare var __moduleName: string;  // weird way to make relative template urls work, see https://github.com/angular/angular/issues/6053 
 
@@ -16,52 +15,9 @@ declare var __moduleName: string;  // weird way to make relative template urls w
     directives: [],
     providers: [
         AccountService,
-        JwtHelper,
-        GadgetService
+        JwtHelper
     ]
 })
-
-/*
-@RouteConfig([
-    {
-        path: '/gadgets/:gadget_slug',
-        name: 'GadgetDetail',
-        component: GadgetDetailComponent
-    },
-    {
-        path: '/gadgets/:gadget_slug/:mode',
-        name: 'GadgetDetailMode',
-        component: GadgetDetailComponent
-    },
-    {
-        path: '/accounts/detail/:username',
-        name: 'AccountDetail',
-        component: AccountDetailComponent
-    },
-    {
-        path: '/gadgets/',
-        name: 'GadgetList',
-        component: GadgetListComponent,
-        useAsDefault: true
-    },
-    {
-        path: '/accounts/create',
-        name: 'AccountCreate',
-        component: AccountCreateComponent
-    },
-    {
-        path: '/accounts/',
-        name: 'AccountList',
-        component: AccountListComponent
-    },
-    {
-        path: '/accounts/login',
-        name: 'AccountLogin',
-        component: AccountLoginComponent
-    },
-    
-])
-*/
 
 export class AppComponent implements OnDestroy {
     isLoggedIn: boolean;
