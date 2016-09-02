@@ -6,10 +6,10 @@
 
   // map tells the System loader where to look for things
   var map = {
-    '@angular':                   'https://npmcdn.com/@angular', // sufficient if we didn't pin the version
-    '@angular/forms':             'https://npmcdn.com/@angular/forms' + formsVer,
-    '@angular/router-deprecated': 'https://npmcdn.com/@angular/router-deprecated' + routerDeprecatedVer,
-    'rxjs':                       'https://npmcdn.com/rxjs@5.0.0-beta.6',
+    '@angular':                   'https://unpkg.com/@angular', // sufficient if we didn't pin the version
+    '@angular/forms':             'https://unpkg.com/@angular/forms' + formsVer,
+    '@angular/router-deprecated': 'https://unpkg.com/@angular/router-deprecated' + routerDeprecatedVer,
+    'rxjs':                       'https://unpkg.com/rxjs@5.0.0-beta.6',
     'angular2-jwt':               'static/dist/lib/angular2-jwt'
   };
 
@@ -31,7 +31,7 @@
   // Add map entries for each angular package
   // only because we're pinning the version with `ngVer`.
   ngPackageNames.forEach(function(pkgName) {
-    map['@angular/'+pkgName] = 'https://npmcdn.com/@angular/' + pkgName + ngVer;
+    map['@angular/'+pkgName] = 'https://unpkg.com/@angular/' + pkgName + ngVer;
   });
 
   // Add package entries for angular packages
