@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { RouteParams } from '@angular/router-deprecated';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription }   from 'rxjs/Subscription';
 
 import { Gadget } from './gadget';
@@ -26,17 +26,21 @@ export class GadgetDetailComponent implements OnInit, OnDestroy {
 
     constructor(
         private gadgetService: GadgetService,
-        private routeParams: RouteParams)
+        private route: ActivatedRoute
+    ) 
     {}
 
     ngOnInit() {
-        // Get gadget
-        this.updateDataForGadget(this.routeParams.get('gadget_slug'));
-        if (this.routeParams.get('mode')=='fullscreen') {
-            this.fullscreenMode = true;
-        } else {
-            this.fullscreenMode = false;            
-        }
+        this.route.params.subscribe( params => {
+            if (params['gadget_slug']) {
+                this.updateDataForGadget(params['gadget_slug']);
+            }
+            if (params['mode']=='fullscreen') {
+                this.fullscreenMode = true;
+            } else {
+                this.fullscreenMode = false;            
+            }
+        });
     }
 
     updateDataForGadget(slug: string) {

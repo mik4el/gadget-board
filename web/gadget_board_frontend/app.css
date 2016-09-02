@@ -73,3 +73,7 @@ input,textarea {
 .gadget-info {
 	margin-bottom: 15px;
 }
+
+.active-nav-link {
+  font-weight: bold;
+}

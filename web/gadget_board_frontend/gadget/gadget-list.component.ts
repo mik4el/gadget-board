@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router-deprecated';
+import { Router } from '@angular/router';
 
 import { Gadget } from './gadget';
 import { GadgetService } from './gadget.service';
@@ -34,7 +34,7 @@ export class GadgetListComponent implements OnInit {
     }
 
     gotoGadgetDetail(gadget: Gadget) {
-        this.router.navigate(['GadgetDetail', { gadget_slug: gadget.slug }]);
+        this.router.navigate(['/gadgets', gadget.slug]);
     }
 
 }

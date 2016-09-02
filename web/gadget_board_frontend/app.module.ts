@@ -6,11 +6,22 @@ import { AUTH_PROVIDERS } from 'angular2-jwt/angular2-jwt';
 import { HTTP_PROVIDERS } from '@angular/http';
 
 import { AppComponent }  from './app.component';
+import { routing,
+         appRoutingProviders } from './app.routing';
 
 @NgModule({
-  imports: [ BrowserModule, FormsModule, HttpModule],       // module dependencies
-  declarations: [ AppComponent],   // components and directives
-  bootstrap: [ AppComponent ],     // root component
-  providers: [ HTTP_PROVIDERS, AUTH_PROVIDERS ]                    // services
+	imports: [ 
+		BrowserModule, 
+		FormsModule, 
+		HttpModule,
+		routing
+	],
+	declarations: [ AppComponent],
+	bootstrap: [ AppComponent ],
+	providers: [ 
+		HTTP_PROVIDERS, 
+		AUTH_PROVIDERS,
+		appRoutingProviders,
+	]
 })
 export class AppModule { }

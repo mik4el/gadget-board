@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, CanActivate } from '@angular/router-deprecated';
+import { Router } from '@angular/router';
 import { tokenNotExpired } from 'angular2-jwt/angular2-jwt';
 
 import { Account } from './account';
@@ -12,8 +12,6 @@ declare var __moduleName: string;  // weird way to make relative template urls w
     moduleId: __moduleName,
     templateUrl: './account-list.component.html',
 })
-
-@CanActivate(() => tokenNotExpired())
 
 export class AccountListComponent implements OnInit {
 
@@ -37,7 +35,7 @@ export class AccountListComponent implements OnInit {
     }
 
     gotoAccountDetail(account: Account) {
-        this.router.navigate(['AccountDetail', { username: account.username }]);
+        this.router.navigate(['/accounts', account.username]);
     }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouteParams, Router, CanActivate } from '@angular/router-deprecated';
+import { Router, ActivatedRoute } from '@angular/router';
 import { tokenNotExpired } from 'angular2-jwt/angular2-jwt';
 
 import { Account } from './account';
@@ -13,8 +13,6 @@ declare var __moduleName: string;  // weird way to make relative template urls w
     templateUrl: './account-detail.component.html',
 })
 
-@CanActivate(() => tokenNotExpired())
-
 export class AccountDetailComponent implements OnInit {
 
     errorMessages: any[];
@@ -26,13 +24,18 @@ export class AccountDetailComponent implements OnInit {
 
     constructor(
         private accountService: AccountService,
-        private routeParams: RouteParams, 
-        private router: Router)
+        private router: Router,
+        private route: ActivatedRoute 
+    )
     {}
 
     ngOnInit() {
         // Get account
-        this.urlUsername = this.routeParams.get('username')+"";
+        this.route.params.subscribe( params => {
+            if (params['username']) {
+                this.urlUsername = params['username']+"";
+            }
+        });
         this.getAccount(this.urlUsername);
     }
     
@@ -58,7 +61,7 @@ export class AccountDetailComponent implements OnInit {
             .subscribe(
                 res => {
                     this.accountService.logout();
-                    this.router.navigate(['GadgetList']);},
+                    this.router.navigate(['/gadgets']);},
                 errors => this.errorMessages = <any[]>errors
                 );
     }

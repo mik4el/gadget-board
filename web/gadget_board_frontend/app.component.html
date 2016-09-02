@@ -8,20 +8,21 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" [routerLink]="['GadgetList']">Mik4el's gadgets</a>
+      <a class="navbar-brand" [routerLink]="['/gadgets']">Mik4el's gadgets</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li *ngIf="!isLoggedIn">
-	    	<a [routerLink]="['AccountCreate']">Create Account</a>
+	    	<a [routerLink]="['/accounts/create']">
+          Create Account</a>
 		</li>
 	    <li *ngIf="!isLoggedIn">
-	    	<a [routerLink]="['AccountLogin']">Login</a>
+	    	<a [routerLink]="['accounts/login']">Login</a>
 		</li>
 	    <li *ngIf="isLoggedIn">
-	    	<a [routerLink]="['AccountList']">Accounts</a>
+	    	<a [routerLink]="['/accounts']">Accounts</a>
 		</li>
 	    <li *ngIf="isLoggedIn">
 	    	<a href="javascript:void(0)" (click)="logout()">Logout</a>

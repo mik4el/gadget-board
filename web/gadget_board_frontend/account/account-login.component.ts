@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router-deprecated';
+import { Router } from '@angular/router';
 import { AccountService } from './account.service';
 import { Account } from './account';
 import { Subscription }   from 'rxjs/Subscription';
@@ -35,7 +35,7 @@ export class AccountLoginComponent implements OnDestroy {
             .login(this.account.username, this.account.password)
             .subscribe(
                 result => {
-                    this.router.navigate(['GadgetList']);
+                    this.router.navigate(['/gadgets']);
                     this.formIsActive = false;  // temporary workaround for angular2 to reset form
                     setTimeout(()=> this.formIsActive=true, 0);  // temporary workaround for angular2 to reset form
                 },

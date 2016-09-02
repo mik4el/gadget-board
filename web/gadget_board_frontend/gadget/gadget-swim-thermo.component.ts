@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router-deprecated';
+import { Router } from '@angular/router';
 
 import { GadgetData } from './gadget-data';
 import {BehaviorSubject} from "rxjs/Rx";
@@ -81,9 +81,9 @@ export class GadgetSwimThermoComponent implements OnInit {
 
     toggleFullscreen() {
     	if (this.fullscreenMode) {
-	        this.router.navigate(['GadgetDetail', { gadget_slug: this.gadgetSlug }]);    		
+	        this.router.navigate(['/gadgets', this.gadgetSlug]);    		
     	} else {
-	        this.router.navigate(['GadgetDetailMode', { gadget_slug: this.gadgetSlug, mode: "fullscreen"}]);    		
+	        this.router.navigate(['/gadgets', this.gadgetSlug, "fullscreen"]);    		
     	}
     }
 
