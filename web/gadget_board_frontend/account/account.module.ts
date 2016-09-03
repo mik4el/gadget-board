@@ -8,6 +8,7 @@ import { AccountCreateComponent } from './account-create.component';
 import { AccountLoginComponent } from './account-login.component';
 import { AccountDetailComponent } from './account-detail.component';
 import { AccountListComponent } from './account-list.component';
+import { AccountGuard } from './account-guard';
 import { routing } from './account.routing';
 
 
@@ -20,6 +21,7 @@ import { routing } from './account.routing';
   					AccountDetailComponent, 
   					AccountLoginComponent, 
   					AccountCreateComponent ],
-  providers:    [ 	AccountService ]
+  providers:    [ 	AccountService,
+  					AccountGuard ]
 })
 export class AccountModule { }
