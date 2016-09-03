@@ -8,6 +8,7 @@ import { routing,
          appRoutingProviders } from './app.routing';
 import { GadgetModule }  from './gadget/gadget.module';
 import { AccountModule }  from './account/account.module';
+import { PageNotFoundComponent } from './page-not-found.component'
 
 @NgModule({
 	imports: [ 
@@ -16,7 +17,7 @@ import { AccountModule }  from './account/account.module';
 		GadgetModule,
 		AccountModule
 	],
-	declarations: [ AppComponent],
+	declarations: [ AppComponent, PageNotFoundComponent ],
 	bootstrap: [ AppComponent ],
 	providers: [ 
 		HTTP_PROVIDERS, 

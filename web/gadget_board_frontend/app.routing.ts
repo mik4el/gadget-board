@@ -1,6 +1,6 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import { PageNotFoundComponent } from './page-not-found.component'
 
 const appRoutes: Routes = [
 	{
@@ -13,11 +13,11 @@ const appRoutes: Routes = [
 	},
 	{	path: 'accounts', 
 		loadChildren: './account/account.module#AccountModule'
-	}/*,
+	},
 	{
 		path: '**',
-		redirectTo: 'gadgets',
-	}*/
+        component: PageNotFoundComponent
+	}
 ];
 
 export const appRoutingProviders: any[] = [
