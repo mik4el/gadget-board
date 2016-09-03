@@ -12,7 +12,6 @@ declare var __moduleName: string;  // weird way to make relative template urls w
     selector: 'my-app',
     moduleId: __moduleName,
     templateUrl: './app.component.html',
-    directives: [],
     providers: [
         AccountService,
         JwtHelper

@@ -9,11 +9,12 @@
     <!-- Load js -->
     <!-- 1. Load libraries -->
     {% if production_mode %}
-    <script src="https://npmcdn.com/core-js/client/shim.min.js"></script>
-    <script src="https://npmcdn.com/zone.js@0.6.12?main=browser"></script>
-    <script src="https://npmcdn.com/reflect-metadata@0.1.3"></script>
-    <script src="https://npmcdn.com/systemjs@0.19.27/dist/system.src.js"></script>
-    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.en"></script>
+    <script src="https://unpkg.com/core-js/client/shim.min.js"></script>
+    <script src="https://unpkg.com/zone.js@0.6.17?main=browser"></script>
+    <script src="https://unpkg.com/reflect-metadata@0.1.3"></script>
+    <script src="https://unpkg.com/systemjs@0.19.27/dist/system.src.js"></script>
+
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.en"></script><!-- Polyfill for making date pipes work on safari ios -->
     <script src="{% static 'dist/gadget_board_frontend/systemjs.config.prod.js' %}"></script>
     {% else %}
     <script src="{% static 'dist/lib/shim.min.js' %}"></script>

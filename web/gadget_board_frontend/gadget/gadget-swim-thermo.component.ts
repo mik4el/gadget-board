@@ -23,7 +23,7 @@ declare var __moduleName: string;  // weird way to make relative template urls w
 })
 
 export class GadgetSwimThermoComponent implements OnInit {
-	@Input() gadgetDatum: GadgetData;
+    @Input() gadgetDatum: GadgetData;
     @Input() gadgetSlug: string;
     @Input() fullscreenMode: boolean;
     
@@ -33,7 +33,7 @@ export class GadgetSwimThermoComponent implements OnInit {
 
     resizeComponents(windowSize: any) {
     	const magic_margin = 15;
-		var element_outer = document.getElementById("gadget-swim-thermo")
+		  var element_outer = document.getElementById("gadget-swim-thermo")
     	var rect_outer = element_outer.getBoundingClientRect();
   		
   		var element_label_main = document.getElementById("gadget-swim-thermo-label-main");

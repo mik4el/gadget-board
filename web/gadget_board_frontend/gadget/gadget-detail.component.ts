@@ -12,7 +12,6 @@ declare var __moduleName: string;  // weird way to make relative template urls w
 @Component({
     selector: 'gadget-detail',
     moduleId: __moduleName,
-    directives: [GadgetSwimThermoComponent],
     templateUrl: './gadget-detail.component.html',
 })
 
