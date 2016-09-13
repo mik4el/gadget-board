@@ -126,6 +126,12 @@ Testing in Angular2 is handled by jasmine, run the tests by:
 ## Backing up
 A deployed environment can be backed up by your hosting provider, e.g. DigitalOcean. Since this is a very stateless deployment you can also make a scripted backup of your database and make it possible to easily restore the database from a backup. This will save some on hosting costs and make for a more self-contained and hosting provider agnostic solution.
 
+Example command to run backup of postgres db on development machine:
+´´´docker-compose run --rm -e PGPASSWORD=postgres postgres pg_dump -U postgres -p 5432 -h postgres postgres > postgres_db_20160913_development.bak´´´
+
+Example command to run backup of postgres db on deployed machine:
+´´´docker-compose -f production.yml run --rm -e PGPASSWORD=postgres postgres pg_dump -U postgres -p 5432 -h postgres postgres > postgres_db_20160913_production.bak´´´
+
 ## Limitations
 * Stack not optimized for performance
 * Non optimized frontend build system

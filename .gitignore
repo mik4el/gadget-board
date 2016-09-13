@@ -15,3 +15,4 @@ node_modules
 *.cer
 web/gadget_board_backend_templates/dist/*
 web/gadget_board_backend_templates
+*.bak
