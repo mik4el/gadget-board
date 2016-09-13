@@ -129,8 +129,16 @@ A deployed environment can be backed up by your hosting provider, e.g. DigitalOc
 Example command to run backup of postgres db on development machine:
 ´´´docker-compose run --rm -e PGPASSWORD=postgres postgres pg_dump -U postgres -p 5432 -h postgres postgres > postgres_db_20160913_development.bak´´´
 
-Example command to run backup of postgres db on deployed machine:
-´´´docker-compose -f production.yml run --rm -e PGPASSWORD=postgres postgres pg_dump -U postgres -p 5432 -h postgres postgres > postgres_db_20160913_production.bak´´´
+To restore development machine:
+´´´docker-compose up -d´´´
+´´´docker-compose run --rm -e PGPASSWORD=postgres postgres psql -U postgres -p 5432 -h postgres -F c < postgres_db_20160913_development.bak´´´
+
+Example command to run backup of postgres db on production machine:
+´´´docker-compose -f production.yml run --rm -e PGPASSWORD=postgres postgres psql -U postgres -p 5432 -h postgres -F c < postgres_db_20160913_production.bak´´´
+
+To restore production machine:
+´´´docker-compose -f production.yml up -d´´´
+´´´docker-compose -f production.yml run --rm -e PGPASSWORD=postgres postgres psql -U postgres -p 5432 -h postgres -F c < postgres_db_20160913_production.bak´´´
 
 ## Limitations
 * Stack not optimized for performance
