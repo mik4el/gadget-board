@@ -156,12 +156,8 @@ To restore production machine:
 1. Frontend: Animation when going to new view
 1. Frontend: Animation when data updated
 1. Frontend: Other component for other gadget parsing its gadget data
-1. Frontend: Use latest angular2-router
-1. Frontend: Redirect to login if unauthed when accessing protected view
 1. Refresh JWT tokens in background
 1. Fix space and tabs inconsistency in code.
 1. Neat css builds with less and bootstrap
-1. Suggest simple script for backup.
 1. Add more gadgets!
 1. Cleaner build system for Angular2
-1. Test https://www.docker.com/products/docker#/mac
