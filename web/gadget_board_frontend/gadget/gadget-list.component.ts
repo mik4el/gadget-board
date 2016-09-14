@@ -5,6 +5,7 @@ import { Gadget } from './gadget';
 import { GadgetService } from './gadget.service';
 
 declare var __moduleName: string;  // weird way to make relative template urls work, see https://github.com/angular/angular/issues/6053 
+declare var analytics:any;
 
 @Component({
     selector: 'gadget-list',
@@ -24,6 +25,7 @@ export class GadgetListComponent implements OnInit {
 
     ngOnInit() {
         this.getGadgets();
+        analytics.track('Showing gadget list');
     }
 
     getGadgets() {

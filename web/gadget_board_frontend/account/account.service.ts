@@ -5,6 +5,7 @@ import { Subject }    from 'rxjs/Subject';
 import { AuthHttp, tokenNotExpired, JwtHelper } from 'angular2-jwt/angular2-jwt'
 
 import { Account } from './account';
+declare var analytics: any;
 
 @Injectable()
 export class AccountService {
@@ -37,6 +38,12 @@ export class AccountService {
                 let data = res.json();
                 localStorage.setItem('id_token', data.token);
                 this.updateLoginStatus(true);
+                let decodedToken = this.jwtHelper.decodeToken(data.token);
+                analytics.identify(decodedToken.user_id, {
+                  name: decodedToken.username,
+                  email: decodedToken.email
+                });
+                analytics.track('Logged in');
             })
             .catch(this.handleError);
     }
@@ -44,6 +51,7 @@ export class AccountService {
     logout() {
         localStorage.removeItem('id_token');
         this.updateLoginStatus(false);
+        analytics.track('Logged out');
     }
 
     loggedInUserAccountId() {

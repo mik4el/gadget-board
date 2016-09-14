@@ -6,6 +6,7 @@ import { Account } from './account';
 import { AccountService } from './account.service';
 
 declare var __moduleName: string;  // weird way to make relative template urls work, see https://github.com/angular/angular/issues/6053 
+declare var analytics: any;
 
 @Component({
     selector: 'account-detail',
@@ -37,6 +38,9 @@ export class AccountDetailComponent implements OnInit {
             }
         });
         this.getAccount(this.urlUsername);
+        analytics.track('Showing account detail component', {
+            account_detail_component_for: this.urlUsername
+        });
     }
     
     updateAccount() {

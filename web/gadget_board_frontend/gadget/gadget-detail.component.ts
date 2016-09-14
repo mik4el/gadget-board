@@ -8,6 +8,7 @@ import { GadgetService } from './gadget.service';
 import { GadgetSwimThermoComponent } from './gadget-swim-thermo.component';
 
 declare var __moduleName: string;  // weird way to make relative template urls work, see https://github.com/angular/angular/issues/6053 
+declare var analytics: any;
 
 @Component({
     selector: 'gadget-detail',
@@ -45,6 +46,9 @@ export class GadgetDetailComponent implements OnInit, OnDestroy {
     updateDataForGadget(slug: string) {
         this.getGadget(slug);
         this.getGadgetData(slug);
+        analytics.track('Showing gadget detail component', {
+            gadget_detail_component_for: slug
+       });
     }
     
     getGadget(slug: string) {
