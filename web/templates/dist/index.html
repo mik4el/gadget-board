@@ -5,7 +5,7 @@
     <title>Mik4el's gadgets</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    
+      
     <!-- Load js -->
     <!-- 1. Load libraries -->
     {% if production_mode %}
@@ -15,16 +15,16 @@
     <script src="https://unpkg.com/systemjs@0.19.27/dist/system.src.js"></script>
 
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.en"></script><!-- Polyfill for making date pipes work on safari ios -->
-    <script src="{% static 'dist/gadget_board_frontend/systemjs.config.prod.000bf3de.js' %}"></script>
+    <script src="{% static 'dist/gadget_board_frontend/systemjs.config.prod.3d9d9cf7.js' %}"></script>
     {% else %}
     <script src="{% static 'dist/lib/shim.min.js' %}"></script>
     <script src="{% static 'dist/lib/zone.js' %}"></script>
     <script src="{% static 'dist/lib/Reflect.js' %}"></script>
     <script src="{% static 'dist/lib/system.src.js' %}"></script>
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.en"></script>
-    <script src="{% static 'dist/gadget_board_frontend/systemjs.config.dev.0bd94617.js' %}"></script>
+    <script src="{% static 'dist/gadget_board_frontend/systemjs.config.dev.ed777bb9.js' %}"></script>
     {% endif %}
-      <script src="{% static 'dist/gadget_board_frontend/app.530bfaef.js' %}"></script>
+      <script src="{% static 'dist/gadget_board_frontend/app.2c9978fc.js' %}"></script>
     
       <script>
         System.import('gadget_board_frontend/main').catch(function(err){
@@ -55,5 +55,11 @@
     {% endif %}
     <link rel="stylesheet" href="{% static 'dist/gadget_board_frontend/app.e8d6bc4c.css' %}">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <!--script src="https://cdn.ravenjs.com/3.7.0/raven.min.js"></script>
+    <script>
+      Raven.config('https://bf263cc32a26472d9906a232f15f9663@sentry.io/99202').install();
+      Raven.captureMessage('Started Raven!');
+    </script-->
+
   </body>
 </html>

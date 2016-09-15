@@ -5,7 +5,7 @@
     <title>Mik4el's gadgets</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    
+      
     <!-- Load js -->
     <!-- 1. Load libraries -->
     {% if production_mode %}
@@ -55,5 +55,11 @@
     {% endif %}
     <link rel="stylesheet" href="{% static 'dist/gadget_board_frontend/app.css' %}">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <!--script src="https://cdn.ravenjs.com/3.7.0/raven.min.js"></script>
+    <script>
+      Raven.config('https://bf263cc32a26472d9906a232f15f9663@sentry.io/99202').install();
+      Raven.captureMessage('Started Raven!');
+    </script-->
+
   </body>
 </html>

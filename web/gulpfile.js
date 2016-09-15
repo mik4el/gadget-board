@@ -33,6 +33,7 @@ gulp.task('copy:lib_dirs', ['clean'], function() {
         'node_modules/@angular/**/*',
         'node_modules/bootstrap/**/*',
         'node_modules/jquery/**/*',
+        'node_modules/raven-js/**/*',
         'node_modules/jasmine-core/**/*'
         ], { base : './node_modules/'})
     .pipe(gulp.dest('static/dist/lib'))
