@@ -41,6 +41,7 @@ export class GadgetDetailComponent implements OnInit, OnDestroy {
                 this.fullscreenMode = false;            
             }
         });
+        throw new Error("Raven error test");
     }
 
     updateDataForGadget(slug: string) {

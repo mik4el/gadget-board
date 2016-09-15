@@ -17,13 +17,14 @@ Raven
   .install();
 
 class RavenErrorHandler extends ErrorHandler {
-
   handleError(err:any) {
   	while ( err && err.originalError ) {
     	err = err.originalError;
 	}
     Raven.captureException(err);
     console.error("Error sent to Sentry");
+	let defaultErrorHandler = new ErrorHandler();
+	defaultErrorHandler.handleError(err);
   }
 }
 
