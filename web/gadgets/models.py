@@ -15,9 +15,9 @@ class Gadget(models.Model):
 	@property
 	def image_url(self):
 		if self.image_name != "":
-			return "/static/media/{}".format(self.image_name)
+			return "backend/static/media/{}".format(self.image_name)
 		else:
-			return "/static/dashboard_icon_big.png"
+			return "backend/static/dashboard_icon_big.png"
 	
 	def __str__(self):
 		return self.name

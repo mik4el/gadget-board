@@ -11,6 +11,7 @@ services:
     depends_on:
       - postgres
     volumes:
+      - /usr/src/app/gadget_board_frontend_dist
       - /usr/src/app/static
     env_file: .env
     command: ./start.sh

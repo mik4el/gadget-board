@@ -15,12 +15,10 @@ gadgets_router = routers.NestedSimpleRouter(router, r'gadgets', lookup='gadget')
 gadgets_router.register(r'data', GadgetDataViewSet, base_name='gadgets-data')
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^api-token-auth/', obtain_jwt_token),
-    url(r'^api-token-refresh/', refresh_jwt_token),
-    url(r'^api/v1/', include(router.urls)),
-    url(r'^api/v1/', include(gadgets_router.urls)),
-    url(r'^unit-tests.html', UnitTestView.as_view(), name='unit-tests'),  # TODO: only available in debug mode!
-    url('^.*$', IndexView.as_view(), name='index'),
+    url(r'^backend/admin/', admin.site.urls),
+    url(r'^backend/api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^backend/api-token-auth/', obtain_jwt_token),
+    url(r'^backend/api-token-refresh/', refresh_jwt_token),
+    url(r'^backend/api/v1/', include(router.urls)),
+    url(r'^backend/api/v1/', include(gadgets_router.urls)),
 ]

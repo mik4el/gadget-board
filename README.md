@@ -24,8 +24,8 @@ https://realpython.com/blog/python/django-development-with-docker-compose-and-ma
 
 ## Requirements
 * Docker-Toolbox with Docker-Compose >1.7.1 (https://www.docker.com/products/docker-toolbox)
-* At least node v5.x.x and npm 3.x.x 
-* gulp installed globally (`sudo npm install --global gulp-cli`)
+* Node v4.x.x and npm 3.x.x
+* Ng-cli@webpack installed globally, see (https://github.com/angular/angular-cli/wiki/Upgrading-from-Beta.10-to-Beta.14)
 
 ## Setting up a development environment
 This will start a new development environment and serve the web app on your machine. This requires the download of all depedencies which will take some time.
@@ -37,9 +37,8 @@ This will start a new development environment and serve the web app on your mach
 1. `docker-compose up -d`
 1. `docker-compose run --rm web python manage.py migrate`
 1. `docker-compose run --rm web python manage.py createsuperuser`
-1. `cd web`
-1. `npm install`
-1. `gulp build`
+1. `cd web/gadget_board_frontend`
+1. `ng build`
 1. Open a browser at the ip from `docker-machine ip dev`
   
 ## Development workflow Django
@@ -67,19 +66,14 @@ When you add a dependency to `web/requirements.txt` you need to build a new cont
 For normal development work, I suggest this workflow:
 
 1. Make change in source file in `gadget_board_frontend`
-1. `gulp build`
+1. `ng build`
 1. Reload browser
 
 ### Adding a dependency
 Angular2 dependencies are handled by npm, built by gulp and loaded by systemjs, therefore:
 
-1. Add dependency in `package.json`.
-1. If the dependency should be used in the app and served as a static file:
-  1. Add path to node_module for dependency in gulpfile.js either as file or dir in tasks `copy:lib_dirs` or `copy:lib_files` 
-  1. Add path to dependency in `systemjs.config.dev.js` and if necessary in `systemjs.config.prod.js` 
-1. `npm install`
-1. `gulp build`
-1. Reload browser
+1. Add dependency
+See ng-cli documentation: https://github.com/angular/angular-cli#3rd-party-library-installation
 
 ## First deployment
 Now we need to set up the production environment to which you are deploying. By using Docker the production environment is very agnostic to what provider you choose. I like DigitalOcean for small projects that can grow but there are many options. Doing the first deployment requires you to migrate the database for the first time, also we use a different docker-compose file so you need to rebuild the container images.
@@ -88,6 +82,7 @@ Now we need to set up the production environment to which you are deploying. By 
 1. Get an access token for your DigitalOcean account.
 1. `docker-machine create -d digitalocean --digitalocean-access-token=<token> --digitalocean-region=fra1 production` (use same region where your floating ip is for the domain you use in SSL)
 1. `eval $(docker-machine env production)`
+1. `ng build -prod -output-path=../gadget_board_frontend_dist`
 1. `docker-compose -f production.yml build`
 1. `docker-compose -f production.yml up -d`
 1. `docker-compose -f production.yml run --rm web python manage.py migrate`
@@ -106,7 +101,7 @@ Since the app handles user data securing traffic using SSL is a requirement for 
 ## Deploying
 When you are deploying the next time we also need to rebuild the container that has changed files since the production environment does not mount your local machines files.
 
-1. `gulp build-prod`
+1. `ng build -prod -output-path=../gadget_board_frontend_dist`
 1. `docker-compose -f production.yml build`
 1. `docker-compose -f production.yml down`
 1. `docker-compose -f production.yml up -d`
@@ -117,11 +112,6 @@ NB: If in a new terminal remember `eval $(docker-machine env production)`.
 Testing in Django is handled by the default Django test system, so running tests is easy, e.g:
 
 * `docker-compose run --rm web python manage.py test`
-
-Testing in Angular2 is handled by jasmine, run the tests by:
-
-* Going to `/unit-tests.html`in your browser.
-* Add a test by following e.g. https://angular.io/docs/ts/latest/guide/testing.html and then import the spec-file in `unit-tests.html`
 
 ## Backing up
 A deployed environment can be backed up by your hosting provider, e.g. DigitalOcean. Since this is a very stateless deployment you can also make a scripted backup of your database and make it possible to easily restore the database from a backup. This will save some on hosting costs and make for a more self-contained and hosting provider agnostic solution.
@@ -141,15 +131,9 @@ To restore production machine:
 ´´´docker-compose -f production.yml run --rm -e PGPASSWORD=postgres postgres psql -U postgres -p 5432 -h postgres -F c < postgres_db_20160913_production.bak´´´
 
 ## Limitations
-* Stack not optimized for performance
-* Non optimized frontend build system
-* App and stack not thourougly tested
-* Development and deploy workflow not thouroughly tested
-* https://cli.angular.io/ is coming but not stable yet, this should be the favored build system for angular2
-* Styling is limited to one app.css atm, should be modular and built along with e.g. `bootstrap` using `less`. 
+Not tested angular-cli testing.
 
 ## Known issues
-* https://github.com/gulpjs/gulp/issues/1571
 * Test for services broken after rc5, fix when Angular2 updates documentation
 
 ## Todos
@@ -158,6 +142,5 @@ To restore production machine:
 1. Frontend: Other component for other gadget parsing its gadget data
 1. Refresh JWT tokens in background
 1. Fix space and tabs inconsistency in code.
-1. Neat css builds with less and bootstrap
+1. SASS
 1. Add more gadgets!
-1. Cleaner build system for Angular2
