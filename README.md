@@ -23,7 +23,7 @@ Suggested reading and inspiration for this repo:
 https://realpython.com/blog/python/django-development-with-docker-compose-and-machine/ (Good concept and introduction but some code is out-of-date and following instructions will not give a working setup, see blog comments for more info)
 
 ## Requirements
-* Docker-Toolbox with Docker-Compose >1.7.1 (https://www.docker.com/products/docker-toolbox)
+* [Docker for mac](https://docs.docker.com/docker-for-mac/). Probably works with Docker-Toolbox with Docker-Compose >1.7.1 (https://www.docker.com/products/docker-toolbox)
 * Node v4.x.x and npm 3.x.x
 * Ng-cli@webpack installed globally, see (https://github.com/angular/angular-cli/wiki/Upgrading-from-Beta.10-to-Beta.14)
 
@@ -117,18 +117,18 @@ Testing in Django is handled by the default Django test system, so running tests
 A deployed environment can be backed up by your hosting provider, e.g. DigitalOcean. Since this is a very stateless deployment you can also make a scripted backup of your database and make it possible to easily restore the database from a backup. This will save some on hosting costs and make for a more self-contained and hosting provider agnostic solution.
 
 Example command to run backup of postgres db on development machine:
-´´´docker-compose run --rm -e PGPASSWORD=postgres postgres pg_dump -U postgres -p 5432 -h postgres postgres > postgres_db_20160913_development.bak´´´
+docker-compose run --rm -e PGPASSWORD=postgres postgres pg_dump -U postgres -p 5432 -h postgres postgres > postgres_db_20160913_development.bak
 
 To restore development machine:
-´´´docker-compose up -d´´´
-´´´docker-compose run --rm -e PGPASSWORD=postgres postgres psql -U postgres -p 5432 -h postgres -F c < postgres_db_20160913_development.bak´´´
+`docker-compose up -d`
+`docker-compose run --rm -e PGPASSWORD=postgres postgres psql -U postgres -p 5432 -h postgres -F c < postgres_db_20160913_development.bak`
 
 Example command to run backup of postgres db on production machine:
-´´´docker-compose -f production.yml run --rm -e PGPASSWORD=postgres postgres psql -U postgres -p 5432 -h postgres -F c < postgres_db_20160913_production.bak´´´
+`docker-compose -f production.yml run --rm -e PGPASSWORD=postgres postgres psql -U postgres -p 5432 -h postgres -F c < postgres_db_20160913_production.bak`
 
 To restore production machine:
-´´´docker-compose -f production.yml up -d´´´
-´´´docker-compose -f production.yml run --rm -e PGPASSWORD=postgres postgres psql -U postgres -p 5432 -h postgres -F c < postgres_db_20160913_production.bak´´´
+`docker-compose -f production.yml up -d`
+`docker-compose -f production.yml run --rm -e PGPASSWORD=postgres postgres psql -U postgres -p 5432 -h postgres -F c < postgres_db_20160913_production.bak`
 
 ## Limitations
 Not tested angular-cli testing.
