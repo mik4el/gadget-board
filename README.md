@@ -70,9 +70,6 @@ For normal development work, I suggest this workflow:
 1. Reload browser
 
 ### Adding a dependency
-Angular2 dependencies are handled by npm, built by gulp and loaded by systemjs, therefore:
-
-1. Add dependency
 See ng-cli documentation: https://github.com/angular/angular-cli#3rd-party-library-installation
 
 ## First deployment
@@ -106,6 +103,7 @@ When you are deploying the next time we also need to rebuild the container that 
 1. `docker-compose -f production.yml down`
 1. `docker-compose -f production.yml up -d`
 
+* Or run the docker-compose commands together: `docker-compose -f production.yml build && docker-compose -f production.yml down && docker-compose -f production.yml up -d`
 NB: If in a new terminal remember `eval $(docker-machine env production)`.
 
 ## Testing
@@ -117,18 +115,18 @@ Testing in Django is handled by the default Django test system, so running tests
 A deployed environment can be backed up by your hosting provider, e.g. DigitalOcean. Since this is a very stateless deployment you can also make a scripted backup of your database and make it possible to easily restore the database from a backup. This will save some on hosting costs and make for a more self-contained and hosting provider agnostic solution.
 
 Example command to run backup of postgres db on development machine:
-docker-compose run --rm -e PGPASSWORD=postgres postgres pg_dump -U postgres -p 5432 -h postgres postgres > postgres_db_20160913_development.bak
+* `docker-compose run --rm -e PGPASSWORD=postgres postgres pg_dump -U postgres -p 5432 -h postgres postgres > postgres_db_20160913_development.bak`
 
 To restore development machine:
-`docker-compose up -d`
-`docker-compose run --rm -e PGPASSWORD=postgres postgres psql -U postgres -p 5432 -h postgres -F c < postgres_db_20160913_development.bak`
+1. `docker-compose up -d`
+1. `docker-compose run --rm -e PGPASSWORD=postgres postgres psql -U postgres -p 5432 -h postgres -F c < postgres_db_20160913_development.bak`
 
 Example command to run backup of postgres db on production machine:
-`docker-compose -f production.yml run --rm -e PGPASSWORD=postgres postgres psql -U postgres -p 5432 -h postgres -F c < postgres_db_20160913_production.bak`
+* `docker-compose -f production.yml run --rm -e PGPASSWORD=postgres postgres psql -U postgres -p 5432 -h postgres -F c < postgres_db_20160913_production.bak`
 
 To restore production machine:
-`docker-compose -f production.yml up -d`
-`docker-compose -f production.yml run --rm -e PGPASSWORD=postgres postgres psql -U postgres -p 5432 -h postgres -F c < postgres_db_20160913_production.bak`
+1. `docker-compose -f production.yml up -d`
+1. `docker-compose -f production.yml run --rm -e PGPASSWORD=postgres postgres psql -U postgres -p 5432 -h postgres -F c < postgres_db_20160913_production.bak`
 
 ## Limitations
 Not tested angular-cli testing.
@@ -142,5 +140,5 @@ Not tested angular-cli testing.
 1. Frontend: Other component for other gadget parsing its gadget data
 1. Refresh JWT tokens in background
 1. Fix space and tabs inconsistency in code.
-1. SASS
+1. sass or similar css build
 1. Add more gadgets!
