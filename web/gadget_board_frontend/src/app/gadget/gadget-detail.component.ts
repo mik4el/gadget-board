@@ -1,4 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    OnDestroy,
+    HostBinding,
+    trigger,
+    transition,
+    animate,
+    style,
+    state } from '@angular/core';
+
 import { ActivatedRoute } from '@angular/router';
 import { Subscription }   from 'rxjs/Subscription';
 
@@ -11,9 +21,44 @@ declare var analytics: any;
 @Component({
     selector: 'gadget-detail',
     templateUrl: './gadget-detail.component.html',
+    animations: [
+        trigger('routeAnimation', [
+            state('*',
+                style({
+                    opacity: 1,
+                    transform: 'translateX(0)'
+                })
+            ),
+            transition('void => *', [
+                style({
+                    opacity: 0,
+                    transform: 'translateX(-100%)'
+                }),
+                animate('0.5s ease-in')
+            ]),
+            transition('* => void', [
+                animate('0.5s ease-out', style({
+                    opacity: 0,
+                    transform: 'translateY(100%)'
+                }))
+            ])
+        ])
+    ]
 })
 
 export class GadgetDetailComponent implements OnInit, OnDestroy {
+
+    @HostBinding('@routeAnimation') get routeAnimation() {
+        return true;
+    }
+
+    @HostBinding('style.display') get display() {
+        return 'block';
+    }
+
+    @HostBinding('style.position') get position() {
+        return 'absolute';
+    }
 
     errorMessages: any[];
     gadget: Gadget;

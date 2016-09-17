@@ -79,3 +79,10 @@ input,textarea {
 .active-nav-link {
     font-weight: bold;
 }
+
+h1 {
+    font-size: 20px;
+    line-height: 22px;
+    padding-top: 0;
+    margin-top: 0;
+}

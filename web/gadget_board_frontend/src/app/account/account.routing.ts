@@ -1,5 +1,5 @@
 import { ModuleWithProviders }  from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 import { AccountCreateComponent } from './account-create.component';
 import { AccountLoginComponent } from './account-login.component';

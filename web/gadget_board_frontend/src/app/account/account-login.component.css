@@ -1,0 +1,7 @@
+:host {
+    margin-right: calc(15% + 15px);
+    margin-left: calc(15% - 15px);
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 70%;
+}

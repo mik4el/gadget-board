@@ -1,6 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    HostBinding,
+    trigger,
+    transition,
+    animate,
+    style,
+    state } from '@angular/core';
 import { Router } from '@angular/router';
-import { tokenNotExpired } from 'angular2-jwt/angular2-jwt';
 
 import { Account } from './account';
 import { AccountService } from './account.service';
@@ -8,9 +15,44 @@ import { AccountService } from './account.service';
 @Component({
     selector: 'account-list',
     templateUrl: './account-list.component.html',
+    styleUrls: ['./account-list.component.css'],
+    animations: [
+        trigger('routeAnimation', [
+            state('*',
+                style({
+                    opacity: 1,
+                    transform: 'translateX(0)'
+                })
+            ),
+            transition('void => *', [
+                style({
+                    opacity: 0,
+                    transform: 'translateX(-100%)'
+                }),
+                animate('0.5s ease-in')
+            ]),
+            transition('* => void', [
+                animate('0.5s ease-out', style({
+                    opacity: 0,
+                    transform: 'translateY(100%)'
+                }))
+            ])
+        ])
+    ]
 })
 
 export class AccountListComponent implements OnInit {
+    @HostBinding('@routeAnimation') get routeAnimation() {
+        return true;
+    }
+
+    @HostBinding('style.display') get display() {
+        return 'block';
+    }
+
+    @HostBinding('style.position') get position() {
+        return 'absolute';
+    }
 
     errorMessages: any[];
     accounts: Account[];

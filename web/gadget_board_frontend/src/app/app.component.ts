@@ -34,7 +34,7 @@ export class AppComponent implements OnDestroy {
   }
 
   logout() {
-    //this.accountService.logout();
+    this.accountService.logout();
     this.router.navigate(['/gadgets']);
   }
 

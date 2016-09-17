@@ -1,4 +1,3 @@
-<h3>Gadgets</h3>
 <div *ngFor="let errorMessage of errorMessages">
     <div class="alert alert-danger">
         {{errorMessage}}
@@ -6,7 +5,10 @@
 </div>
 
 <div class="list-group">
-  <button *ngFor="let gadget of gadgets" type="button" class="list-group-item" (click)="gotoGadgetDetail(gadget)">
+  <button *ngFor="let gadget of gadgets"
+		  type="button"
+		  class="list-group-item"
+		  (click)="gotoGadgetDetail(gadget)">
   	<div class="media">
 		<div class="media-left">
 			<img class="media-object"

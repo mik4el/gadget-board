@@ -10,7 +10,7 @@ declare var analytics: any;
 @Injectable()
 export class AccountService {
     private accountsUrl = 'backend/api/v1/accounts/';
-    private getTokenUrl = 'api-token-auth/';
+    private getTokenUrl = 'backend/api-token-auth/';
     private isLoggedInSource = new Subject<boolean>();
 
     isLoggedIn$ = this.isLoggedInSource.asObservable();

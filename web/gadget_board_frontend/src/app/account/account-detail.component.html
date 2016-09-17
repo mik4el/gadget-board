@@ -1,4 +1,4 @@
-<h3>Account detail for {{ urlUsername }}</h3>
+<h1>Account detail for {{ urlUsername }}</h1>
 <div *ngFor="let errorMessage of errorMessages">
     <div class="alert alert-danger">
         {{errorMessage}}
@@ -40,7 +40,7 @@
             </button>
 
         </form>
-
+        <br>
         <button class="btn btn-danger" (click)="deleteAccount()">
             Delete account
         </button>

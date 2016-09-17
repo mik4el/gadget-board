@@ -135,7 +135,6 @@ Not tested angular-cli testing.
 * Test for services broken after rc5, fix when Angular2 updates documentation
 
 ## Todos
-1. Frontend: Animation when going to new view
 1. Frontend: Animation when data updated
 1. Frontend: Other component for other gadget parsing its gadget data
 1. Refresh JWT tokens in background

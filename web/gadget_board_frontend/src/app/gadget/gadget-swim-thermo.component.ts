@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from "rxjs/Rx";
 import { Observable } from "rxjs/Observable";
@@ -23,35 +23,37 @@ export class GadgetSwimThermoComponent implements OnInit {
     @Input() gadgetDatum: GadgetData;
     @Input() gadgetSlug: string;
     @Input() fullscreenMode: boolean;
-    
-    constructor(
+
+	constructor(
         private router: Router)
     {}
 
     resizeComponents(windowSize: any) {
+
     	const magic_margin = 15;
-		  var element_outer = document.getElementById("gadget-swim-thermo")
+		var element_outer = document.getElementById("gadget-swim-thermo")
     	var rect_outer = element_outer.getBoundingClientRect();
   		
   		var element_label_main = document.getElementById("gadget-swim-thermo-label-main");
   		var element_label_sub = document.getElementById("gadget-swim-thermo-label-sub");
-    	var element_button_close = document.getElementById("gadget-swim-thermo-button-close");
+    	//var element_button_close = document.getElementById("gadget-swim-thermo-button-close");
 
     	if (this.fullscreenMode) {
     		// resize and position outer for fullscreen mode
-    		element_outer.style.height = windowSize.height + "px";
-    		element_outer.style.width = windowSize.width + "px";
-    		element_outer.style.position = "fixed";
-    		element_outer.style.top = "0px";
+    		element_outer.style.height = "100%";
+    		element_outer.style.width = "100%";
+			element_outer.style.position = "fixed";
+			element_outer.style.zIndex = "1";
+			element_outer.style.top = "0px";
     		element_outer.style.left = "0px";
-    		element_button_close.innerHTML = "&#8690;";
+    		//element_button_close.innerHTML = "&#8690;";
     	} else {
     		// resize and position for normal mode
     		element_outer.style.position = "relative";
     		rect_outer = element_outer.getBoundingClientRect();
     		element_outer.style.height = windowSize.height - rect_outer.top - magic_margin + "px";
     		element_outer.style.width = windowSize.width - 2*magic_margin + "px";
-    		element_button_close.innerHTML = "&#8689;";
+    		//element_button_close.innerHTML = "&#8689;";
     	}
     	
   		// resize fonts
