@@ -21,6 +21,7 @@ declare var analytics: any;
 @Component({
     selector: 'gadget-detail',
     templateUrl: './gadget-detail.component.html',
+    styleUrls: ['./gadget-detail.component.css'],
     animations: [
         trigger('routeAnimation', [
             state('*',
