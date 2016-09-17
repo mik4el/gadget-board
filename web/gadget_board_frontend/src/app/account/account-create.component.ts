@@ -14,7 +14,7 @@ import { AccountService } from './account.service';
 @Component({
     selector: 'account-create',
     templateUrl: './account-create.component.html',
-    styleUrls: ['./account-login.component.css'],
+    styleUrls: ['./account-create.component.css'],
     animations: [
         trigger('routeAnimation', [
             state('*',
