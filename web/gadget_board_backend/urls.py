@@ -5,7 +5,6 @@ from rest_framework_jwt.views import obtain_jwt_token
 from rest_framework_jwt.views import refresh_jwt_token
 
 from authentication.views import AccountViewSet
-from gadget_board_backend.views import IndexView, UnitTestView
 from gadgets.views import GadgetViewSet, GadgetDataViewSet
 
 router = routers.SimpleRouter()
