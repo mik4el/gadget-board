@@ -4,15 +4,15 @@ from .models import Gadget
 
 
 class CanUserAddGadgetData(permissions.BasePermission):
-	def has_permission(self, request, view):
-		if request.method in permissions.SAFE_METHODS:
-			return True
-		if request.method == "POST":
-			if request.user.is_authenticated():
-				gadget = get_object_or_404(Gadget, slug=view.kwargs['gadget_slug'])
-				if request.user in gadget.users_can_upload.all():
-					return True
-		return False
+    def has_permission(self, request, view):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        if request.method == "POST":
+            if request.user.is_authenticated():
+                gadget = get_object_or_404(Gadget, slug=view.kwargs['gadget_slug'])
+                if request.user in gadget.users_can_upload.all():
+                    return True
+        return False
 
-	def has_object_permission(self, request, view, obj):
-		return False
+    def has_object_permission(self, request, view, obj):
+        return False

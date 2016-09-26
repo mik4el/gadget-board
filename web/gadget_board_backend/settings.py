@@ -179,7 +179,7 @@ JWT_AUTH = {
 }
 
 ALLOWED_HOSTS = ["m4bd.se"]
-#ALLOWED_HOSTS = ["*"]  # development mode only
+# ALLOWED_HOSTS = ["*"]  # development mode only
 
 RAVEN_CONFIG = {
     'dsn': 'https://{}@sentry.io/99202'.format(os.environ.get('SENTRY_API', '')),

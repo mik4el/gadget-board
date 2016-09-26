@@ -6,9 +6,9 @@
 
 <div class="list-group">
   <button *ngFor="let gadget of gadgets"
-		  type="button"
-		  class="list-group-item"
-		  (click)="gotoGadgetDetail(gadget)">
+	 class="list-group-item touch"
+	 (click)="gotoGadgetDetail(gadget)"
+     type="button">
   	<div class="media">
 		<div class="media-left">
 			<img class="media-object"

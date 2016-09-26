@@ -138,6 +138,5 @@ Not tested angular-cli testing.
 1. Frontend: Animation when data updated
 1. Frontend: Other component for other gadget parsing its gadget data
 1. Refresh JWT tokens in background
-1. Fix space and tabs inconsistency in code.
 1. sass or similar css build
 1. Add more gadgets!
