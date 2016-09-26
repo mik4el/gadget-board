@@ -34,7 +34,7 @@ class GadgetData(models.Model):
     gadget = models.ForeignKey(Gadget)
     data = JSONField()
     added_by = models.ForeignKey(Account)
-    timestamp = models.DateTimeField()
+    timestamp = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

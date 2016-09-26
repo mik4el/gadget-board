@@ -68,11 +68,11 @@ class GadgetsTestCase(TestCase):
         view = GadgetViewSet.as_view({'get': 'retrieve'})
         client = APIClient()
         # make requrest and assert ok
-        response = client.get('/api/v1/gadgets/', format='json')
+        response = client.get('/backend/api/v1/gadgets/', format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # assert data in resposnse
         self.assertEqual(response.json()[0]['name'], self.gadget.name)
-        self.assertEqual(response.json()[0]['image_url'], "/static/media/" + self.gadget.name)
+        self.assertEqual(response.json()[0]['image_url'], "backend/static/media/" + self.gadget.name)
         self.assertEqual(response.json()[0]['users_can_upload'][0], self.test_user.id)
         self.assertEqual(response.json()[0]['slug'], self.gadget.slug)
 
@@ -82,7 +82,7 @@ class GadgetsTestCase(TestCase):
         client = APIClient()
         # make requrest and assert ok
         response = client.get(
-            '/api/v1/gadgets/' + str(self.gadget.slug) + '/data/',
+            '/backend/api/v1/gadgets/' + str(self.gadget.slug) + '/data/',
             format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # assert data in reply
@@ -95,7 +95,7 @@ class GadgetsTestCase(TestCase):
         client = APIClient()
         # make requrest and assert ok
         response = client.get(
-            '/api/v1/gadgets/' + str(self.gadget.slug) + '/data/' + str(self.gadget_data_1.id) + '/',
+            '/backend/api/v1/gadgets/' + str(self.gadget.slug) + '/data/' + str(self.gadget_data_1.id) + '/',
             format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # assert data in reply
@@ -113,7 +113,7 @@ class GadgetsTestCase(TestCase):
 
         # Make request without authentication
         response = client.post(
-            '/api/v1/gadgets/' + str(self.gadget.slug) + '/data/',
+            '/backend/api/v1/gadgets/' + str(self.gadget.slug) + '/data/',
             gadget_json_data,
             format='json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
@@ -121,7 +121,7 @@ class GadgetsTestCase(TestCase):
         # Make request with authentication but user not in user_can_upload
         client.force_authenticate(user=self.test_user_2)
         response = client.post(
-            '/api/v1/gadgets/' + str(self.gadget.slug) + '/data/',
+            '/backend/api/v1/gadgets/' + str(self.gadget.slug) + '/data/',
             gadget_json_data,
             format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
@@ -129,7 +129,7 @@ class GadgetsTestCase(TestCase):
         # Make request with authentication but user in user_can_upload
         client.force_authenticate(user=self.test_user)
         response = client.post(
-            '/api/v1/gadgets/' + str(self.gadget.slug) + '/data/',
+            '/backend/api/v1/gadgets/' + str(self.gadget.slug) + '/data/',
             gadget_json_data,
             format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -137,6 +137,17 @@ class GadgetsTestCase(TestCase):
         # assert data in reply
         self.assertEqual(response.json()['gadget'], self.gadget.slug)
         self.assertEqual(response.json()['data'], {'key1': 'value1'})
+
+        # Make request without timestamp
+        gadget_json_data = json.loads(
+            '{"data":{"ssid":"OWNIT_74"}}'
+        )
+        client.force_authenticate(user=self.test_user)
+        response = client.post(
+            '/backend/api/v1/gadgets/' + str(self.gadget.slug) + '/data/',
+            gadget_json_data,
+            format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_remove_user_in_user_can_upload(self):
         self.gadget.users_can_upload.add(self.test_user_2)

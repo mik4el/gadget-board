@@ -26,7 +26,7 @@ class AccountTestCase(TestCase):
         client = APIClient()
 
         # auth with jwt
-        response = client.post('/api/v1/accounts/',
+        response = client.post('/backend/api/v1/accounts/',
                                self.json_new_account_data,
                                format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -54,7 +54,7 @@ class AccountTestCase(TestCase):
         client = APIClient()
 
         # auth with jwt
-        response = client.post('/api-token-auth/',
+        response = client.post('/backend/api-token-auth/',
                                self.json_account_credentials,
                                format='json')
 
@@ -63,7 +63,7 @@ class AccountTestCase(TestCase):
 
         # Make request
         client.credentials(HTTP_AUTHORIZATION='Bearer ' + token)
-        response = client.delete('/api/v1/accounts/'+self.username+'/')
+        response = client.delete('/backend/api/v1/accounts/'+self.username+'/')
         # Asserts
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         # check no object exists

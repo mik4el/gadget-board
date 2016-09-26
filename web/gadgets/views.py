@@ -2,6 +2,7 @@ from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
 from rest_framework.pagination import LimitOffsetPagination
 from django.shortcuts import get_object_or_404
+from django.utils import timezone
 
 from .models import Gadget, GadgetData
 from .serializers import GadgetSerializer, GadgetDataSerializer
@@ -49,12 +50,20 @@ class GadgetDataViewSet(viewsets.ViewSet):
         if serializer.is_valid():
             # Check Gadget for GadgetData exists
             gadget = get_object_or_404(Gadget, slug=gadget_slug)
+
+            # Add timestamp if no timestamp exists
+            try:
+                timestamp = serializer.validated_data['timestamp']
+            except KeyError:
+                timestamp = timezone.now()
+
             # Create GadgetData
             gadget_data = GadgetData.objects.create(
                 gadget=gadget,
                 data=serializer.validated_data['data'],
                 added_by=request.user,
-                timestamp=serializer.validated_data['timestamp'])
+                timestamp=timestamp
+            )
             # Make response
             serializer = self.serializer_class(gadget_data)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
