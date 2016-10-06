@@ -136,7 +136,15 @@ Not tested angular-cli testing.
 
 ## Todos
 1. Frontend: Animation when data updated
-1. Frontend: Other component for other gadget parsing its gadget data
 1. Refresh JWT tokens in background
-1. sass or similar css build
-1. Add more gadgets!
+1. Sass or similar css build
+1. Tests for account service
+1. BUG: Redirect after new account didn’t work
+1. Create new password functionality
+1. Fullscreen logic in routes rather than in swimthermocomponent
+1. More info link for gadget detail
+1. Next bus gadget data
+1. Next bus gadget visualization
+1. Show historic data for gadgets
+1. Django Channels for e.g. Flight radar
+1. Fancy map visualization for Flight radar

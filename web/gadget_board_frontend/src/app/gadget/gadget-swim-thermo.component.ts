@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, HostBinding } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from "rxjs/Rx";
 import { Observable } from "rxjs/Observable";
@@ -31,7 +31,7 @@ export class GadgetSwimThermoComponent implements OnInit {
     resizeComponents(windowSize: any) {
 
     	const magic_margin = 15;
-		var element_outer = document.getElementById("gadget-swim-thermo")
+		var element_outer = document.getElementById("gadget-swim-thermo");
     	var rect_outer = element_outer.getBoundingClientRect();
   		
   		var element_label_main = document.getElementById("gadget-swim-thermo-label-main");

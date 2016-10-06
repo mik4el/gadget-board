@@ -6,11 +6,17 @@ import { GadgetService } from './gadget.service';
 import { GadgetListComponent } from './gadget-list.component';
 import { GadgetDetailComponent } from './gadget-detail.component';
 import { GadgetSwimThermoComponent } from './gadget-swim-thermo.component';
+import { GadgetFlightRadarComponent } from './gadget-flight-radar.component';
 import { routing } from './gadget.routing';
 
 @NgModule({
   imports:      [ CommonModule, HttpModule, routing ],
-  declarations: [ GadgetListComponent, GadgetDetailComponent, GadgetSwimThermoComponent ],
+  declarations: [
+    GadgetListComponent,
+    GadgetDetailComponent,
+    GadgetSwimThermoComponent,
+    GadgetFlightRadarComponent,
+  ],
   providers:    [ GadgetService ]
 })
 export class GadgetModule { }

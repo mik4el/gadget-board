@@ -1,0 +1,15 @@
+<div class="well" id="gadget-flight-radar">
+    <p>
+        Total planes: {{gadgetDatum.data.length}}<br>
+        Data from: {{gadgetDatum.timestamp | date:'medium'}}
+    </p>
+    <p><i>Planes:</i></p>
+    <ol>
+        <li *ngFor="let plane of gadgetDatum.data">
+            {{plane.flight ? 'Flight: ' + plane.flight : 'ICAO: ' + plane.hex}}
+            <a *ngIf="plane.flight" href="http://flightaware.com/live/flight/{{plane.flight}}" target="_blank">
+            more info
+            </a>
+        </li>
+    </ol>
+</div>

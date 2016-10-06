@@ -14,11 +14,16 @@
 			<p>{{gadget.description}}</p>
 		</div>
 	</div>
-    <div *ngIf="gadgetDatum && gadget.name === 'Ekensberg Swim Thermo'">
+    <div *ngIf="gadgetDatum && gadget.slug === 'ekensberg-swim-thermo'">
         <gadget-swim-thermo 
         [gadgetDatum]="gadgetDatum"
         [fullscreenMode]="fullscreenMode"
         [gadgetSlug]="gadget.slug">
         </gadget-swim-thermo>
     </div>
+	<div *ngIf="gadgetDatum && gadget.slug === 'ekensberg-flight-radar'">
+		<gadget-flight-radar
+				[gadgetDatum]="gadgetDatum">
+		</gadget-flight-radar>
+	</div>
 </div>
