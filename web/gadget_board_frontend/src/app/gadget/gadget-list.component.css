@@ -1,3 +1,7 @@
 :host {
 	margin-right: 15px;
+	width: calc(100% - 30px);
+	height: calc(100% - 105px);
+	overflow: scroll;
+	display: block;
 }

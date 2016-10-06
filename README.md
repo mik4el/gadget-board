@@ -148,3 +148,4 @@ Not tested angular-cli testing.
 1. Show historic data for gadgets
 1. Django Channels for e.g. Flight radar
 1. Fancy map visualization for Flight radar
+1. My own component class that animates, has standard css and so on.

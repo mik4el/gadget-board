@@ -1,9 +1,5 @@
 <div class="well" id="gadget-flight-radar">
-    <p>
-        Total planes: {{gadgetDatum.data.length}}<br>
-        Data from: {{gadgetDatum.timestamp | date:'medium'}}
-    </p>
-    <p><i>Planes:</i></p>
+    <p><b>{{gadgetDatum.data.length}} planes</b> <i>({{gadgetDatum.timestamp | date:'medium'}})</i></p>
     <ol>
         <li *ngFor="let plane of gadgetDatum.data">
             {{plane.flight ? 'Flight: ' + plane.flight : 'ICAO: ' + plane.hex}}
