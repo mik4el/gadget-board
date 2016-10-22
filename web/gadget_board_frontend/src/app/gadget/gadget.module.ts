@@ -7,6 +7,7 @@ import { GadgetListComponent } from './gadget-list.component';
 import { GadgetDetailComponent } from './gadget-detail.component';
 import { GadgetSwimThermoComponent } from './gadget-swim-thermo.component';
 import { GadgetFlightRadarComponent } from './gadget-flight-radar.component';
+import { GadgetImStillHereComponent } from './gadget-im-still-here.component';
 import { routing } from './gadget.routing';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { routing } from './gadget.routing';
     GadgetDetailComponent,
     GadgetSwimThermoComponent,
     GadgetFlightRadarComponent,
+    GadgetImStillHereComponent,
   ],
   providers:    [ GadgetService ]
 })

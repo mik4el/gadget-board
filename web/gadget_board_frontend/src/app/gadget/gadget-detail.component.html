@@ -26,4 +26,9 @@
 				[gadgetDatum]="gadgetDatum">
 		</gadget-flight-radar>
 	</div>
+	<div *ngIf="gadgetDatum && gadget.slug === 'im-still-here'">
+		<gadget-im-still-here
+				[gadgetDatum]="gadgetDatum">
+		</gadget-im-still-here>
+	</div>
 </div>
