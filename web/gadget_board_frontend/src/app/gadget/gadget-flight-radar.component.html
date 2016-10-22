@@ -10,7 +10,7 @@
                 <p *ngIf="!plane.flight" style="width: 16px; height: 16px; text-align: center;"><b>?</b></p>
             </div>
             <div class="media-body">
-                {{plane.flight ? 'Flight: ' + plane.flight.trim() : 'ICAO: ' + plane.hex}}<br>
+                {{plane.flight ? plane.flight.trim() : 'ICAO: ' + plane.hex}}<br>
                 ({{bearingToFlightRadar(plane.lon, plane.lat) | number:'1.0-0'}}&deg;
                 {{distanceFromFlightRadar(plane.lon, plane.lat) | number:'1.1-1'}} km,
                 {{plane.altitude ? plane.altitude : '-'}} ft,
