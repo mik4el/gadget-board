@@ -4,16 +4,17 @@
     <ul class="media-list">
         <li *ngFor="let plane of gadgetDatum.data" class="media">
             <div class="media-left media-middle">
-               <img src="/backend/static/media/airplane-icon-512.png" height="16" width="16" class="media-object">
+                <a href="http://flightaware.com/live/flight/{{plane.flight}}" target="_blank" *ngIf="plane.flight">
+                   <img src="/backend/static/media/airplane-icon-512.png" height="16" width="16" class="media-object">
+                </a>
+                <p *ngIf="!plane.flight" style="width: 16px; height: 16px; text-align: center;"><b>?</b></p>
             </div>
             <div class="media-body">
-                {{plane.flight ? 'Flight: ' + plane.flight.trim() : 'ICAO: ' + plane.hex}},
-                distance {{distanceFromFlightRadar(plane.lon, plane.lat) | number:'1.1-1'}} km.
-            </div>
-            <div class="media-right" *ngIf="plane.flight">
-                <a href="http://flightaware.com/live/flight/{{plane.flight}}" target="_blank">
-                    <div class="media-object">more&nbsp;info</div>
-                </a>
+                {{plane.flight ? 'Flight: ' + plane.flight.trim() : 'ICAO: ' + plane.hex}}<br>
+                ({{distanceFromFlightRadar(plane.lon, plane.lat) | number:'1.1-1'}} km,
+                {{plane.altitude ? plane.altitude : '-'}} ft,
+                {{plane.speed ? plane.speed : '-'}} kn,
+                {{plane.track ? plane.track : '-'}}&deg;)
             </div>
         </li>
     </ul>
