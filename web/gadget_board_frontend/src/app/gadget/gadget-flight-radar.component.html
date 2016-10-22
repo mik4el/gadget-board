@@ -11,10 +11,11 @@
             </div>
             <div class="media-body">
                 {{plane.flight ? 'Flight: ' + plane.flight.trim() : 'ICAO: ' + plane.hex}}<br>
-                ({{distanceFromFlightRadar(plane.lon, plane.lat) | number:'1.1-1'}} km,
+                ({{bearingToFlightRadar(plane.lon, plane.lat) | number:'1.0-0'}}&deg;
+                {{distanceFromFlightRadar(plane.lon, plane.lat) | number:'1.1-1'}} km,
                 {{plane.altitude ? plane.altitude : '-'}} ft,
                 {{plane.speed ? plane.speed : '-'}} kn,
-                {{plane.track ? plane.track : '-'}}&deg;)
+                track {{plane.track ? plane.track : '-'}}&deg;)
             </div>
         </li>
     </ul>
