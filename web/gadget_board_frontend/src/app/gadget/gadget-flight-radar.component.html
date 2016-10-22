@@ -1,11 +1,19 @@
 <div class="well" id="gadget-flight-radar">
     <p><b>{{gadgetDatum.data.length}} planes</b> <i>({{gadgetDatum.timestamp | date:'medium'}})</i></p>
-    <ol>
-        <li *ngFor="let plane of gadgetDatum.data">
-            {{plane.flight ? 'Flight: ' + plane.flight : 'ICAO: ' + plane.hex}}
-            <a *ngIf="plane.flight" href="http://flightaware.com/live/flight/{{plane.flight}}" target="_blank">
-            more info
-            </a>
+    <br>
+    <ul class="media-list">
+        <li *ngFor="let plane of gadgetDatum.data" class="media">
+            <div class="media-left media-middle">
+               <img src="/backend/static/media/airplane-icon-512.png" height="16" width="16" class="media-object">
+            </div>
+            <div class="media-body">
+                {{plane.flight ? 'Flight: ' + plane.flight : 'ICAO: ' + plane.hex}}
+            </div>
+            <div class="media-right" *ngIf="plane.flight">
+                <a href="http://flightaware.com/live/flight/{{plane.flight}}" target="_blank">
+                    <div class="media-object">more&nbsp;info</div>
+                </a>
+            </div>
         </li>
-    </ol>
+    </ul>
 </div>

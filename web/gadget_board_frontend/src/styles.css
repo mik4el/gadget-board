@@ -99,3 +99,8 @@ h1 {
 .touch:active {
     background-color: #f5f5f5 !important;
 }
+
+a:focus, a:hover {
+    color: #337ab7 !important;
+    text-decoration: none !important;
+}
