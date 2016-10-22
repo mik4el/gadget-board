@@ -7,7 +7,8 @@
                <img src="/backend/static/media/airplane-icon-512.png" height="16" width="16" class="media-object">
             </div>
             <div class="media-body">
-                {{plane.flight ? 'Flight: ' + plane.flight : 'ICAO: ' + plane.hex}}
+                {{plane.flight ? 'Flight: ' + plane.flight.trim() : 'ICAO: ' + plane.hex}},
+                distance {{distanceFromFlightRadar(plane.lon, plane.lat) | number:'1.1-1'}} km.
             </div>
             <div class="media-right" *ngIf="plane.flight">
                 <a href="http://flightaware.com/live/flight/{{plane.flight}}" target="_blank">
