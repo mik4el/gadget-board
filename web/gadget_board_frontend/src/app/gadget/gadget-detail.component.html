@@ -31,4 +31,9 @@
 				[gadgetDatum]="gadgetDatum">
 		</gadget-im-still-here>
 	</div>
+	<div *ngIf="gadgetDatum && gadget.slug === 'pi-tower-lamp'">
+		<gadget-pi-tower-lamp
+				[gadgetDatum]="gadgetDatum">
+		</gadget-pi-tower-lamp>
+	</div>
 </div>

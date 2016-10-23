@@ -44,7 +44,7 @@ export class GadgetService {
             slug: string, 
             limit: number): Observable<GadgetData[]> {
         return Observable
-            .interval(10000)
+            .interval(1000)
             .mergeMap(() => {
                 return this.getGadgetDataForGadget(slug, limit);
             })
