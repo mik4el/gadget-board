@@ -15,12 +15,6 @@ class GadgetSerializer(serializers.ModelSerializer):
 
 
 class GadgetDataSerializer(serializers.ModelSerializer):
-    gadget = serializers.SlugRelatedField(
-        slug_field='slug',
-        read_only=True)
-    added_by = serializers.SlugRelatedField(
-        slug_field='username',
-        read_only=True)
     data = serializers.JSONField()  # Output data rather than string
 
     class Meta:
@@ -30,8 +24,6 @@ class GadgetDataSerializer(serializers.ModelSerializer):
             'created_at',
             'data',
             'timestamp',
-            'added_by',
-            'gadget'
         )
         read_only_fields = (
             'id',

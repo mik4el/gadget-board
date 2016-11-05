@@ -31,10 +31,10 @@ class Gadget(models.Model):
 
 
 class GadgetData(models.Model):
-    gadget = models.ForeignKey(Gadget)
+    gadget = models.ForeignKey(Gadget, db_index=True)  # Add index on filtered fields
     data = JSONField()
     added_by = models.ForeignKey(Account)
-    timestamp = models.DateTimeField(null=True, blank=True)
+    timestamp = models.DateTimeField(null=True, blank=True, db_index=True)  # Add index on filtered fields
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

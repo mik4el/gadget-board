@@ -28,7 +28,8 @@ class GadgetDataViewSet(viewsets.ViewSet):
         return (CanUserAddGadgetData(),)
 
     def list(self, request, gadget_slug=None):
-        queryset = GadgetData.objects.filter(gadget__slug=gadget_slug).order_by('-timestamp')
+        # Very slow when paginated without limit
+        queryset = GadgetData.objects.filter(gadget__slug=gadget_slug).order_by('-timestamp')[:1]
 
         page = self.paginate_queryset(queryset)
         if page is not None:
