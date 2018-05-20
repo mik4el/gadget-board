@@ -1,16 +1,17 @@
 import {
     Component,
-    OnInit,
-    OnDestroy,
     HostBinding,
+    OnDestroy,
+    OnInit } from '@angular/core';
+import {
     trigger,
     transition,
     animate,
     style,
-    state } from '@angular/core';
-
+    state } from '@angular/animations';
+    
 import { ActivatedRoute } from '@angular/router';
-import { Subscription }   from 'rxjs/Subscription';
+import { Subscription }   from 'rxjs';
 
 import { Gadget } from './gadget';
 import { GadgetData } from './gadget-data';

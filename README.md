@@ -23,9 +23,10 @@ Suggested reading and inspiration for this repo:
 https://realpython.com/blog/python/django-development-with-docker-compose-and-machine/ (Good concept and introduction but some code is out-of-date and following instructions will not give a working setup, see blog comments for more info)
 
 ## Requirements
-* [Docker for mac](https://docs.docker.com/docker-for-mac/). Probably works with Docker-Toolbox with Docker-Compose >1.7.1 (https://www.docker.com/products/docker-toolbox)
-* Node v4.x.x and npm 3.x.x
-* Ng-cli@webpack installed globally, see (https://github.com/angular/angular-cli/wiki/Upgrading-from-Beta.10-to-Beta.14)
+* [Docker for mac](https://docs.docker.com/docker-for-mac/) or similar.
+* Node v8.x.x and npm 5.x.x.
+* Ng-cli installed globally.
+* VirtualBox
 
 ## Setting up a development environment
 This will start a new development environment and serve the web app on your machine. This requires the download of all depedencies which will take some time.

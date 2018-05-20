@@ -1,7 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import './rxjs-operators';
-import { Subscription } from 'rxjs/Subscription';
-import { JwtHelper } from 'angular2-jwt/angular2-jwt'
+import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { AccountService } from './account/account.service';
@@ -12,7 +11,6 @@ import { AccountService } from './account/account.service';
   styleUrls: ['./app.component.css'],
   providers: [
     AccountService,
-    JwtHelper
   ]
 })
 

@@ -1,16 +1,18 @@
 import {
     Component,
-    OnDestroy,
     HostBinding,
+    OnDestroy } from '@angular/core';
+import {
     trigger,
     transition,
     animate,
     style,
-    state } from '@angular/core';
+    state } from '@angular/animations';
+
 import { Router } from '@angular/router';
 import { AccountService } from './account.service';
 import { Account } from './account';
-import { Subscription }   from 'rxjs/Subscription';
+import { Subscription }   from 'rxjs';
 
 @Component({
     selector: 'account-login',

@@ -1,6 +1,6 @@
-import { NgModule }           from '@angular/core';
-import { CommonModule }       from '@angular/common';
-import { HttpModule } from '@angular/http';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 import { GadgetService } from './gadget.service';
 import { GadgetListComponent } from './gadget-list.component';
@@ -12,7 +12,7 @@ import { GadgetPiTowerLampComponent } from './gadget-pi-tower-lamp.component';
 import { routing } from './gadget.routing';
 
 @NgModule({
-  imports:      [ CommonModule, HttpModule, routing ],
+  imports:      [ CommonModule, HttpClientModule, routing ],
   declarations: [
     GadgetListComponent,
     GadgetDetailComponent,

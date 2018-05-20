@@ -1,7 +1,9 @@
 import * as Raven from 'raven-js';
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AUTH_PROVIDERS } from 'angular2-jwt/angular2-jwt';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppComponent }  from './app.component';
 import { routing,
@@ -28,17 +30,28 @@ class RavenErrorHandler extends ErrorHandler {
   }
 }
 
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
+
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     routing,
     GadgetModule,
-    AccountModule
+    AccountModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:3001'],
+        blacklistedRoutes: ['localhost:3001/auth/']
+      }
+    })
   ],
   declarations: [ AppComponent, PageNotFoundComponent ],
   bootstrap: [ AppComponent ],
   providers: [
-    AUTH_PROVIDERS,
     appRoutingProviders,
     {provide: ErrorHandler, useClass: RavenErrorHandler}
   ]

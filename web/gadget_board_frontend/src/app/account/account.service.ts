@@ -1,8 +1,9 @@
+import { throwError as observableThrowError,  Observable,  Subject } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { Subject }    from 'rxjs/Subject';
-import { AuthHttp, tokenNotExpired, JwtHelper } from 'angular2-jwt/angular2-jwt'
+import { Response } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { Account } from './account';
 declare var analytics: any;
@@ -16,13 +17,12 @@ export class AccountService {
     isLoggedIn$ = this.isLoggedInSource.asObservable();
 
     constructor (
-        private http: Http,
-        public authHttp: AuthHttp,
-        private jwtHelper: JwtHelper
+        private http: HttpClient,
+        public jwtHelper: JwtHelperService
     ) {}
 
     isLoggedIn() {
-        return tokenNotExpired();
+        return this.jwtHelper.isTokenExpired();
     }
 
     updateLoginStatus(status: boolean) {
@@ -30,22 +30,21 @@ export class AccountService {
     }
     
     login(username: string, password: string) {
-        let headers = new Headers({'Content-Type': 'application/json'});
+        let headers = new HttpHeaders({'Content-Type': 'application/json'});
         let body = JSON.stringify({username, password});
-        let options = new RequestOptions({headers: headers});
-        return this.http.post(this.getTokenUrl, body, options)
-            .map((res : any) => {
-                let data = res.json();
-                localStorage.setItem('id_token', data.token);
+        return this.http.post(this.getTokenUrl, body, { headers }).pipe(
+            map((res : any) => {
+                localStorage.setItem('id_token', res.token);
                 this.updateLoginStatus(true);
-                let decodedToken = this.jwtHelper.decodeToken(data.token);
+                let decodedToken = this.jwtHelper.decodeToken(res.token);
                 analytics.identify(decodedToken.user_id, {
                   name: decodedToken.username,
                   email: decodedToken.email
                 });
                 analytics.track('Logged in');
-            })
-            .catch(this.handleError);
+            }),
+            catchError(this.handleError)
+        );
     }
 
     logout() {
@@ -66,61 +65,53 @@ export class AccountService {
     }
 
     getAccounts (): Observable<Account[]> {
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers, body: ""});
-        return this.authHttp.get(this.accountsUrl, options)
-            .map(this.extractData)
-            .catch(this.handleError);
+        let headers = new HttpHeaders({'Content-Type': 'application/json'});
+        return this.http.get<Account[]>(this.accountsUrl, { headers }).pipe(
+            catchError(this.handleError)
+        );
     }
 
     getAccount (username: string): Observable<Account> {
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers, body: ""});
-        return this.authHttp.get(this.accountsUrl+username+"/", options)
-            .map(this.extractData)
-            .catch(this.handleError);
+        let headers = new HttpHeaders({'Content-Type': 'application/json'});
+        return this.http.get<Account>(this.accountsUrl+username+"/", { headers }).pipe(
+            catchError(this.handleError)
+        );
     }
 
     updateAccount (account: Account): Observable<Account> {
         let body = JSON.stringify(account);
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
-        return this.authHttp.put(this.accountsUrl+account.username+"/", body, options)
-            .map(this.extractData)
-            .catch(this.handleError);
+        let headers = new HttpHeaders({'Content-Type': 'application/json'});
+        return this.http.put<Account>(this.accountsUrl+account.username+"/", body, { headers }).pipe(
+            catchError(this.handleError)
+        );
     }
 
     createAccount (username: string,
                  password: string,
                  email: string): Observable<Account> {
         let body = JSON.stringify({username, password, email});
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
-        return this.http.post(this.accountsUrl, body, options)
-            .map((res : any) => {
-                let data = res.json();
+        let headers = new HttpHeaders({'Content-Type': 'application/json'});
+        return this.http.post(this.accountsUrl, body, { headers }).pipe(
+            map((res : any) => {
+                let data = res;
                 localStorage.setItem('id_token', data.token)
                 this.updateLoginStatus(true);
                 return data || { };
-            })
-            .catch(this.handleError);
+            }),
+            catchError(this.handleError)
+        );
     }
 
     deleteAccount (account: Account): Observable<Response> {
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers, body: ""});
-        return this.authHttp.delete(this.accountsUrl+account.username+"/", options)
-            .map((res: Response) => {
+        let headers = new HttpHeaders({'Content-Type': 'application/json'});
+        return this.http.delete(this.accountsUrl+account.username+"/", { headers }).pipe(
+            map((res: Response) => {
                 return res;
-            })
-            .catch(this.handleError);
+            }),
+            catchError(this.handleError)
+        );
     }
 
-    private extractData(res: Response) {
-        let body = res.json();
-        return body || { };
-    }
-    
     private handleError(error: any) {
         try {
             //if error comes from backend it has a json representation and error is type response
@@ -129,10 +120,10 @@ export class AccountService {
                 return errors[key];
             });
             let errorMessages = [].concat.apply([], errorMessagesByType); //flatten multidimensional array
-            return Observable.throw(errorMessages);
+            return observableThrowError(errorMessages);
         } catch(e) {
             //if not serve it to the view as array
-            return Observable.throw([error]);
+            return observableThrowError([error]);
         }
     }
 

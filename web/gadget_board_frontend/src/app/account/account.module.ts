@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AccountService } from './account.service';
 import { AccountCreateComponent } from './account-create.component';
@@ -15,7 +15,7 @@ import { routing } from './account.routing';
 @NgModule({
   imports:		[ 	CommonModule, 
   					FormsModule,
-  					HttpModule, 
+  					HttpClientModule, 
   					routing ],
   declarations: [ 	AccountListComponent, 
   					AccountDetailComponent, 

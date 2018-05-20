@@ -1,7 +1,10 @@
+
+import {fromEvent as observableFromEvent,  Observable } from 'rxjs';
+
+import {map} from 'rxjs/operators';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from "rxjs/Rx";
-import { Observable } from "rxjs/Observable";
 
 import { GadgetData } from './gadget-data';
 
@@ -87,8 +90,8 @@ export class GadgetSwimThermoComponent implements OnInit {
     }
 
 	ngOnInit() {
-	    Observable.fromEvent(window, 'resize')
-	    	.map(getWindowSize)
+	    observableFromEvent(window, 'resize').pipe(
+	    	map(getWindowSize))
 	     	.subscribe(windowSize => this.resizeComponents(windowSize));
 
      	// Hack to make sure resizeComponent is run once.

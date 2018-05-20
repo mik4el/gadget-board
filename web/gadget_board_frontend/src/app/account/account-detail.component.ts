@@ -1,12 +1,13 @@
 import {
     Component,
-    OnInit,
     HostBinding,
+    OnInit } from '@angular/core';
+import {
     trigger,
     transition,
     animate,
     style,
-    state } from '@angular/core';
+    state } from '@angular/animations';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Account } from './account';

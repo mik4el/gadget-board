@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
 
+import {throwError as observableThrowError, interval as observableInterval,  Observable } from 'rxjs';
+
+import { catchError, map, mergeMap } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Gadget } from './gadget';
 import { GadgetData } from './gadget-data';
 
@@ -10,63 +12,54 @@ export class GadgetService {
     private gadgetsUrl = 'backend/api/v1/gadgets/';
 
     constructor (
-        private http: Http
+        private http: HttpClient
     ) {}
 
     getGadgets (): Observable<Gadget[]> {
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers, body: ""});
-        return this.http.get(this.gadgetsUrl, options)
-            .map(this.extractData)
-            .catch(this.handleError);
+        let headers = new HttpHeaders({'Content-Type': 'application/json'});
+        return this.http.get<Gadget[]>(this.gadgetsUrl, { headers }).pipe(
+            catchError(this.handleError)
+        );
     }
 
     getGadget (slug: string): Observable<Gadget> {
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers, body: ""});
-        return this.http.get(this.gadgetsUrl+slug+'/', options)
-            .map(this.extractData)
-            .catch(this.handleError);
+        let headers = new HttpHeaders({'Content-Type': 'application/json'});
+        return this.http.get<Gadget>(this.gadgetsUrl+slug+'/', { headers }).pipe(
+            catchError(this.handleError)
+        );
     }
 
     getGadgetDataForGadget (slug: string, limit: number): Observable<GadgetData[]> {
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers, body: ""});
-        return this.http.get(this.gadgetsUrl+slug+'/data/?limit='+limit, options)
-            .map(res => {
-                let body = res.json();
-                return body.results;
-            })
-            .catch(this.handleError);
+        let headers = new HttpHeaders({'Content-Type': 'application/json'});
+        return this.http.get<GadgetData[]>(this.gadgetsUrl+slug+'/data/?limit='+limit, { headers }).pipe(
+            map(res => {
+                return res['results'];
+            }),
+            catchError(this.handleError)
+        );
     }
 
     pollGadgetDataForGadget (
             slug: string, 
             limit: number): Observable<GadgetData[]> {
-        return Observable
-            .interval(1000)
-            .mergeMap(() => {
+        return observableInterval(1000).pipe(
+            mergeMap(() => {
                 return this.getGadgetDataForGadget(slug, limit);
-            })
-    }
-
-    private extractData(res: Response) {
-        let body = res.json();
-        return body || { };
+            }))
     }
     
     private handleError(error: any) {
         try {
-            //if error comes from backend it has a json representation and error is type response
+            // if error comes from backend it has a json representation and error is type response
             let errors = error.json();
             let errorMessagesByType = Object.keys(errors).map(function(key){
                 return errors[key];
             });
             let errorMessages = [].concat.apply([], errorMessagesByType); //flatten multidimensional array
-            return Observable.throw(errorMessages);
+            return observableThrowError(errorMessages);
         } catch(e) {
             //if not serve it to the view as array
-            return Observable.throw([error]);
+            return observableThrowError([error]);
         }
     }
 
