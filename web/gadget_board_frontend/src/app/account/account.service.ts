@@ -22,7 +22,7 @@ export class AccountService {
     ) {}
 
     isLoggedIn() {
-        return this.jwtHelper.isTokenExpired();
+        return !this.jwtHelper.isTokenExpired();
     }
 
     updateLoginStatus(status: boolean) {

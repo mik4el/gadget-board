@@ -12,12 +12,10 @@ export class AccountGuard implements CanActivate {
     
     canActivate() {
         if (this.jwtHelper.isTokenExpired()) {
-            // logged in so return true
-            return true;
+            // not logged in so return false and redirect to login page
+            this.router.navigate(['/accounts/login']);
+            return false;
         }
- 
-        // not logged in so redirect to login page
-        this.router.navigate(['/accounts/login']);
-        return false;
+        return true;
     }
 }

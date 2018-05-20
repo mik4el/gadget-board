@@ -31,7 +31,7 @@ class RavenErrorHandler extends ErrorHandler {
 }
 
 export function tokenGetter() {
-  return localStorage.getItem('access_token');
+  return localStorage.getItem('id_token');
 }
 
 @NgModule({
