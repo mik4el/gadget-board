@@ -1,7 +1,7 @@
 ## Introduction
-This is a web app showing latest data from mik4el's gadgets using Django, Angular2 and Docker. The app is currently available at https://m4bd.se.
+This is a web app showing latest data from mik4el's gadgets using Django, Angular (version 6.0.2 since 2018-05-20) and Docker. The app is currently available at https://m4bd.se.
 
-The web app is separated into a backend `web/gadget_board_backend` using Django and a frontend `web/gadget_board_frontend` using Angular2. 
+The web app is separated into a backend `web/gadget_board_backend` using Django and a frontend `web/gadget_board_frontend` using Angular. 
 
 The full stack is running in Docker containers and consists of: 
 
@@ -63,7 +63,7 @@ When you add a dependency to `web/requirements.txt` you need to build a new cont
 1. `docker-compose up -d`
 1. Possibly run `docker-compose run --rm web python manage.py collectstatic` or other commands your dependency requires. NB: collectstatic needs to be run in the development workflow for static files to be saved in the static-dir, this is not possible to do on deployed containers.
 
-## Development workflow Angular2
+## Development workflow Angular
 For normal development work, I suggest this workflow:
 
 1. Make change in source file in `gadget_board_frontend`
@@ -133,7 +133,7 @@ To restore production machine:
 Not tested angular-cli testing.
 
 ## Known issues
-* Test for services broken after rc5, fix when Angular2 updates documentation
+* Test for services broken after rc5, fix when Angular updates documentation
 
 ## Todos
 1. Frontend: Animation when data updated
