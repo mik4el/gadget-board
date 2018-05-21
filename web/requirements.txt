@@ -1,7 +1,7 @@
-Django==1.9.6
+Django==2.0.5
 psycopg2==2.6.1
 gunicorn==19.5.0
-djangorestframework==3.3.3
-drf-nested-routers==0.11.1
-djangorestframework-jwt==1.8.0
+djangorestframework==3.8.2
+drf-nested-routers==0.90.0
+djangorestframework-jwt==1.11.0
 raven

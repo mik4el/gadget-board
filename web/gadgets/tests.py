@@ -46,12 +46,14 @@ class GadgetsTestCase(TestCase):
             added_by=self.test_user,
             timestamp=timezone.now()
         )
+        self.data_obj['key1'] = 'value2'
         self.gadget_data_2 = GadgetData.objects.create(
             gadget=self.gadget,
             data=self.data_obj,
             added_by=self.test_user,
             timestamp=timezone.now()
         )
+        self.data_obj['key1'] = 'value3'
         self.gadget_data_3 = GadgetData.objects.create(
             gadget=self.gadget,
             data=self.data_obj,
