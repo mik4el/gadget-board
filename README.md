@@ -84,6 +84,7 @@ Now we need to set up the production environment to which you are deploying. By 
 1. `docker-compose -f production.yml build`
 1. `docker-compose -f production.yml up -d`
 1. `docker-compose -f production.yml run --rm web python manage.py migrate`
+1. `docker-compose -f production.yml run --rm web python manage.py createsuperuser`
 
 ### Setting up SSL
 Since the app handles user data securing traffic using SSL is a requirement for production. To set it up on the production nginx container I followed these steps:

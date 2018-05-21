@@ -18,7 +18,7 @@ Raven
     .config('https://bf263cc32a26472d9906a232f15f9663@sentry.io/99202')
     .install();
 
-class RavenErrorHandler extends ErrorHandler {
+export class RavenErrorHandler extends ErrorHandler {
   handleError(err:any) {
     while ( err && err.originalError ) {
       err = err.originalError;
