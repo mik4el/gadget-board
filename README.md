@@ -123,8 +123,8 @@ To restore development machine:
 1. `docker-compose up -d`
 1. `docker-compose run --rm -e PGPASSWORD=postgres postgres psql -U postgres -p 5432 -h postgres -F c < postgres_db_20160913_development.bak`
 
-Example command to run backup of postgres db on production machine:
-* `docker-compose -f production.yml run --rm -e PGPASSWORD=postgres postgres psql -U postgres -p 5432 -h postgres -F c < postgres_db_20160913_production.bak`
+Example command to create backup of postgres db on production machine:
+* `docker-compose -f production.yml run --rm -e PGPASSWORD=postgres postgres pg_dump -U postgres -p 5432 -h postgres postgres > postgres_db_20190606_production.bak`
 
 To restore production machine:
 1. `docker-compose -f production.yml up -d`
