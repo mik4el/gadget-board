@@ -109,9 +109,13 @@ When you are deploying the next time we also need to rebuild the container that 
 NB: If in a new terminal remember `eval $(docker-machine env production)`.
 
 ## Testing
-Testing in Django is handled by the default Django test system, so running tests is easy, e.g:
+Testing for the backend is handled by the default Django test system, so running tests is easy, e.g:
 
 * `docker-compose run --rm web python manage.py test`
+
+Testing for the frontend is done using angular-cli:
+
+* `ng test`
 
 ## Backing up
 A deployed environment can be backed up by your hosting provider, e.g. DigitalOcean. Since this is a very stateless deployment you can also make a scripted backup of your database and make it possible to easily restore the database from a backup. This will save some on hosting costs and make for a more self-contained and hosting provider agnostic solution.
