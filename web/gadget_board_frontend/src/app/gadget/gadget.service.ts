@@ -56,9 +56,12 @@ export class GadgetService {
                 return errors[key];
             });
             let errorMessages = [].concat.apply([], errorMessagesByType); //flatten multidimensional array
+            console.log("hej");
             return observableThrowError(errorMessages);
         } catch(e) {
             //if not serve it to the view as array
+            console.log("hej2");
+            console.log(error);
             return observableThrowError([error]);
         }
     }
