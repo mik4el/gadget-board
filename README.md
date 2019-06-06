@@ -24,7 +24,7 @@ https://realpython.com/blog/python/django-development-with-docker-compose-and-ma
 
 ## Requirements
 * [Docker for mac](https://docs.docker.com/docker-for-mac/) or similar.
-* Node v8.x.x and npm 5.x.x.
+* Node v10+.
 * Ng-cli installed globally.
 * VirtualBox
 

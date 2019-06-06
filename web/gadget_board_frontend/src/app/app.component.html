@@ -1,36 +1,26 @@
-<nav class="navbar navbar-default">
-<div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span data-toggle="collapse" data-target="#navbar-collapse-1.in">
-      <a class="navbar-brand" [routerLink]="['/gadgets']">Mik4el's gadgets</a>
-      </span>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" [routerLink]="['/gadgets']">Mik4el's gadgets</a>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="!isLoggedIn" data-toggle="collapse" data-target="#navbar-collapse-1.in">
-	    	<a [routerLink]="['/accounts/create']">
-          Create Account</a>
-		</li>
-	    <li *ngIf="!isLoggedIn" data-toggle="collapse" data-target="#navbar-collapse-1.in">
-	    	<a [routerLink]="['accounts/login']">Login</a>
-		</li>
-	    <li *ngIf="isLoggedIn" data-toggle="collapse" data-target="#navbar-collapse-1.in">
-	    	<a [routerLink]="['/accounts']">Accounts</a>
-		</li>
-	    <li *ngIf="isLoggedIn" data-toggle="collapse" data-target="#navbar-collapse-1.in">
-	    	<a href="javascript:void(0)" (click)="logout()">Logout</a>
-		</li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+  <button (click)="isCollapsed = !isCollapsed" class="navbar-toggler" type="button">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" [ngbCollapse]="!isCollapsed" id="navbarNav">
+    <ul class="navbar-nav">
+      <li *ngIf="!isLoggedIn" class="nav-item">
+        <a class="nav-link" [routerLink]="['/accounts/create']">Create Account</a>
+      </li>
+      <li *ngIf="!isLoggedIn" class="nav-item">
+        <a class="nav-link" [routerLink]="['accounts/login']">Login</a>
+      </li>
+      <li *ngIf="isLoggedIn" class="nav-item">
+        <a class="nav-link" [routerLink]="['/accounts']">Accounts</a>
+      </li>
+      <li *ngIf="isLoggedIn" class="nav-item">
+        <a class="nav-link" href="javascript:void(0)" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+  </div>
 </nav>
 
 <router-outlet></router-outlet>

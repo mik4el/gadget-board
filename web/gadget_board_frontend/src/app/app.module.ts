@@ -11,6 +11,7 @@ import { routing,
 import { GadgetModule }  from './gadget/gadget.module';
 import { AccountModule }  from './account/account.module';
 import { PageNotFoundComponent } from './page-not-found.component'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ErrorHandler } from '@angular/core';
 
@@ -47,7 +48,8 @@ export function tokenGetter() {
         whitelistedDomains: ['localhost:3001'],
         blacklistedRoutes: ['backend/api/v1/gadgets/']
       }
-    })
+    }),
+    NgbModule
   ],
   declarations: [ AppComponent, PageNotFoundComponent ],
   bootstrap: [ AppComponent ],
