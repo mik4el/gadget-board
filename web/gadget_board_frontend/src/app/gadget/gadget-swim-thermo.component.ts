@@ -1,10 +1,9 @@
 
-import {fromEvent as observableFromEvent,  Observable } from 'rxjs';
+import {fromEvent as observableFromEvent,  Observable ,  BehaviorSubject } from 'rxjs';
 
 import {map} from 'rxjs/operators';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from "rxjs/Rx";
 
 import { GadgetData } from './gadget-data';
 

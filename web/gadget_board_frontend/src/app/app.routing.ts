@@ -9,10 +9,10 @@ const appRoutes: Routes = [
 		redirectTo: 'gadgets',
 	},
 	{	path: 'gadgets',
-		loadChildren: './gadget/gadget.module#GadgetModule'
+		loadChildren: () => import('./gadget/gadget.module').then(m => m.GadgetModule)
 	},
 	{	path: 'accounts',
-		loadChildren: './account/account.module#AccountModule'
+		loadChildren: () => import('./account/account.module').then(m => m.AccountModule)
 	},
 	{
 		path: '**',
