@@ -80,7 +80,7 @@ Now we need to set up the production environment to which you are deploying. By 
 1. Get an access token for your DigitalOcean account.
 1. `docker-machine create -d digitalocean --digitalocean-access-token=<token> --digitalocean-region=fra1 production` (use same region where your floating ip is for the domain you use in SSL)
 1. `eval $(docker-machine env production)`
-1. `ng build -prod -output-path=../gadget_board_frontend_dist`
+1. `ng build --prod --output-path=../gadget_board_frontend_dist`
 1. `docker-compose -f production.yml build`
 1. `docker-compose -f production.yml up -d`
 1. `docker-compose -f production.yml run --rm web python manage.py migrate`
@@ -100,7 +100,7 @@ Since the app handles user data securing traffic using SSL is a requirement for 
 ## Deploying
 When you are deploying the next time we also need to rebuild the container that has changed files since the production environment does not mount your local machines files.
 
-1. `ng build -prod -output-path=../gadget_board_frontend_dist`
+1. `ng build --prod --output-path=../gadget_board_frontend_dist`
 1. `docker-compose -f production.yml build`
 1. `docker-compose -f production.yml down`
 1. `docker-compose -f production.yml up -d`
@@ -136,13 +136,8 @@ The system has produced a lot of Gadget Data, in a year about 11M Gadget Data ob
 1. `>>> from gadgets.models import GadgetData`
 1. `>>> GadgetData.objects.all().delete()`
 
-## Limitations
-Not tested angular-cli testing.
-
-## Known issues
-* Test for services broken after rc5, fix when Angular updates documentation
-
 ## Todos
+1. Frontend update css to not look broken
 1. Frontend: Animation when data updated
 1. Refresh JWT tokens in background
 1. Sass or similar css build
