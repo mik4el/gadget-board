@@ -36,27 +36,29 @@ class GadgetsTestCase(TestCase):
         )
         self.gadget.users_can_upload.add(self.test_user)
 
-        self.data_obj = {}
-        self.data_obj['key1'] = 'value1'
+        self.data_obj_1 = {}
+        self.data_obj_1['key1'] = 'value1'
+        self.data_obj_2 = {}
+        self.data_obj_2['key2'] = 'value2'
+        self.data_obj_3 = {}
+        self.data_obj_3['key3'] = 'value3'
 
         # Create data for gadget
         self.gadget_data_1 = GadgetData.objects.create(
             gadget=self.gadget,
-            data=self.data_obj,
+            data=self.data_obj_1,
             added_by=self.test_user,
             timestamp=timezone.now()
         )
-        self.data_obj['key1'] = 'value2'
         self.gadget_data_2 = GadgetData.objects.create(
             gadget=self.gadget,
-            data=self.data_obj,
+            data=self.data_obj_2,
             added_by=self.test_user,
             timestamp=timezone.now()
         )
-        self.data_obj['key1'] = 'value3'
         self.gadget_data_3 = GadgetData.objects.create(
             gadget=self.gadget,
-            data=self.data_obj,
+            data=self.data_obj_3,
             added_by=self.test_user,
             timestamp=timezone.now()
         )
@@ -88,9 +90,8 @@ class GadgetsTestCase(TestCase):
             format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # assert data in reply
-        self.assertEqual(len(response.json()), 3)
-        self.assertEqual(response.json()[2]['gadget'], self.gadget.slug)
-        self.assertEqual(response.json()[2]['data'], self.data_obj)
+        self.assertEqual(len(response.json()), 1)
+        self.assertEqual(response.json()[0]['data'], self.data_obj_3)
 
     def test_get_gadget_data_for_gadget(self):
         view = GadgetViewSet.as_view({'get': 'retrieve'})
@@ -101,16 +102,15 @@ class GadgetsTestCase(TestCase):
             format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # assert data in reply
-        self.assertEqual(response.json()['gadget'], self.gadget.slug)
-        self.assertEqual(response.json()['data'], self.data_obj)
+        self.assertEqual(response.json()['data'], self.data_obj_1)
 
     def test_post_gadget_data_for_gadget(self):
         view = GadgetViewSet.as_view({'post': 'create'})
         client = APIClient()
-        # make requrest and assert ok
+        gadget_json_data = {}
         gadget_json_data = {}
         gadget_json_data['gadget'] = self.gadget.slug
-        gadget_json_data['data'] = self.data_obj
+        gadget_json_data['data'] = self.data_obj_1
         gadget_json_data['timestamp'] = str(timezone.now())
 
         # Make request without authentication
@@ -137,7 +137,6 @@ class GadgetsTestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
         # assert data in reply
-        self.assertEqual(response.json()['gadget'], self.gadget.slug)
         self.assertEqual(response.json()['data'], {'key1': 'value1'})
 
         # Make request without timestamp
