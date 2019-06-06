@@ -130,6 +130,12 @@ To restore production machine:
 1. `docker-compose -f production.yml up -d`
 1. `docker-compose -f production.yml run --rm -e PGPASSWORD=postgres postgres psql -U postgres -p 5432 -h postgres -F c < postgres_db_20160913_production.bak`
 
+The system has produced a lot of Gadget Data, in a year about 11M Gadget Data objects were stored. This becomes many GB easily so to make sure the system can run efficiently on a small VM it makes sense to purge Gadget Data from time to time. An easy and safe way to purge is to use the Django ORM, this is an example:
+
+1. `docker-compose -f production.yml run --rm web python manage.py shell`
+1. `>>> from gadgets.models import GadgetData`
+1. `>>> GadgetData.objects.all().delete()`
+
 ## Limitations
 Not tested angular-cli testing.
 
