@@ -1,22 +1,23 @@
-<div class="well" id="gadget-flight-radar">
-    <p><b>{{gadgetDatum.data.length}} planes</b> <i>({{gadgetDatum.timestamp | date:'medium'}})</i></p>
-    <br>
-    <ul class="media-list">
-        <li *ngFor="let plane of gadgetDatum.data" class="media">
-            <div class="media-left media-middle">
-                <a href="http://flightaware.com/live/flight/{{plane.flight}}" target="_blank" *ngIf="plane.flight">
-                   <img src="/backend/static/media/airplane-icon-512.png" height="16" width="16" class="media-object">
-                </a>
-                <p *ngIf="!plane.flight" style="width: 16px; height: 16px; text-align: center;"><b>?</b></p>
-            </div>
-            <div class="media-body">
-                {{plane.flight ? plane.flight.trim() : 'ICAO: ' + plane.hex}}<br>
-                ({{bearingToFlightRadar(plane.lon, plane.lat) | number:'1.0-0'}}&deg;
-                {{distanceFromFlightRadar(plane.lon, plane.lat) | number:'1.1-1'}} km,
-                {{plane.altitude ? plane.altitude : '-'}} ft,
-                {{plane.speed ? plane.speed : '-'}} kn,
-                track {{plane.track ? plane.track : '-'}}&deg;)
-            </div>
-        </li>
-    </ul>
+<div class="card" id="gadget-flight-radar">
+    <div class="card-body">
+        <h5 class="card-title"><b>{{gadgetDatum.data.length}} planes</b>&nbsp;<i>({{gadgetDatum.timestamp | date:'medium'}})</i></h5>
+        <ul class="media-list">
+            <li *ngFor="let plane of gadgetDatum.data" class="media">
+                <div class="media-left media-middle">
+                    <a href="http://flightaware.com/live/flight/{{plane.flight}}" target="_blank" *ngIf="plane.flight">
+                    <img src="/backend/static/media/airplane-icon-512.png" height="16" width="16" class="media-object">
+                    </a>
+                    <p *ngIf="!plane.flight" style="width: 16px; height: 16px; text-align: center;"><b>?</b></p>
+                </div>
+                <div class="media-body">
+                    {{plane.flight ? plane.flight.trim() : 'ICAO: ' + plane.hex}}<br>
+                    ({{bearingToFlightRadar(plane.lon, plane.lat) | number:'1.0-0'}}&deg;
+                    {{distanceFromFlightRadar(plane.lon, plane.lat) | number:'1.1-1'}} km,
+                    {{plane.altitude ? plane.altitude : '-'}} ft,
+                    {{plane.speed ? plane.speed : '-'}} kn,
+                    track {{plane.track ? plane.track : '-'}}&deg;)
+                </div>
+            </li>
+        </ul>
+    </div>
 </div>

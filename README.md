@@ -66,8 +66,8 @@ When you add a dependency to `web/requirements.txt` you need to build a new cont
 ## Development workflow Angular
 For normal development work, I suggest this workflow:
 
+1. `ng build --watch`
 1. Make change in source file in `gadget_board_frontend`
-1. `ng build`
 1. Reload browser
 
 ### Adding a dependency

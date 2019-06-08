@@ -5,15 +5,14 @@
     </div>
 </div>
 
-<div class="list-group">
-    <button *ngFor="let account of accounts"
-            type="button"
-            class="list-group-item touch"
-            (click)="gotoAccountDetail(account)">
+<ul class="list-group">
+    <li *ngFor="let account of accounts"
+        class="list-group-item"
+        (click)="gotoAccountDetail(account)">
         <div class="media">
             <div class="media-body">
                 {{account.username}}
             </div>
         </div>
-    </button>
-</div>
+    </li>
+</ul>

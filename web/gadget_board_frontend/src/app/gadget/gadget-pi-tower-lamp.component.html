@@ -1,3 +1,5 @@
-<div class="well" id="gadget-pi-tower-lamp" [style.background-color]="'rgb('+gadgetDatum.data.average_window_rgb[0]+', '+gadgetDatum.data.average_window_rgb[1]+', '+gadgetDatum.data.average_window_rgb[2]+')'">
-    Data from <i>{{gadgetDatum.timestamp | date:'medium'}}</i>
+<div class="card" id="gadget-pi-tower-lamp" [style.background-color]="'rgb('+gadgetDatum.data.average_window_rgb[0]+', '+gadgetDatum.data.average_window_rgb[1]+', '+gadgetDatum.data.average_window_rgb[2]+')'">
+    <div class="card-body">
+        Data from&nbsp;<i>{{gadgetDatum.timestamp | date:'medium'}}</i>
+    </div>
 </div>

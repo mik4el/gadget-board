@@ -4,20 +4,17 @@
     </div>
 </div>
 
-<div class="list-group">
-  <button *ngFor="let gadget of gadgets"
-	 class="list-group-item touch"
-	 (click)="gotoGadgetDetail(gadget)"
-     type="button">
+<ul class="list-group">
+  <li *ngFor="let gadget of gadgets"
+	 class="list-group-item"
+	 (click)="gotoGadgetDetail(gadget)">
   	<div class="media">
-		<div class="media-left">
-			<img class="media-object"
+			<img class="mr-3"
 				src="{{gadget.image_url}}" 
 				style="width: 23px; height: 23px;">
+			<div class="media-body">
+				{{gadget.name}}
+			</div>
 		</div>
-		<div class="media-body">
-			{{gadget.name}}
-		</div>
-	</div>
-  </button>
-</div>
+	</li>
+</ul>
