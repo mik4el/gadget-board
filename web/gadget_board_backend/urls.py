@@ -13,7 +13,11 @@ router.register(r'gadgets', GadgetViewSet)
 gadgets_router = routers.NestedSimpleRouter(router, r'gadgets', lookup='gadget')
 gadgets_router.register(r'data', GadgetDataViewSet, base_name='gadgets-data')
 
+def trigger_error(request):
+    division_by_zero = 1 / 0
+
 urlpatterns = [
+    url(r'^backend/sentry-debug/', trigger_error),
     url(r'^backend/admin/', admin.site.urls),
     url(r'^backend/api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^backend/api-token-auth/', obtain_jwt_token),
