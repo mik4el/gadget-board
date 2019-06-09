@@ -9,6 +9,7 @@ import { GadgetSwimThermoComponent } from './gadget-swim-thermo.component';
 import { GadgetFlightRadarComponent } from './gadget-flight-radar.component';
 import { GadgetImStillHereComponent } from './gadget-im-still-here.component';
 import { GadgetPiTowerLampComponent } from './gadget-pi-tower-lamp.component';
+import { GadgetEddystoneScannerComponent } from './gadget-eddystone-scanner.component';
 import { routing } from './gadget.routing';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { routing } from './gadget.routing';
     GadgetFlightRadarComponent,
     GadgetImStillHereComponent,
     GadgetPiTowerLampComponent,
+    GadgetEddystoneScannerComponent,
   ],
   providers:    [ GadgetService ]
 })

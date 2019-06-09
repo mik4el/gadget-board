@@ -34,4 +34,9 @@
 				[gadgetDatum]="gadgetDatum">
 		</gadget-pi-tower-lamp>
 	</div>
+	<div *ngIf="gadgetDatum && gadget.slug === 'eddystone-scanner'">
+		<gadget-eddystone-scanner
+				[gadgetDatum]="gadgetDatum">
+		</gadget-eddystone-scanner>
+	</div>
 </div>

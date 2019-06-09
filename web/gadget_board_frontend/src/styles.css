@@ -70,6 +70,10 @@ input,textarea {
     filter: alpha(opacity=20);
 }
 
+#gadget-eddystone-scanner .card-body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
 .gadget-info {
     margin-bottom: 15px;
 }
